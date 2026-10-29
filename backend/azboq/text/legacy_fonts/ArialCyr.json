@@ -1,0 +1,330 @@
+{
+ "Б": {
+  "to": "B",
+  "score": 0.985,
+  "second": "E",
+  "second_score": 0.628,
+  "pdf": "su nasos stansiyasi 9335.pdf",
+  "page": 1
+ },
+ "В": {
+  "to": "V",
+  "score": 0.991,
+  "second": "M",
+  "second_score": 0.398,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Д": {
+  "to": "D",
+  "score": 0.994,
+  "second": "B",
+  "second_score": 0.599,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Е": {
+  "to": "E",
+  "score": 1.0,
+  "second": "F",
+  "second_score": 0.655,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "И": {
+  "to": "İ",
+  "score": 0.819,
+  "second": "I",
+  "second_score": 0.755,
+  "pdf": "su nasos stansiyasi 9335.pdf",
+  "page": 1
+ },
+ "К": {
+  "to": "К",
+  "score": 0.999,
+  "second": "K",
+  "second_score": 0.49,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "М": {
+  "to": "M",
+  "score": 0.995,
+  "second": "V",
+  "second_score": 0.398,
+  "pdf": "su nasos stansiyasi 9335.pdf",
+  "page": 1
+ },
+ "Т": {
+  "to": "T",
+  "score": 0.836,
+  "second": "I",
+  "second_score": 0.534,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Ц": {
+  "to": "Ü",
+  "score": 0.999,
+  "second": "U",
+  "second_score": 0.888,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Ч": {
+  "to": "Ç",
+  "score": 0.909,
+  "second": "C",
+  "second_score": 0.85,
+  "pdf": "su nasos stansiyasi 9335.pdf",
+  "page": 1
+ },
+ "а": {
+  "to": "a",
+  "score": 0.981,
+  "second": "ə",
+  "second_score": 0.672,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "б": {
+  "to": "b",
+  "score": 0.975,
+  "second": "p",
+  "second_score": 0.765,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "в": {
+  "to": "v",
+  "score": 1.0,
+  "second": "y",
+  "second_score": 0.719,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "г": {
+  "to": "q",
+  "score": 0.987,
+  "second": "d",
+  "second_score": 0.762,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "д": {
+  "to": "d",
+  "score": 0.983,
+  "second": "q",
+  "second_score": 0.775,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "е": {
+  "to": "e",
+  "score": 0.984,
+  "second": "o",
+  "second_score": 0.739,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ж": {
+  "to": "c",
+  "score": 0.994,
+  "second": "ç",
+  "second_score": 0.81,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "з": {
+  "to": "z",
+  "score": 1.0,
+  "second": "x",
+  "second_score": 0.453,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "и": {
+  "to": "i",
+  "score": 1.0,
+  "second": "l",
+  "second_score": 0.865,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "й": {
+  "to": "y",
+  "score": 0.998,
+  "second": "v",
+  "second_score": 0.72,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "к": {
+  "to": "k",
+  "score": 1.0,
+  "second": "h",
+  "second_score": 0.438,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "л": {
+  "to": "l",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.865,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "м": {
+  "to": "m",
+  "score": 0.993,
+  "second": "ı",
+  "second_score": 0.249,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "н": {
+  "to": "n",
+  "score": 0.981,
+  "second": "h",
+  "second_score": 0.852,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "о": {
+  "to": "o",
+  "score": 0.821,
+  "second": "ö",
+  "second_score": 0.714,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "п": {
+  "to": "p",
+  "score": 0.976,
+  "second": "b",
+  "second_score": 0.759,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "р": {
+  "to": "r",
+  "score": 0.993,
+  "second": "f",
+  "second_score": 0.264,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "с": {
+  "to": "s",
+  "score": 0.997,
+  "second": "ş",
+  "second_score": 0.841,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "т": {
+  "to": "t",
+  "score": 0.987,
+  "second": "l",
+  "second_score": 0.579,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "у": {
+  "to": "u",
+  "score": 0.989,
+  "second": "ü",
+  "second_score": 0.847,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ф": {
+  "to": "f",
+  "score": 0.919,
+  "second": "t",
+  "second_score": 0.48,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "х": {
+  "to": "x",
+  "score": 1.0,
+  "second": "z",
+  "second_score": 0.453,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ц": {
+  "to": "ü",
+  "score": 0.998,
+  "second": "u",
+  "second_score": 0.857,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ч": {
+  "to": "ç",
+  "score": 0.998,
+  "second": "c",
+  "second_score": 0.813,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ш": {
+  "to": "ş",
+  "score": 0.951,
+  "second": "s",
+  "second_score": 0.837,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "щ": {
+  "to": "h",
+  "score": 0.998,
+  "second": "n",
+  "second_score": 0.841,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ъ": {
+  "to": "j",
+  "score": 0.99,
+  "second": "ş",
+  "second_score": 0.205,
+  "pdf": "su nasos stansiyasi 9335.pdf",
+  "page": 1
+ },
+ "ы": {
+  "to": "ı",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.822,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "ь": {
+  "to": "ğ",
+  "score": 0.93,
+  "second": "g",
+  "second_score": 0.854,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "э": {
+  "to": "g",
+  "score": 0.973,
+  "second": "ğ",
+  "second_score": 0.869,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "я": {
+  "to": "ə",
+  "score": 0.99,
+  "second": "o",
+  "second_score": 0.75,
+  "pdf": "1.pdf",
+  "page": 0
+ }
+}

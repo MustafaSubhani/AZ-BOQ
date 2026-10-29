@@ -1,0 +1,348 @@
+- id: gate_long
+  label_az: Deponun uzun tərəfi
+  label_en: Depot long side
+  building: depot
+  element: plan_size
+  unit: m
+  type: dimension_max_h
+  factor: 0.001
+  files:
+  - (SON)
+  - yangin deposu dk son
+  - -01- IV
+  cross_check_text:
+    pdf: 9335 MH.pdf
+    pattern: ^45200$
+  citation: (SON).dwg depot plan dimensions; 9335 MH.pdf page 5 text 45200
+  range:
+  - 10000
+  - 80000
+- id: gate_short
+  label_az: Deponun qısa tərəfi
+  label_en: Depot short side
+  building: depot
+  element: plan_size
+  unit: m
+  type: dimension_max_v
+  factor: 0.001
+  files:
+  - (SON)
+  - yangin deposu dk son
+  - -01- IV
+  cross_check_text:
+    pdf: 9335 MH.pdf
+    pattern: ^34600$
+  citation: Depot DK plan dimensions 34600
+  range:
+  - 10000
+  - 80000
+- id: bay_module
+  label_az: Aşırım addımı
+  label_en: Bay module
+  building: depot
+  element: plan_size
+  unit: m
+  type: dimension_mode
+  factor: 0.001
+  files:
+  - (SON)
+  citation: (SON).dwg depot plan, bay chain 1 600 + 7 × 6 000 + 1 600
+  range:
+  - 3000
+  - 9000
+- id: storey_basement
+  label_az: Zirzəmi hündürlüyü
+  label_en: Basement storey height
+  building: depot
+  element: storey_height
+  unit: m
+  type: floor_level_depth
+  files:
+  - (SON)
+  citation: (SON).dwg basement plan floor marks, confirmed by a section dimension in 9335 MH.pdf
+  region_title: zirzemi|daldalanacaq|sixinacaq
+  pdfs:
+  - 9335 MH.pdf
+- id: storey_upper
+  label_az: Mərtəbə hündürlüyü
+  label_en: Upper storey height
+  building: depot
+  element: storey_height
+  unit: m
+  type: slab_level_step
+  files:
+  - yangin deposu dk son
+  citation: 'Depot DK region titles: slab levels -0.10, 3.20, 6.50 ''səviyyəsində örtük elementləri'''
+  title_pattern: (-?\d+[.,]\d+) seviyyesinde (ortuk|sutun)
+- id: area_first_floor
+  label_az: 1-ci mərtəbənin sahəsi
+  label_en: First floor area
+  building: depot
+  element: floor_area
+  unit: m²
+  type: table_row
+  files:
+  - (SON)
+  pdfs:
+  - 9335 MH.pdf
+  citation: '''Cəmi'' row of the room schedule on the first-floor plan'
+  anchor: ^cemi$
+  pick: 0
+  region_title: 1-ci mertebe
+- id: area_basement
+  label_az: Zirzəmi sahəsi
+  label_en: Basement area
+  building: depot
+  element: floor_area
+  unit: m²
+  type: table_row
+  files:
+  - (SON)
+  pdfs:
+  - 9335 MH.pdf
+  conflict_rule: R-BASEMENT-NOTE
+  citation: '''Cəmi'' row of the room schedule on the basement plan'
+  anchor: ^cemi$
+  pick: 0
+  region_title: zirzemi|daldalanacaq|sixinacaq
+- id: earth_fill
+  label_az: Tökmə, sahənin planlaşdırılması
+  label_en: Site fill
+  building: site
+  element: earthworks
+  unit: m³
+  type: table_row
+  anchor: sahenin planlasdirilmasindan
+  pick: 0
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg, TORPAQ KÜTLƏSİNİN BALANSI, column Tökmə
+- id: earth_cut
+  label_az: Qazma, sahənin planlaşdırılması
+  label_en: Site cut
+  building: site
+  element: earthworks
+  unit: m³
+  type: table_row
+  anchor: sahenin planlasdirilmasindan
+  pick: 1
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg earth balance, column Qazma
+- id: earth_shortfall
+  label_az: Çatışmayan yararlı qrunt
+  label_en: Suitable soil shortfall
+  building: site
+  element: earthworks
+  unit: m³
+  type: table_row
+  anchor: catismayan yararli qrunt
+  pick: 0
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg earth balance, 'Catışmayan yararlı qrunt'
+- id: topsoil
+  label_az: Münbit torpaq qatı
+  label_en: Topsoil to landscaped area
+  building: site
+  element: earthworks
+  unit: m³
+  type: text_value
+  pattern: 3482[.,]3\s*x\s*0[.,]15\s*=\s*(\d+[.,]\d+)\s*m
+  files:
+  - Vertikalka
+  citation: 'Vertikalka.dwg note: 3482.3 x 0.15 = 522.0 m³'
+- id: area_greenery
+  label_az: Yaşıllaşdırılan sahə
+  label_en: Landscaped area
+  building: site
+  element: landscape_area
+  unit: m²
+  type: text_value
+  pattern: (3482[.,]3)\s*x\s*0[.,]15
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg note
+- id: area_rc_roads
+  label_az: Dəmirbeton yollar
+  label_en: Reinforced-concrete roads
+  building: site
+  element: road_area
+  unit: m²
+  type: text_value
+  pattern: \((\d+[.,]\d+)\s*x\s*0[.,]62\)
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg earth balance '(1021.0 x 0.62)'
+- id: area_asphalt_roads
+  label_az: Asfaltbeton yollar, cəmi
+  label_en: Asphalt roads, internal and external together
+  building: site
+  element: road_area
+  unit: m²
+  type: text_value
+  pattern: \((\d+[.,]\d+)\s*x\s*0[.,]52\)
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg earth balance '(599.7 x 0.52)'; the bill splits it 383.7 + 216
+- id: area_pavements
+  label_az: Səki və meydançalar
+  label_en: Pavements and yards
+  building: site
+  element: road_area
+  unit: m²
+  type: text_value
+  pattern: \((\d+[.,]\d+)\s*x\s*0[.,]14\)
+  files:
+  - Vertikalka
+  citation: Vertikalka.dwg earth balance '(1437.8 x 0.14)'
+- id: demolition_volume
+  label_az: Söküntü həcmi
+  label_en: Demolition volume
+  building: site
+  element: demolition
+  unit: m³
+  type: text_value
+  pattern: s.k.nt.n.n h.cmi\s*v\s*=\s*(\d+[.,]\d+)
+  fold: true
+  files:
+  - Depo  Hadrut BP/9335 Xocavənd  rayon   DYNX
+  citation: 'DYNX.dwg note 3: ''Söküntünün həcmi V=7625.40m³'''
+- id: guard_roof_tile
+  label_az: Nəzarətçi otağı, metal kirəmit
+  label_en: Guard room, metal roof tile area
+  building: guard_room
+  element: roof_area
+  unit: m²
+  type: text_value
+  pattern: s ?dam ?= ?(\d+[.,]\d+) ?m
+  fold: true
+  files:
+  - NƏZARƏT
+  - nezaretci otagi dk
+  pdfs:
+  - nəzarətçi otağı
+  citation: Guard-room roof sheet 9335-08-MT, 'Metal kirəmit' row
+- id: guard_roof_timber
+  label_az: Nəzarətçi otağı, ağac elementlər cəmi
+  label_en: Guard room, roof timber total
+  building: guard_room
+  element: timber
+  unit: m³
+  type: table_row
+  anchor: ^cemi$
+  pick: 0
+  files:
+  - NƏZARƏT
+  pdfs:
+  - nəzarətçi otağı
+  near: cardaq elementlerinin
+  citation: Guard-room roof element schedule, 'Cəmi' row
+- id: pump_roof_tile
+  label_az: Su nasos stansiyası, metal kirəmit
+  label_en: Pump station, metal roof tile area
+  building: pump_station
+  element: roof_area
+  unit: m²
+  type: text_value
+  pattern: s ?dam ?= ?(\d+[.,]\d+) ?m
+  fold: true
+  files:
+  - NƏZARƏT
+  citation: 'NƏZARƏT.dwg sheet 9336-04-MT (pump station): ''S dam= 27.64 m²'''
+- id: pump_roof_timber
+  label_az: Su nasos stansiyası, ağac elementlər cəmi
+  label_en: Pump station, roof timber total
+  building: pump_station
+  element: timber
+  unit: m³
+  type: table_row
+  anchor: ^cemi$
+  pick: 0
+  near: cardaq elementlerinin
+  files:
+  - NƏZARƏT
+  citation: NƏZARƏT.dwg sheet 9336-04-MT roof element schedule 'Cəmi 0.33'
+- id: fire_tank_concrete
+  label_az: Yanğın su anbarı, beton B25 (elementlər üzrə)
+  label_en: Fire tank, concrete B25 per element
+  building: fire_tanks
+  element: concrete
+  unit: m³
+  type: sum_pattern
+  pattern: ^beton "?b ?25"?$
+  value_unit: m³
+  fold: true
+  files:
+  - yangin su anbari dk
+  pdfs:
+  - Yangin su anbari.pdf
+  citation: Fire-tank DK sheets, 'Beton "B25" … m³' in each material table
+- id: drinking_tank_concrete
+  label_az: İçməli su anbarı, beton B25 (elementlər üzrə)
+  label_en: Drinking tank, concrete B25 per element
+  building: drinking_tanks
+  element: concrete
+  unit: m³
+  type: sum_pattern
+  pattern: ^beton "?b ?25"?$
+  value_unit: m³
+  fold: true
+  files:
+  - icmeli su anbari dk
+  pdfs:
+  - icmeli su anbari
+  citation: Drinking-tank DK sheets, material tables
+- id: tower_smoke_detectors
+  label_az: Qüllə, tüstü xəbərvericiləri
+  label_en: Tower, smoke detectors
+  building: tower
+  element: fire_alarm
+  unit: each
+  type: table_row
+  anchor: ^tustu xeberverici$
+  pick: -1
+  files:
+  - (SON)
+  citation: (SON).dwg sheet 9335-6-YS equipment schedule, legacy-font rows
+  row_tol: 0.6
+  row_reach: 120
+- id: tower_manual_call
+  label_az: Qüllə, əl ilə xəbərvericilər
+  label_en: Tower, manual call points
+  building: tower
+  element: fire_alarm
+  unit: each
+  type: table_row
+  anchor: ^el ile xeberverici$
+  pick: -1
+  files:
+  - (SON)
+  citation: (SON).dwg sheet 9335-6-YS equipment schedule
+  row_tol: 0.6
+  row_reach: 120
+- id: basement_wall_area
+  label_az: Zirzəmi mişar daşı hörgü sahəsi
+  label_en: Basement limestone wall area
+  building: depot
+  element: wall_area
+  unit: m²
+  type: derived
+  formula: external_wall_length_m * basement_height_m
+  inputs:
+    external_wall_length_m:
+      from: wall_length_depot
+    basement_height_m:
+      from: storey_basement
+  citation: 'Brief §4.1: wall area = net length × storey height'
+- id: wall_length_depot
+  label_az: Deponun xarici divar uzunluğu (netto)
+  label_en: Depot external wall net length
+  building: depot
+  element: wall_length
+  unit: m
+  type: not_implemented
+  searched:
+  - '(SON).dwg wall layers (Xarici divarlar, стены): pairing of parallel lines at 400 mm is not built yet'
+  - door and window schedule for opening deductions
+  citation: 'Plan §11: geometry wall pairing'

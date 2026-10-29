@@ -1,0 +1,26 @@
+{
+ "М": {
+  "to": "M",
+  "score": 0.995,
+  "second": "V",
+  "second_score": 0.398,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "Н": {
+  "to": "H",
+  "score": 1.0,
+  "second": "N",
+  "second_score": 0.581,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "С": {
+  "to": "C",
+  "score": 0.978,
+  "second": "Ç",
+  "second_score": 0.85,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ }
+}

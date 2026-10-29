@@ -1,0 +1,30 @@
+# Slots where glyph matching on the serif Times family was weak or wrong.
+# Each entry is checked by eye on cache/legacy-font-contact-sheet.png and agrees
+# with the sibling family A3ArialAzLatNormal from the same vendor.
+- id: LF-001
+  family: A3TimesAzLatNormal
+  slot: "Т"
+  value: "T"
+  citation: "cache/legacy-font-contact-sheet.png; sibling A3ArialAzLatNormal Т→T (score 1.0)"
+  why_hardcoded: "Serif T and I overlap heavily at this size; IoU picked I"
+  how_to_automate: "Compare with the sibling sans family before accepting a serif match"
+- id: LF-002
+  family: A3TimesAzLatNormal
+  slot: "е"
+  value: "e"
+  citation: "cache/legacy-font-contact-sheet.png; sibling A3ArialAzLatNormal е→e"
+  why_hardcoded: "Serif e and c overlap; IoU picked c"
+  how_to_automate: "Same as LF-001"
+- id: LF-003
+  family: A3TimesAzLatNormal
+  slot: "Ф"
+  value: "F"
+  citation: "sibling A3ArialAzLatNormal Ф→F; Times match was weak (E)"
+  why_hardcoded: "Weak match below 0.6"
+  how_to_automate: "Same as LF-001"
+- id: LF-004
+  family: A2TimesAzLatNormal
+  alias_of: A3TimesAzLatNormal
+  citation: "DWG text style font file A2TI(LA).TTF; no A2 font is embedded in any PDF of the package"
+  why_hardcoded: "The A2 family never appears embedded, so its table cannot be derived"
+  how_to_automate: "Ask the client for A2TI(LA).TTF and build its table"

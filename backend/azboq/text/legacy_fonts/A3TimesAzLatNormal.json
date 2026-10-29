@@ -1,0 +1,466 @@
+{
+ "А": {
+  "to": "A",
+  "score": 0.642,
+  "second": "W",
+  "second_score": 0.269,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 0
+ },
+ "Б": {
+  "to": "B",
+  "score": 0.725,
+  "second": "E",
+  "second_score": 0.568,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 3
+ },
+ "В": {
+  "to": "V",
+  "score": 0.658,
+  "second": "Y",
+  "second_score": 0.468,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Г": {
+  "to": "Q",
+  "score": 0.696,
+  "second": "O",
+  "second_score": 0.597,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Е": {
+  "to": "E",
+  "score": 0.693,
+  "second": "L",
+  "second_score": 0.645,
+  "pdf": "9335 nəzarətçi otağı.pdf",
+  "page": 10
+ },
+ "И": {
+  "to": "İ",
+  "score": 0.719,
+  "second": "I",
+  "second_score": 0.644,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "Й": {
+  "to": "Y",
+  "score": 0.774,
+  "second": "V",
+  "second_score": 0.358,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "К": {
+  "to": "K",
+  "score": 0.717,
+  "second": "R",
+  "second_score": 0.384,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Л": {
+  "to": "L",
+  "score": 0.802,
+  "second": "E",
+  "second_score": 0.64,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "М": {
+  "to": "M",
+  "score": 0.746,
+  "second": "D",
+  "second_score": 0.225,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 4
+ },
+ "Н": {
+  "to": "N",
+  "score": 0.575,
+  "second": "X",
+  "second_score": 0.359,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "О": {
+  "to": "O",
+  "score": 0.678,
+  "second": "Ö",
+  "second_score": 0.617,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "П": {
+  "to": "P",
+  "score": 0.655,
+  "second": "F",
+  "second_score": 0.547,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Р": {
+  "to": "R",
+  "score": 0.69,
+  "second": "K",
+  "second_score": 0.539,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "С": {
+  "to": "S",
+  "score": 0.714,
+  "second": "Ş",
+  "second_score": 0.651,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Т": {
+  "to": "I",
+  "score": 0.624,
+  "second": "T",
+  "second_score": 0.622,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "У": {
+  "to": "U",
+  "score": 0.619,
+  "second": "Ü",
+  "second_score": 0.554,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "Ф": {
+  "to": "E",
+  "score": 0.56,
+  "second": "L",
+  "second_score": 0.536,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Ц": {
+  "to": "Ü",
+  "score": 0.993,
+  "second": "U",
+  "second_score": 0.863,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 0
+ },
+ "Ч": {
+  "to": "Ç",
+  "score": 0.995,
+  "second": "C",
+  "second_score": 0.88,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "Ш": {
+  "to": "Ş",
+  "score": 0.992,
+  "second": "S",
+  "second_score": 0.89,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "Щ": {
+  "to": "H",
+  "score": 0.615,
+  "second": "U",
+  "second_score": 0.431,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 6
+ },
+ "Ъ": {
+  "to": "C",
+  "score": 0.524,
+  "second": "G",
+  "second_score": 0.492,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 3
+ },
+ "Ь": {
+  "to": "Ğ",
+  "score": 0.991,
+  "second": "G",
+  "second_score": 0.879,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "Э": {
+  "to": "G",
+  "score": 0.507,
+  "second": "Ğ",
+  "second_score": 0.466,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "Ю": {
+  "to": "Ö",
+  "score": 0.99,
+  "second": "O",
+  "second_score": 0.879,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "Я": {
+  "to": "Ə",
+  "score": 0.605,
+  "second": "O",
+  "second_score": 0.515,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "а": {
+  "to": "a",
+  "score": 0.7,
+  "second": "n",
+  "second_score": 0.402,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "б": {
+  "to": "b",
+  "score": 0.719,
+  "second": "h",
+  "second_score": 0.582,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "в": {
+  "to": "v",
+  "score": 0.781,
+  "second": "y",
+  "second_score": 0.588,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "г": {
+  "to": "q",
+  "score": 0.781,
+  "second": "d",
+  "second_score": 0.5,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "д": {
+  "to": "d",
+  "score": 0.73,
+  "second": "q",
+  "second_score": 0.499,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 4
+ },
+ "е": {
+  "to": "c",
+  "score": 0.731,
+  "second": "e",
+  "second_score": 0.726,
+  "pdf": "9335 nəzarətçi otağı.pdf",
+  "page": 10
+ },
+ "ж": {
+  "to": "j",
+  "score": 0.766,
+  "second": "a",
+  "second_score": 0.282,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "з": {
+  "to": "z",
+  "score": 0.702,
+  "second": "x",
+  "second_score": 0.379,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "и": {
+  "to": "i",
+  "score": 0.774,
+  "second": "ı",
+  "second_score": 0.708,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "й": {
+  "to": "y",
+  "score": 0.749,
+  "second": "v",
+  "second_score": 0.549,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "к": {
+  "to": "k",
+  "score": 0.83,
+  "second": "h",
+  "second_score": 0.546,
+  "pdf": "9335 nəzarətçi otağı.pdf",
+  "page": 10
+ },
+ "л": {
+  "to": "l",
+  "score": 0.715,
+  "second": "i",
+  "second_score": 0.648,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "м": {
+  "to": "m",
+  "score": 0.792,
+  "second": "ı",
+  "second_score": 0.24,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "н": {
+  "to": "n",
+  "score": 0.785,
+  "second": "h",
+  "second_score": 0.653,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "о": {
+  "to": "o",
+  "score": 0.698,
+  "second": "ö",
+  "second_score": 0.586,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "п": {
+  "to": "p",
+  "score": 0.708,
+  "second": "b",
+  "second_score": 0.486,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "р": {
+  "to": "r",
+  "score": 0.711,
+  "second": "f",
+  "second_score": 0.522,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "с": {
+  "to": "s",
+  "score": 0.769,
+  "second": "ş",
+  "second_score": 0.647,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "т": {
+  "to": "t",
+  "score": 0.656,
+  "second": "l",
+  "second_score": 0.433,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "у": {
+  "to": "u",
+  "score": 0.81,
+  "second": "ü",
+  "second_score": 0.679,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 0
+ },
+ "ф": {
+  "to": "f",
+  "score": 0.626,
+  "second": "r",
+  "second_score": 0.321,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "х": {
+  "to": "x",
+  "score": 0.772,
+  "second": "s",
+  "second_score": 0.354,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ },
+ "ц": {
+  "to": "ü",
+  "score": 0.994,
+  "second": "u",
+  "second_score": 0.808,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "ч": {
+  "to": "ç",
+  "score": 0.995,
+  "second": "c",
+  "second_score": 0.824,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 4
+ },
+ "ш": {
+  "to": "ş",
+  "score": 0.995,
+  "second": "s",
+  "second_score": 0.818,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "щ": {
+  "to": "h",
+  "score": 0.759,
+  "second": "n",
+  "second_score": 0.637,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 3
+ },
+ "ъ": {
+  "to": "c",
+  "score": 0.746,
+  "second": "ç",
+  "second_score": 0.635,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 2
+ },
+ "ы": {
+  "to": "ı",
+  "score": 0.841,
+  "second": "i",
+  "second_score": 0.72,
+  "pdf": "9335 nəzarətçi otağı.pdf",
+  "page": 10
+ },
+ "э": {
+  "to": "g",
+  "score": 0.8,
+  "second": "ğ",
+  "second_score": 0.707,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 5
+ },
+ "ю": {
+  "to": "ö",
+  "score": 0.998,
+  "second": "o",
+  "second_score": 0.81,
+  "pdf": "KTY-250kVA- Xocavənd.pdf",
+  "page": 3
+ },
+ "я": {
+  "to": "ə",
+  "score": 0.749,
+  "second": "o",
+  "second_score": 0.59,
+  "pdf": "9335 2 yerlik ayaqyolu.pdf",
+  "page": 2
+ }
+}

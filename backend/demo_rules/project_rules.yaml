@@ -1,0 +1,22 @@
+# Values the drawings do not give in machine-readable form. Every entry cites where a person read it.
+- id: R-BASEMENT-NOTE
+  value: 1360.20
+  unit: m²
+  label_en: "Basement area in the general note"
+  citation: "Ümumi İZAHAT.pdf page 6 (scanned, read by a person; brief §3)"
+  why_hardcoded: "The general note is a scan with no text layer and no OCR is installed"
+  how_to_automate: "Run Tesseract (aze) and the vision reader on page 6, then require both to agree"
+- id: R-DENSITY-SOIL
+  value: 1.75
+  unit: t/m³
+  label_en: "Haul density of excavated soil used by the estimator"
+  citation: "BOQ-Hadrut.xlsx section 18: 15,195.25 t = 8,683 m³ × 1.75"
+  why_hardcoded: "The density is the estimator's norm choice, not on any drawing"
+  how_to_automate: "Read it from the client's norm library"
+- id: R-DENSITY-TOPSOIL
+  value: 1.20
+  unit: t/m³
+  label_en: "Haul density of topsoil used by the estimator"
+  citation: "BOQ-Hadrut.xlsx section 18: 626.4 t = 522 m³ × 1.2"
+  why_hardcoded: "Same as R-DENSITY-SOIL"
+  how_to_automate: "Read it from the client's norm library"

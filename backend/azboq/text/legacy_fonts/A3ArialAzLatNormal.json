@@ -1,0 +1,466 @@
+{
+ "А": {
+  "to": "A",
+  "score": 0.99,
+  "second": "W",
+  "second_score": 0.36,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "Б": {
+  "to": "B",
+  "score": 0.991,
+  "second": "E",
+  "second_score": 0.628,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 1
+ },
+ "В": {
+  "to": "V",
+  "score": 0.991,
+  "second": "M",
+  "second_score": 0.398,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "Г": {
+  "to": "Q",
+  "score": 0.94,
+  "second": "O",
+  "second_score": 0.866,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 1
+ },
+ "Д": {
+  "to": "D",
+  "score": 0.991,
+  "second": "B",
+  "second_score": 0.597,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 0
+ },
+ "Е": {
+  "to": "E",
+  "score": 1.0,
+  "second": "F",
+  "second_score": 0.655,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Ж": {
+  "to": "J",
+  "score": 0.989,
+  "second": "B",
+  "second_score": 0.25,
+  "pdf": "9335 MH.pdf",
+  "page": 17
+ },
+ "И": {
+  "to": "İ",
+  "score": 0.831,
+  "second": "I",
+  "second_score": 0.766,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "Й": {
+  "to": "Y",
+  "score": 1.0,
+  "second": "X",
+  "second_score": 0.313,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 1
+ },
+ "К": {
+  "to": "K",
+  "score": 0.998,
+  "second": "R",
+  "second_score": 0.448,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 0
+ },
+ "Л": {
+  "to": "L",
+  "score": 0.827,
+  "second": "E",
+  "second_score": 0.456,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "М": {
+  "to": "M",
+  "score": 0.995,
+  "second": "V",
+  "second_score": 0.398,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "Н": {
+  "to": "N",
+  "score": 0.937,
+  "second": "H",
+  "second_score": 0.611,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "О": {
+  "to": "O",
+  "score": 0.968,
+  "second": "Ö",
+  "second_score": 0.876,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "П": {
+  "to": "P",
+  "score": 0.996,
+  "second": "B",
+  "second_score": 0.549,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "Р": {
+  "to": "R",
+  "score": 0.953,
+  "second": "P",
+  "second_score": 0.521,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "С": {
+  "to": "S",
+  "score": 0.991,
+  "second": "Ş",
+  "second_score": 0.884,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "Т": {
+  "to": "T",
+  "score": 0.836,
+  "second": "I",
+  "second_score": 0.534,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "Ф": {
+  "to": "F",
+  "score": 0.999,
+  "second": "E",
+  "second_score": 0.655,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Х": {
+  "to": "X",
+  "score": 0.989,
+  "second": "Z",
+  "second_score": 0.402,
+  "pdf": "9335 MH.pdf",
+  "page": 17
+ },
+ "Ц": {
+  "to": "Ü",
+  "score": 0.961,
+  "second": "U",
+  "second_score": 0.854,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "Щ": {
+  "to": "H",
+  "score": 1.0,
+  "second": "N",
+  "second_score": 0.581,
+  "pdf": "9335 MH.pdf",
+  "page": 17
+ },
+ "Ъ": {
+  "to": "C",
+  "score": 0.978,
+  "second": "Ç",
+  "second_score": 0.85,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Ы": {
+  "to": "I",
+  "score": 0.854,
+  "second": "İ",
+  "second_score": 0.732,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "Э": {
+  "to": "G",
+  "score": 0.98,
+  "second": "Ğ",
+  "second_score": 0.884,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "Ю": {
+  "to": "Ö",
+  "score": 0.971,
+  "second": "O",
+  "second_score": 0.877,
+  "pdf": "1.pdf",
+  "page": 0
+ },
+ "Я": {
+  "to": "Ə",
+  "score": 0.891,
+  "second": "O",
+  "second_score": 0.745,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 6
+ },
+ "а": {
+  "to": "a",
+  "score": 0.98,
+  "second": "ə",
+  "second_score": 0.672,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "б": {
+  "to": "b",
+  "score": 0.975,
+  "second": "p",
+  "second_score": 0.767,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "в": {
+  "to": "v",
+  "score": 1.0,
+  "second": "y",
+  "second_score": 0.719,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "г": {
+  "to": "q",
+  "score": 0.987,
+  "second": "d",
+  "second_score": 0.762,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "д": {
+  "to": "d",
+  "score": 0.982,
+  "second": "q",
+  "second_score": 0.771,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "е": {
+  "to": "e",
+  "score": 0.984,
+  "second": "o",
+  "second_score": 0.74,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ж": {
+  "to": "j",
+  "score": 0.99,
+  "second": "ş",
+  "second_score": 0.205,
+  "pdf": "QULLE 9335.pdf",
+  "page": 0
+ },
+ "з": {
+  "to": "z",
+  "score": 1.0,
+  "second": "x",
+  "second_score": 0.453,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "и": {
+  "to": "i",
+  "score": 1.0,
+  "second": "l",
+  "second_score": 0.865,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "й": {
+  "to": "y",
+  "score": 0.998,
+  "second": "v",
+  "second_score": 0.72,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "к": {
+  "to": "k",
+  "score": 1.0,
+  "second": "h",
+  "second_score": 0.438,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "л": {
+  "to": "l",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.865,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "м": {
+  "to": "m",
+  "score": 0.992,
+  "second": "ı",
+  "second_score": 0.247,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "н": {
+  "to": "n",
+  "score": 0.981,
+  "second": "h",
+  "second_score": 0.852,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "о": {
+  "to": "o",
+  "score": 0.82,
+  "second": "ö",
+  "second_score": 0.714,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "п": {
+  "to": "p",
+  "score": 0.973,
+  "second": "b",
+  "second_score": 0.756,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "р": {
+  "to": "r",
+  "score": 0.993,
+  "second": "f",
+  "second_score": 0.264,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "с": {
+  "to": "s",
+  "score": 0.995,
+  "second": "ş",
+  "second_score": 0.839,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "т": {
+  "to": "t",
+  "score": 0.987,
+  "second": "l",
+  "second_score": 0.579,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "у": {
+  "to": "u",
+  "score": 0.989,
+  "second": "ü",
+  "second_score": 0.847,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ф": {
+  "to": "f",
+  "score": 0.919,
+  "second": "t",
+  "second_score": 0.48,
+  "pdf": "9335 MH.pdf",
+  "page": 17
+ },
+ "х": {
+  "to": "x",
+  "score": 1.0,
+  "second": "z",
+  "second_score": 0.453,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ц": {
+  "to": "ü",
+  "score": 0.981,
+  "second": "u",
+  "second_score": 0.84,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ч": {
+  "to": "ç",
+  "score": 0.98,
+  "second": "c",
+  "second_score": 0.8,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ш": {
+  "to": "ş",
+  "score": 0.952,
+  "second": "s",
+  "second_score": 0.838,
+  "pdf": "9335 MH.pdf",
+  "page": 17
+ },
+ "щ": {
+  "to": "h",
+  "score": 0.997,
+  "second": "n",
+  "second_score": 0.84,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ъ": {
+  "to": "c",
+  "score": 0.994,
+  "second": "ç",
+  "second_score": 0.81,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ы": {
+  "to": "ı",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.822,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "ь": {
+  "to": "ğ",
+  "score": 0.859,
+  "second": "g",
+  "second_score": 0.854,
+  "pdf": "Xocavend yangi ve icmeli su anbari .pdf",
+  "page": 0
+ },
+ "ю": {
+  "to": "ö",
+  "score": 0.812,
+  "second": "o",
+  "second_score": 0.716,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ },
+ "я": {
+  "to": "ə",
+  "score": 0.965,
+  "second": "o",
+  "second_score": 0.745,
+  "pdf": "9335 İSTİLİK MƏNTƏQƏSİ.pdf",
+  "page": 0
+ }
+}

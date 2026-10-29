@@ -1,0 +1,26 @@
+# Layer stem → role. Matched after the plot suffixes and lineweight tags are stripped.
+# Order matters: the first pattern that matches wins. Unknown layers are listed, never dropped.
+- {pattern: "(?i)shtrix|fills?$|fill_|zalivka|keramitin shtrixi|hatch|штрих", role: hatch}
+- {pattern: "(?i)мебель|mebel|furniture|интерьер", role: furniture}
+- {pattern: "(?i)невидимка|hidden|defpoints", role: hidden}
+- {pattern: "(?i)^memar$|^memar_|архитект", role: architecture_background}
+- {pattern: "(?i)xarici divar|exterior wall|^стены|^стена|дивар|divar2|^divarlar|x - диварлар|х - диварлар|stena|a-wall|конструктив - ограждающий", role: wall}
+- {pattern: "(?i)перегородк|arakəsmə|arakesme|аракясмя|ara divar|аракəсмə", role: partition}
+- {pattern: "(?i)колонн|kalon|калон|sutun|sütun", role: column}
+- {pattern: "(?i)двери|ДВЕРИ|qapi|гапы", role: door}
+- {pattern: "(?i)окна|pencere|пянжяря", role: window}
+- {pattern: "(?i)demir-beton tava|doseme|döşəmə|slab", role: slab}
+- {pattern: "(?i)крыша|metal kiremit|dam", role: roof}
+- {pattern: "(?i)зона|zone", role: zone}
+- {pattern: "(?i)^-?s0$|^-?k1$|^-?k3$|^su s1$|^boru$|su xtti", role: pipe}
+- {pattern: "(?i)размер|razmer|olcu|ölçü|ölcü|olchu|dimension|annot_dimensions|^dim$|xar\\. ?ölc|razm", role: dimension}
+- {pattern: "(?i)cedvel|cədvəl|table|tefris|shtamp cedvel", role: table}
+- {pattern: "(?i)ramka|формат|format|künc ştamp|kunc stamp|stamp|штамп|text blocks", role: frame}
+- {pattern: "(?i)^ос[иь]|^oxlar|^ox xett|axis|grid|koordinasiya", role: axis}
+- {pattern: "(?i)yaz[iı]|yazilar|text|надписи|текст|kesim yazisi", role: text}
+- {pattern: "(?i)horiz|point_height|point_point|point_code|point_name|elevation|kontur|topo", role: survey}
+- {pattern: "(?i)arm|armatur", role: rebar}
+- {pattern: "(?i)siqnal|cctv|связь|rabit|e-cctv|elektrik|isiqlandirma|розет|выкл|спот|шит|щит|соед", role: electrical}
+- {pattern: "(?i)hasar|istinad|divar 1", role: fence}
+- {pattern: "(?i)yol|seki|meydanca", role: road}
+- {pattern: "(?i)aqac|col bitkisi|дерево|yasil", role: landscape}

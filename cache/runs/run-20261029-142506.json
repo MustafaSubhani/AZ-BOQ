@@ -1,0 +1,776 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793265900.503,
+   "stage": "sheets",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336-08-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R1)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R1"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337-08-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R2)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R2"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9083 - 6 - YS carries order 9083: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R4)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R4"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R6)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R6"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R7)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R7"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R8)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R8"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R9)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R9"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R10)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R10"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R11)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R11"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R14)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R14"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R15"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R16"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R17"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R19)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R19"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R20)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R20"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R21)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R21"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R22)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R22"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R24)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R24"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R25)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R25"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R29)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R29"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R30"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R32)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R32"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R33)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R33"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 6 - YS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R35)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R35"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R36)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R36"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - VM carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R37)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R37"
+  },
+  {
+   "t": 1793265903.144,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R38)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R38"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R15"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9042 -1- RS carries order 9042: probably copied from another project (YRS - VN -9335 hadrut xocevend (SON).dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R16"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R17"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R26)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R26"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R27)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R27"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9042- 1- RS carries order 9042: probably copied from another project (YRS - VN -9335 hadrut xocevend (SON).dwg, R28)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R28"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R29)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R29"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number 9336- 01- MH looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R30"
+  },
+  {
+   "t": 1793265903.53,
+   "stage": "sheets",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 3.03
+  },
+  {
+   "t": 1793265904.251,
+   "stage": "index",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265905.255,
+   "stage": "index",
+   "kind": "info",
+   "message": "85439 numbers indexed, 28096 strong"
+  },
+  {
+   "t": 1793265905.255,
+   "stage": "index",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.0
+  },
+  {
+   "t": 1793265905.381,
+   "stage": "takeoff",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265905.604,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot long side: 45.2004 m [geometry, verified]"
+  },
+  {
+   "t": 1793265905.636,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot short side: 34.6 m [geometry, verified]"
+  },
+  {
+   "t": 1793265905.64,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Bay module: 6 m [geometry, extracted]"
+  },
+  {
+   "t": 1793265905.673,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement storey height: 2.45 m [stated, extracted]"
+  },
+  {
+   "t": 1793265905.741,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Upper storey height: 3.3 m [stated, extracted]"
+  },
+  {
+   "t": 1793265905.783,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor area: 1395.8 m² [schedule, extracted]"
+  },
+  {
+   "t": 1793265905.827,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement area: 1360.8 m² [schedule, review]"
+  },
+  {
+   "t": 1793265905.872,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site fill: 12996 m³ [schedule, review]"
+  },
+  {
+   "t": 1793265905.877,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site cut: 3167 m³ [schedule, review]"
+  },
+  {
+   "t": 1793265905.882,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Suitable soil shortfall: 8683 m³ [schedule, review]"
+  },
+  {
+   "t": 1793265905.885,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Topsoil to landscaped area: 522 m³ [stated, review]"
+  },
+  {
+   "t": 1793265905.888,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Landscaped area: 3482.3 m² [stated, review]"
+  },
+  {
+   "t": 1793265905.891,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Reinforced-concrete roads: 1021 m² [stated, review]"
+  },
+  {
+   "t": 1793265905.894,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Asphalt roads, internal and external together: 599.7 m² [stated, review]"
+  },
+  {
+   "t": 1793265905.897,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pavements and yards: 1437.8 m² [stated, review]"
+  },
+  {
+   "t": 1793265905.934,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Demolition volume: 7625.4 m³ [stated, review]"
+  },
+  {
+   "t": 1793265905.998,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, metal roof tile area: 9.6 m² [stated, verified]"
+  },
+  {
+   "t": 1793265906.03,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, roof timber total: 0.23 m³ [schedule, verified]"
+  },
+  {
+   "t": 1793265906.046,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, metal roof tile area: 27.64 m² [stated, extracted]"
+  },
+  {
+   "t": 1793265906.066,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, roof timber total: 0.33 m³ [schedule, verified]"
+  },
+  {
+   "t": 1793265906.125,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank, concrete B25 per element: 8.71 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793265906.137,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank, concrete B25 per element: 16.07 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793265906.149,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Tower, smoke detectors: blocked (no row labelled /^tustu xeberverici$/)",
+   "item": "tower_smoke_detectors"
+  },
+  {
+   "t": 1793265906.162,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Tower, manual call points: blocked (no row labelled /^el ile xeberverici$/)",
+   "item": "tower_manual_call"
+  },
+  {
+   "t": 1793265906.162,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Depot external wall net length: blocked (measurement method not built in this demo)",
+   "item": "wall_length_depot"
+  },
+  {
+   "t": 1793265906.162,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  },
+  {
+   "t": 1793265906.518,
+   "stage": "takeoff",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.14
+  }
+ ],
+ "review": [
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336-08-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R1)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R1"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337-08-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R2)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R2"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9083 - 6 - YS carries order 9083: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R4)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R4"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R6)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R6"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R7)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R7"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R8)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R8"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R9)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R9"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R10)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R10"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R11)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R11"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R14)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R14"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R15"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R16"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R17"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R19)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R19"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337-04-MT looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R20)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R20"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R21)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R21"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R22)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R22"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R24)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R24"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R25)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R25"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R29)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R29"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R30"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R32)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R32"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 02 - MH looks like a typo of 9335 (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R33)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R33"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 6 - YS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R35)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R35"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R36)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R36"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - VM carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R37)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R37"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS carries order 9183: probably copied from another project (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R38)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R38"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R15"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9042 -1- RS carries order 9042: probably copied from another project (YRS - VN -9335 hadrut xocevend (SON).dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R16"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R17"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R26)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R26"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R27)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R27"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9042- 1- RS carries order 9042: probably copied from another project (YRS - VN -9335 hadrut xocevend (SON).dwg, R28)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R28"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9337- 1- RS looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R29)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R29"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number 9336- 01- MH looks like a typo of 9335 (YRS - VN -9335 hadrut xocevend (SON).dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R30"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Tower, smoke detectors: blocked (no row labelled /^tustu xeberverici$/)",
+   "item": "tower_smoke_detectors"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Tower, manual call points: blocked (no row labelled /^el ile xeberverici$/)",
+   "item": "tower_manual_call"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Depot external wall net length: blocked (measurement method not built in this demo)",
+   "item": "wall_length_depot"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  }
+ ],
+ "stages": [
+  "sheets",
+  "index",
+  "source_map",
+  "takeoff"
+ ]
+}

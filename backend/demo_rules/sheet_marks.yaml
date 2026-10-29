@@ -1,0 +1,56 @@
+# Sheet number parts used to classify a sheet when its stamp names no building.
+# citation: brief §3 and the title blocks read in 9335 MH.pdf, the guard-room PDF and the electrical AT sheets.
+buildings_by_mark:
+  "0": site
+  "00": site
+  "01": depot
+  "1": depot
+  "2": heating_point
+  "3": fire_tanks
+  "3a": fire_tanks
+  "3,3a": fire_tanks
+  "4": pump_station
+  "5": drinking_tanks
+  "5a": drinking_tanks
+  "5,5a": drinking_tanks
+  "6": tower
+  "7": substation
+  "8": guard_room
+  "9": vehicle_wash
+  "13": toilet
+disciplines_by_mark:
+  MH: architecture
+  MT: architecture
+  DK: structure
+  SK: water_sewer
+  XSK: water_sewer
+  IV: hvac
+  İV: hvac
+  EİA: electrical
+  EIA: electrical
+  ET: electrical
+  EE: electrical
+  E: electrical
+  YS: low_current
+  RI: low_current
+  Rİ: low_current
+  TX: technology
+  BP: site
+  AQ: site
+  POS: construction_org
+  TTL: construction_org
+stamp_buildings:
+  - {pattern: "yangins.ndurme depo|yangin deposu|deposu|4 cixisli", building: depot}
+  - {pattern: "qulle", building: tower}
+  - {pattern: "nezaretci", building: guard_room}
+  - {pattern: "nasos", building: pump_station}
+  - {pattern: "istilik menteqe", building: heating_point}
+  - {pattern: "ayaqyolu", building: toilet}
+  - {pattern: "avtoyuma", building: vehicle_wash}
+  - {pattern: "sohbetgah", building: gazebo}
+  - {pattern: "icmeli", building: drinking_tanks}
+  - {pattern: "yangin.*su anbari|81 ?m", building: fire_tanks}
+  - {pattern: "transformator|ktm|kty", building: substation}
+  - {pattern: "generator", building: generator}
+  - {pattern: "istinad divar|hasar", building: fence}
+  - {pattern: "bas plan|saquli planlas|vertikal|torpaq kutle", building: site}

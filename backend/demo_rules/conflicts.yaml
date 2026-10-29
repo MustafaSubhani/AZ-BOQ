@@ -1,0 +1,38 @@
+# Facts on which documents disagree. Each side is searched for in the drawings; the cited
+# source is used when the side is only in a scanned or narrative document.
+- id: C-SEISMIC
+  topic: "Seismic intensity"
+  sides:
+    - {value: "8 points", search: "8 bal", citation: "Structural chapter, geology and construction note (brief §8)"}
+    - {value: "9 points", search: "9 bal", citation: "Architecture chapter of the general note, which names Zəngilan"}
+  suggestion: "8 points"
+  reason: "The 9-point passage names Zəngilan, a different district, so it was probably copied from another project."
+- id: C-DATUM
+  topic: "Absolute level of 0.000"
+  sides:
+    - {value: "694.70 m", search: "694.70", citation: "Structural chapter (brief §8)"}
+    - {value: "694.40 m", search: "694.40", citation: "Tower sheet (brief §8)"}
+    - {value: "408.80 m", search: "408.80", citation: "Architecture chapter, copied passage"}
+  suggestion: "694.70 m"
+  reason: "Structural drawings and the excavation depth use 694.70; 408.80 sits in the copied Zəngilan passage."
+- id: C-SUBSTATION
+  topic: "Substation voltage"
+  sides:
+    - {value: "10/0.4 kV", search: "10/0,4", citation: "2024 general note"}
+    - {value: "35/0.4 kV", search: "35/0,4", citation: "Order 9526 drawings, 2026"}
+  suggestion: "35/0.4 kV"
+  reason: "The 2026 order is the later document and has its own estimate."
+- id: C-BASEMENT
+  topic: "Basement area"
+  sides:
+    - {value: "1,360.80 m²", search: "1360.80", citation: "Room schedule on the basement plan"}
+    - {value: "1,360.20 m²", search: "1360.20", citation: "General note page 6 (scanned)"}
+  suggestion: "1,360.80 m²"
+  reason: "A drawing sheet outranks narrative text, and the sheet total is the sum of its rooms."
+- id: C-CONTRACT-SUM
+  topic: "Contract sum"
+  sides:
+    - {value: "3,811,193.36 AZN", search: "3811193", citation: "Bill header cell C5 = F2335"}
+    - {value: "3,110,505.89 AZN", search: "3110505", citation: "Sum of the 2,175 line totals"}
+  suggestion: "Both are correct"
+  reason: "The header is the line sum + 1.8% temporary buildings + 2% contingency − 0.02, then + 18% VAT."

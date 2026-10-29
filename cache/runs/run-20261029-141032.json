@@ -1,0 +1,698 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793264781.299,
+   "stage": "ingest",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793264783.058,
+   "stage": "ingest",
+   "kind": "info",
+   "message": "84 files, 10 junk, 0 duplicate groups"
+  },
+  {
+   "t": 1793264783.058,
+   "stage": "ingest",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.76
+  },
+  {
+   "t": 1793264783.328,
+   "stage": "bill",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793264784.015,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  },
+  {
+   "t": 1793264784.017,
+   "stage": "bill",
+   "kind": "info",
+   "message": "132 sections, 2175 lines, line sum 3,110,505.89"
+  },
+  {
+   "t": 1793264784.017,
+   "stage": "bill",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.69
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-0-XSK  Xocavənd  Baş plan.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-13 -SK-2 yerlik ayaqyolu.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon  Vertikalka.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon  Vertikalka.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 hadrut xocevend elektrik.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Elektrik/9335 hadrut xocevend elektrik.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavend istilik menteqesi.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavend dk/9335 Xocavend istilik menteqesi.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon   POS.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Xocavənd  rayon   POS.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-0- Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/9335-0- Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "t": 1793264784.498,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg"
+  },
+  {
+   "t": 1793264784.522,
+   "stage": "read",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793264788.551,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 -01- IV. Xocavənd.dwg: 3784 texts (80 legacy-decoded), 120 dims, 1595 polylines"
+  },
+  {
+   "t": 1793264790.287,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: 1155 texts (5 legacy-decoded), 60 dims, 326 polylines"
+  },
+  {
+   "t": 1793264826.896,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-1-SK Xocavənd depo 2-ci variant.dwg: 2484 texts (35 legacy-decoded), 433 dims, 2656 polylines"
+  },
+  {
+   "t": 1793264858.216,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: 281 texts (6 legacy-decoded), 4 dims, 84 polylines"
+  },
+  {
+   "t": 1793264858.669,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-2-SK İstilik məntəqəsi.dwg: 354 texts (3 legacy-decoded), 6 dims, 77 polylines"
+  },
+  {
+   "t": 1793264859.408,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-3,3a-SK-81m³  Yanğın su anbarı..dwg: 142 texts (5 legacy-decoded), 4 dims, 56 polylines"
+  },
+  {
+   "t": 1793264860.875,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-4-SK SU NASOS STANSİYASI.dwg: 279 texts (4 legacy-decoded), 11 dims, 1506 polylines"
+  },
+  {
+   "t": 1793264861.227,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-5,5a -SK İçməli və yanğın əleyhinə su anbarı V= 27m³.dwg: 202 texts (10 legacy-decoded), 12 dims, 121 polylines"
+  },
+  {
+   "t": 1793264862.196,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-6-SK Xocavənd  QÜLLƏ.dwg: 209 texts (3 legacy-decoded), 9 dims, 68 polylines"
+  },
+  {
+   "t": 1793264862.351,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-9- SK - Xocavənd  AVTOYUMA.dwg: 213 texts (5 legacy-decoded), 26 dims, 74 polylines"
+  },
+  {
+   "t": 1793264864.948,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavənd  rayon   DYNX.dwg: 2225 texts (3 legacy-decoded), 130 dims, 1401 polylines"
+  },
+  {
+   "t": 1793264870.448,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavənd  rayon  Vertikalka.dwg: 2910 texts (0 legacy-decoded), 71 dims, 2272 polylines"
+  },
+  {
+   "t": 1793264878.368,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 hadrut xocevend elektrik.dwg: 4542 texts (322 legacy-decoded), 252 dims, 1862 polylines"
+  },
+  {
+   "t": 1793264878.993,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend avtoyuma dk.dwg: 265 texts (15 legacy-decoded), 126 dims, 82 polylines"
+  },
+  {
+   "t": 1793264879.34,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend generator altliq dk.dwg: 170 texts (20 legacy-decoded), 38 dims, 43 polylines"
+  },
+  {
+   "t": 1793264880.142,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend icmeli su anbari dk.dwg: 863 texts (132 legacy-decoded), 274 dims, 635 polylines"
+  },
+  {
+   "t": 1793264911.918,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend istilik menteqesi.dwg: 1013 texts (78 legacy-decoded), 279 dims, 510 polylines"
+  },
+  {
+   "t": 1793264939.147,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend istinad divari ve hasar dk.dwg: 8031 texts (91 legacy-decoded), 4420 dims, 9030 polylines"
+  },
+  {
+   "t": 1793264939.753,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend nezaretci otagi dk.dwg: 795 texts (62 legacy-decoded), 176 dims, 169 polylines"
+  },
+  {
+   "t": 1793264941.164,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend sohbetgah dk.dwg: 731 texts (76 legacy-decoded), 148 dims, 423 polylines"
+  },
+  {
+   "t": 1793264943.161,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend su nasos stansiyasi dk.dwg: 756 texts (89 legacy-decoded), 150 dims, 151 polylines"
+  },
+  {
+   "t": 1793264943.371,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend transformator altliq dk.dwg: 162 texts (13 legacy-decoded), 0 dims, 27 polylines"
+  },
+  {
+   "t": 1793264958.49,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavend yangin deposu dk son.dwg: 12236 texts (436 legacy-decoded), 6254 dims, 9354 polylines"
+  },
+  {
+   "t": 1793264958.982,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavənd ayaqyolu dk.dwg: 602 texts (50 legacy-decoded), 122 dims, 303 polylines"
+  },
+  {
+   "t": 1793264960.928,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocevend yangin su anbari dk.dwg: 840 texts (119 legacy-decoded), 238 dims, 500 polylines"
+  },
+  {
+   "t": 1793264964.498,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocevend-telim qullesi dk.dwg: 6268 texts (442 legacy-decoded), 1762 dims, 2666 polylines"
+  },
+  {
+   "t": 1793264966.037,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335 Xocavənd  rayon   POS.dwg: 723 texts (1 legacy-decoded), 13 dims, 193 polylines"
+  },
+  {
+   "t": 1793264966.637,
+   "stage": "read",
+   "kind": "info",
+   "message": "Xocavənd DQT.dwg: 661 texts (31 legacy-decoded), 1 dims, 110 polylines"
+  },
+  {
+   "t": 1793264968.178,
+   "stage": "read",
+   "kind": "info",
+   "message": "9335-0- Xocavənd  rayon   DYNX.dwg: 776 texts (22 legacy-decoded), 61 dims, 261 polylines"
+  },
+  {
+   "t": 1793264968.753,
+   "stage": "read",
+   "kind": "info",
+   "message": "AK-  Xocavənd Qazanxana vəİstilik şəbəkəsi.dwg: 581 texts (49 legacy-decoded), 0 dims, 55 polylines"
+  },
+  {
+   "t": 1793264970.494,
+   "stage": "read",
+   "kind": "info",
+   "message": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg: 1529 texts (29 legacy-decoded), 35 dims, 491 polylines"
+  },
+  {
+   "t": 1793264970.925,
+   "stage": "read",
+   "kind": "info",
+   "message": "Xocavənd AQ.dwg: 393 texts (20 legacy-decoded), 0 dims, 99 polylines"
+  },
+  {
+   "t": 1793264974.708,
+   "stage": "read",
+   "kind": "info",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 6356 texts (421 legacy-decoded), 735 dims, 1836 polylines"
+  },
+  {
+   "t": 1793265026.535,
+   "stage": "read",
+   "kind": "info",
+   "message": "YRS - VN -9335 hadrut xocevend (SON).dwg: 7293 texts (475 legacy-decoded), 1303 dims, 15253 polylines"
+  },
+  {
+   "t": 1793265026.535,
+   "stage": "read",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 242.01
+  },
+  {
+   "t": 1793265026.542,
+   "stage": "read_pdf",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265026.768,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 2 yerlik ayaqyolu.pdf: 9 pages, 1179 lines, 63 legacy-decoded"
+  },
+  {
+   "t": 1793265026.848,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 İSTİLİK MƏNTƏQƏSİ.pdf: 9 pages, 904 lines, 22 legacy-decoded"
+  },
+  {
+   "t": 1793265027.174,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 MH.pdf: 24 pages, 4659 lines, 175 legacy-decoded"
+  },
+  {
+   "t": 1793265027.267,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 nəzarətçi otağı.pdf: 11 pages, 1529 lines, 86 legacy-decoded"
+  },
+  {
+   "t": 1793265027.401,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 Qüllə.pdf: 12 pages, 668 lines, 153 legacy-decoded"
+  },
+  {
+   "t": 1793265027.52,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 su nasos stansiyası.pdf: 11 pages, 1643 lines, 135 legacy-decoded"
+  },
+  {
+   "t": 1793265027.579,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "KTY-250kVA- Xocavənd.pdf: 7 pages, 712 lines, 117 legacy-decoded"
+  },
+  {
+   "t": 1793265027.67,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Xocavend yangi ve icmeli su anbari .pdf: 7 pages, 1265 lines, 139 legacy-decoded"
+  },
+  {
+   "t": 1793265027.76,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Xocavend Yangin su anbari.pdf: 7 pages, 1190 lines, 126 legacy-decoded"
+  },
+  {
+   "t": 1793265027.78,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Enerji effektivliyi hesabatı.pdf: 12 pages, 443 lines, 4 legacy-decoded"
+  },
+  {
+   "t": 1793265027.785,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Enerji sinfi.pdf: 1 pages, 41 lines, 0 legacy-decoded"
+  },
+  {
+   "t": 1793265027.889,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Xocavənd depo son istilik itkiləri.pdf: 9 pages, 5076 lines, 0 legacy-decoded"
+  },
+  {
+   "t": 1793265027.912,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "Xocavənd izolyasiya.pdf: 2 pages, 195 lines, 33 legacy-decoded"
+  },
+  {
+   "t": 1793265028.015,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 EE.pdf: 9 pages, 1137 lines, 90 legacy-decoded"
+  },
+  {
+   "t": 1793265028.023,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "AT.pdf: 1 pages, 139 lines, 5 legacy-decoded"
+  },
+  {
+   "t": 1793265028.033,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "1.pdf: 1 pages, 98 lines, 45 legacy-decoded"
+  },
+  {
+   "t": 1793265028.093,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "9335 KTM.pdf: 7 pages, 712 lines, 117 legacy-decoded"
+  },
+  {
+   "t": 1793265028.104,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "-AT.pdf: 1 pages, 136 lines, 17 legacy-decoded"
+  },
+  {
+   "t": 1793265028.145,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "su nasos stansiyasi 9335.pdf: 5 pages, 390 lines, 35 legacy-decoded"
+  },
+  {
+   "t": 1793265028.153,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "AT.pdf: 1 pages, 115 lines, 7 legacy-decoded"
+  },
+  {
+   "t": 1793265028.182,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "NBM 9335.pdf: 4 pages, 351 lines, 28 legacy-decoded"
+  },
+  {
+   "t": 1793265028.189,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "AT.pdf: 1 pages, 96 lines, 9 legacy-decoded"
+  },
+  {
+   "t": 1793265028.222,
+   "stage": "read_pdf",
+   "kind": "info",
+   "message": "QULLE 9335.pdf: 4 pages, 213 lines, 20 legacy-decoded"
+  },
+  {
+   "t": 1793265028.222,
+   "stage": "read_pdf",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.68
+  },
+  {
+   "t": 1793265028.223,
+   "stage": "sheets",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265030.782,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9336-08-MT in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "t": 1793265030.782,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9337-08-MT in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "t": 1793265030.782,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9083 - 6 - YS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "t": 1793265030.782,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9183 - 2 - YRS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "t": 1793265030.782,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9183 - 2 - YRS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "t": 1793265030.949,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9337- 1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  },
+  {
+   "t": 1793265030.949,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9042 -1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  },
+  {
+   "t": 1793265030.949,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet number typo 9337- 1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  },
+  {
+   "t": 1793265030.949,
+   "stage": "sheets",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 2.73
+  },
+  {
+   "t": 1793265031.581,
+   "stage": "index",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793265032.609,
+   "stage": "index",
+   "kind": "info",
+   "message": "85439 numbers indexed, 28096 strong"
+  },
+  {
+   "t": 1793265032.609,
+   "stage": "index",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.03
+  }
+ ],
+ "review": [
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-0-XSK  Xocavənd  Baş plan.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-13 -SK-2 yerlik ayaqyolu.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon  Vertikalka.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon  Vertikalka.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 hadrut xocevend elektrik.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Elektrik/9335 hadrut xocevend elektrik.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavend istilik menteqesi.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavend dk/9335 Xocavend istilik menteqesi.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon   POS.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Xocavənd  rayon   POS.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-0- Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/9335-0- Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9336-08-MT in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9337-08-MT in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9083 - 6 - YS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9183 - 2 - YRS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9183 - 2 - YRS in YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9337- 1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9042 -1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet number typo 9337- 1- RS in YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg"
+  }
+ ],
+ "stages": [
+  "ingest",
+  "bill",
+  "conversion",
+  "read",
+  "sheets",
+  "index"
+ ]
+}

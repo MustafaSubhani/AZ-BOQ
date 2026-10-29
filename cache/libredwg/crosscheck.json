@@ -1,0 +1,1033 @@
+{
+ "43fc77a26ff9d31756de7d1fb3cf5f4f487cd34e52089a2620833e0340c38069": {
+  "file": "9335 -01- IV. Xocavənd.dwg",
+  "sha256": "43fc77a26ff9d31756de7d1fb3cf5f4f487cd34e52089a2620833e0340c38069",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 64070,
+  "libredwg_total": 64070,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "a14c0ae76559b14a3620d0f9149dd3b395becfe0ffa72e28a51ff3e42fa35f3e": {
+  "file": "9335-0-XSK  Xocavənd  Baş plan.dwg",
+  "sha256": "a14c0ae76559b14a3620d0f9149dd3b395becfe0ffa72e28a51ff3e42fa35f3e",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 5002,
+  "libredwg_total": 4972,
+  "total_diff": 0.006,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 30,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "polygon",
+    "oda": 48,
+    "libredwg": 18
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "6882a1d9c16bb9fd4e401f78a232a0763e770a2d2a13c85e0c6351b168844eec": {
+  "file": "9335-1-SK Xocavənd depo 2-ci variant.dwg",
+  "sha256": "6882a1d9c16bb9fd4e401f78a232a0763e770a2d2a13c85e0c6351b168844eec",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 41672,
+  "libredwg_total": 41672,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "539ada08f9995875475a5aeca6a7b5700c4b11eefaee993d72bbe839d16cee5f": {
+  "file": "9335-13 -SK-2 yerlik ayaqyolu.dwg",
+  "sha256": "539ada08f9995875475a5aeca6a7b5700c4b11eefaee993d72bbe839d16cee5f",
+  "oda_status": "converted",
+  "libredwg_status": "crash",
+  "libredwg_error": "memory access out of bounds",
+  "oda_total": 757,
+  "libredwg_total": 0,
+  "total_diff": 1.0,
+  "type_diffs": [
+   {
+    "type": "ARC",
+    "oda": 14,
+    "libredwg": 0
+   },
+   {
+    "type": "CIRCLE",
+    "oda": 12,
+    "libredwg": 0
+   },
+   {
+    "type": "ELLIPSE",
+    "oda": 22,
+    "libredwg": 0
+   },
+   {
+    "type": "HATCH",
+    "oda": 11,
+    "libredwg": 0
+   },
+   {
+    "type": "INSERT",
+    "oda": 12,
+    "libredwg": 0
+   },
+   {
+    "type": "LINE",
+    "oda": 396,
+    "libredwg": 0
+   },
+   {
+    "type": "LWPOLYLINE",
+    "oda": 75,
+    "libredwg": 0
+   },
+   {
+    "type": "MTEXT",
+    "oda": 182,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "-K1",
+    "oda": 28,
+    "libredwg": 0
+   },
+   {
+    "layer": "-S1",
+    "oda": 25,
+    "libredwg": 0
+   },
+   {
+    "layer": "0",
+    "oda": 493,
+    "libredwg": 0
+   },
+   {
+    "layer": "Divar",
+    "oda": 29,
+    "libredwg": 0
+   },
+   {
+    "layer": "olculer",
+    "oda": 11,
+    "libredwg": 0
+   },
+   {
+    "layer": "tefriş",
+    "oda": 94,
+    "libredwg": 0
+   },
+   {
+    "layer": "перегородка_Ном._пера__1",
+    "oda": 13,
+    "libredwg": 0
+   },
+   {
+    "layer": "размер_Ном._пера__148",
+    "oda": 24,
+    "libredwg": 0
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "50d41da7d2c8c3cc7c0e4eae8a2151c009855dc64cc49027e7403fd0c844e969": {
+  "file": "9335-2-SK İstilik məntəqəsi.dwg",
+  "sha256": "50d41da7d2c8c3cc7c0e4eae8a2151c009855dc64cc49027e7403fd0c844e969",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 746,
+  "libredwg_total": 746,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "773ac0b9f86410761b0f21ec3f70094b28a9e9b73c581add57740bde14a0f40b": {
+  "file": "9335-3,3a-SK-81m³  Yanğın su anbarı..dwg",
+  "sha256": "773ac0b9f86410761b0f21ec3f70094b28a9e9b73c581add57740bde14a0f40b",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 221,
+  "libredwg_total": 221,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "fd14cb2792a73b10eafa26e72395f34e2befb3fad6867ac188ce4023df2cad11": {
+  "file": "9335-4-SK SU NASOS STANSİYASI.dwg",
+  "sha256": "fd14cb2792a73b10eafa26e72395f34e2befb3fad6867ac188ce4023df2cad11",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 2820,
+  "libredwg_total": 2820,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "28247148465d4aeb6dfbe1f236ac0c4f7621f50464faac34ffef3fa30bd0c607": {
+  "file": "9335-5,5a -SK İçməli və yanğın əleyhinə su anbarı V= 27m³.dwg",
+  "sha256": "28247148465d4aeb6dfbe1f236ac0c4f7621f50464faac34ffef3fa30bd0c607",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 616,
+  "libredwg_total": 616,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "40665b31f0163f4f4d622643668fa7cd13b96505375360501a8338f5adb5e395": {
+  "file": "9335-6-SK Xocavənd  QÜLLƏ.dwg",
+  "sha256": "40665b31f0163f4f4d622643668fa7cd13b96505375360501a8338f5adb5e395",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 542,
+  "libredwg_total": 542,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "de40f02e863d08bb61a69c9d3e9fd536419a18d1ec14926831f1cef1affd72ed": {
+  "file": "9335-9- SK - Xocavənd  AVTOYUMA.dwg",
+  "sha256": "de40f02e863d08bb61a69c9d3e9fd536419a18d1ec14926831f1cef1affd72ed",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 776,
+  "libredwg_total": 776,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "1b09ab346ab3e45005a6df2a0c25f08eec5c567613cabac54ddd5f5583a7f459": {
+  "file": "9335 Xocavənd  rayon   DYNX.dwg",
+  "sha256": "1b09ab346ab3e45005a6df2a0c25f08eec5c567613cabac54ddd5f5583a7f459",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 9864,
+  "libredwg_total": 9746,
+  "total_diff": 0.012,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 120,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "polygon",
+    "oda": 189,
+    "libredwg": 69
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "382ce6b32487ead581a73ee553aabe3203098521bd4db9af9f6e64326d9e1cb5": {
+  "file": "9335 Xocavənd  rayon  Vertikalka.dwg",
+  "sha256": "382ce6b32487ead581a73ee553aabe3203098521bd4db9af9f6e64326d9e1cb5",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 11152,
+  "libredwg_total": 2591,
+  "total_diff": 0.7677,
+  "type_diffs": [
+   {
+    "type": "ARC",
+    "oda": 17,
+    "libredwg": 3
+   },
+   {
+    "type": "CIRCLE",
+    "oda": 331,
+    "libredwg": 31
+   },
+   {
+    "type": "DIMENSION",
+    "oda": 71,
+    "libredwg": 0
+   },
+   {
+    "type": "HATCH",
+    "oda": 535,
+    "libredwg": 0
+   },
+   {
+    "type": "LINE",
+    "oda": 2602,
+    "libredwg": 836
+   },
+   {
+    "type": "LWPOLYLINE",
+    "oda": 2350,
+    "libredwg": 29
+   },
+   {
+    "type": "MTEXT",
+    "oda": 1249,
+    "libredwg": 22
+   },
+   {
+    "type": "POINT",
+    "oda": 1346,
+    "libredwg": 282
+   },
+   {
+    "type": "REGION",
+    "oda": 148,
+    "libredwg": 0
+   },
+   {
+    "type": "SPLINE",
+    "oda": 22,
+    "libredwg": 4
+   },
+   {
+    "type": "TEXT",
+    "oda": 1942,
+    "libredwg": 855
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "0",
+    "oda": 4251,
+    "libredwg": 281
+   },
+   {
+    "layer": "0_Point_Height",
+    "oda": 1347,
+    "libredwg": 283
+   },
+   {
+    "layer": "0_Point_Point",
+    "oda": 1346,
+    "libredwg": 282
+   },
+   {
+    "layer": "ANA HORIZONTAL",
+    "oda": 137,
+    "libredwg": 14
+   },
+   {
+    "layer": "Aqaclar",
+    "oda": 82,
+    "libredwg": 0
+   },
+   {
+    "layer": "HORIZANTAL",
+    "oda": 343,
+    "libredwg": 4
+   },
+   {
+    "layer": "Kompass",
+    "oda": 100,
+    "libredwg": 0
+   },
+   {
+    "layer": "Layer8",
+    "oda": 187,
+    "libredwg": 0
+   },
+   {
+    "layer": "Lep-Stolb",
+    "oda": 147,
+    "libredwg": 30
+   },
+   {
+    "layer": "Su S1",
+    "oda": 124,
+    "libredwg": 0
+   },
+   {
+    "layer": "Yazilar",
+    "oda": 113,
+    "libredwg": 22
+   },
+   {
+    "layer": "col bitkisi",
+    "oda": 340,
+    "libredwg": 0
+   },
+   {
+    "layer": "das tikili",
+    "oda": 162,
+    "libredwg": 0
+   },
+   {
+    "layer": "divar 1",
+    "oda": 12,
+    "libredwg": 0
+   },
+   {
+    "layer": "km setka",
+    "oda": 77,
+    "libredwg": 0
+   },
+   {
+    "layer": "kontur",
+    "oda": 34,
+    "libredwg": 0
+   },
+   {
+    "layer": "polygon",
+    "oda": 235,
+    "libredwg": 18
+   },
+   {
+    "layer": "rabit xt",
+    "oda": 15,
+    "libredwg": 0
+   },
+   {
+    "layer": "ramka",
+    "oda": 315,
+    "libredwg": 0
+   },
+   {
+    "layer": "yol",
+    "oda": 15,
+    "libredwg": 0
+   },
+   {
+    "layer": "yol 6m",
+    "oda": 55,
+    "libredwg": 0
+   },
+   {
+    "layer": "Аннотация - Текст",
+    "oda": 16,
+    "libredwg": 0
+   },
+   {
+    "layer": "Поверхность1-C-TOPO-TEXT",
+    "oda": 13,
+    "libredwg": 0
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "f5cdd1a3b35ab8e9bf09ea40306b75576023a2c14baaa92482f57f0becd6b670": {
+  "file": "9335 hadrut xocevend elektrik.dwg",
+  "sha256": "f5cdd1a3b35ab8e9bf09ea40306b75576023a2c14baaa92482f57f0becd6b670",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 47784,
+  "libredwg_total": 47757,
+  "total_diff": 0.0006,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 28,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "2cc9f177be27d5a0e86778e542b53461ffb14b65b279ca331f16ae70d97da19a": {
+  "file": "9335 Xocavend avtoyuma dk.dwg",
+  "sha256": "2cc9f177be27d5a0e86778e542b53461ffb14b65b279ca331f16ae70d97da19a",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 1820,
+  "libredwg_total": 1820,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "8303916ba209838277cca2e3a6517bd7a27a6f336ccb8d5d1be1f9bc3e6bf7ba": {
+  "file": "9335 Xocavend generator altliq dk.dwg",
+  "sha256": "8303916ba209838277cca2e3a6517bd7a27a6f336ccb8d5d1be1f9bc3e6bf7ba",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 399,
+  "libredwg_total": 399,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "1416f1d1e946b06f0656700d3ebc4c752dfc0305ccc09745264b0b1e581662b7": {
+  "file": "9335 Xocavend icmeli su anbari dk.dwg",
+  "sha256": "1416f1d1e946b06f0656700d3ebc4c752dfc0305ccc09745264b0b1e581662b7",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 5333,
+  "libredwg_total": 5333,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "ec2b4f88b691f5e2f681bbdf3f7517a633cae0274d8037eded96ec6b1aebb8d3": {
+  "file": "9335 Xocavend istilik menteqesi.dwg",
+  "sha256": "ec2b4f88b691f5e2f681bbdf3f7517a633cae0274d8037eded96ec6b1aebb8d3",
+  "oda_status": "converted",
+  "libredwg_status": "empty",
+  "libredwg_error": null,
+  "oda_total": 3110,
+  "libredwg_total": 0,
+  "total_diff": 1.0,
+  "type_diffs": [
+   {
+    "type": "ARC",
+    "oda": 113,
+    "libredwg": 0
+   },
+   {
+    "type": "CIRCLE",
+    "oda": 153,
+    "libredwg": 0
+   },
+   {
+    "type": "DIMENSION",
+    "oda": 268,
+    "libredwg": 0
+   },
+   {
+    "type": "HATCH",
+    "oda": 145,
+    "libredwg": 0
+   },
+   {
+    "type": "INSERT",
+    "oda": 13,
+    "libredwg": 0
+   },
+   {
+    "type": "LEADER",
+    "oda": 27,
+    "libredwg": 0
+   },
+   {
+    "type": "LINE",
+    "oda": 1352,
+    "libredwg": 0
+   },
+   {
+    "type": "LWPOLYLINE",
+    "oda": 247,
+    "libredwg": 0
+   },
+   {
+    "type": "MTEXT",
+    "oda": 645,
+    "libredwg": 0
+   },
+   {
+    "type": "SPLINE",
+    "oda": 94,
+    "libredwg": 0
+   },
+   {
+    "type": "TEXT",
+    "oda": 37,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "(Text)",
+    "oda": 11,
+    "libredwg": 0
+   },
+   {
+    "layer": "0",
+    "oda": 1731,
+    "libredwg": 0
+   },
+   {
+    "layer": "ARMATUR",
+    "oda": 21,
+    "libredwg": 0
+   },
+   {
+    "layer": "Ishare xetleri",
+    "oda": 369,
+    "libredwg": 0
+   },
+   {
+    "layer": "MARKALAR",
+    "oda": 19,
+    "libredwg": 0
+   },
+   {
+    "layer": "Oxlar- - -",
+    "oda": 13,
+    "libredwg": 0
+   },
+   {
+    "layer": "Shtamp",
+    "oda": 26,
+    "libredwg": 0
+   },
+   {
+    "layer": "Text",
+    "oda": 33,
+    "libredwg": 0
+   },
+   {
+    "layer": "XAMUTLAR",
+    "oda": 280,
+    "libredwg": 0
+   },
+   {
+    "layer": "Xamut",
+    "oda": 68,
+    "libredwg": 0
+   },
+   {
+    "layer": "_",
+    "oda": 18,
+    "libredwg": 0
+   },
+   {
+    "layer": "ara divarlar",
+    "oda": 80,
+    "libredwg": 0
+   },
+   {
+    "layer": "arm1",
+    "oda": 47,
+    "libredwg": 0
+   },
+   {
+    "layer": "cedvel  0.09",
+    "oda": 66,
+    "libredwg": 0
+   },
+   {
+    "layer": "olchu",
+    "oda": 25,
+    "libredwg": 0
+   },
+   {
+    "layer": "razmer   0.09",
+    "oda": 39,
+    "libredwg": 0
+   },
+   {
+    "layer": "tapsiriqlar",
+    "oda": 32,
+    "libredwg": 0
+   },
+   {
+    "layer": "yazilar",
+    "oda": 32,
+    "libredwg": 0
+   },
+   {
+    "layer": "ИЧ  РАЗМЕР  0.09",
+    "oda": 18,
+    "libredwg": 0
+   },
+   {
+    "layer": "РАЗМЕРЫ",
+    "oda": 45,
+    "libredwg": 0
+   },
+   {
+    "layer": "Х - диварлар.",
+    "oda": 63,
+    "libredwg": 0
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "44e3b5a27cc1165e843156b0d75cd5b320f86f2bf7732a9512b9b868e02db253": {
+  "file": "9335 Xocavend istinad divari ve hasar dk.dwg",
+  "sha256": "44e3b5a27cc1165e843156b0d75cd5b320f86f2bf7732a9512b9b868e02db253",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 47387,
+  "libredwg_total": 47387,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [
+   {
+    "layer": "",
+    "oda": 96,
+    "libredwg": 0
+   },
+   {
+    "layer": "0 @ 1 (1)",
+    "oda": 0,
+    "libredwg": 907
+   },
+   {
+    "layer": "0 @ 1 (2)",
+    "oda": 0,
+    "libredwg": 55
+   },
+   {
+    "layer": "0 @ 100",
+    "oda": 0,
+    "libredwg": 263
+   },
+   {
+    "layer": "BERKITME DIVARI @ 1 (1)",
+    "oda": 0,
+    "libredwg": 17
+   },
+   {
+    "layer": "KON cedvel",
+    "oda": 97,
+    "libredwg": 145
+   },
+   {
+    "layer": "YAZI",
+    "oda": 290,
+    "libredwg": 0
+   },
+   {
+    "layer": "YAZI @ 100",
+    "oda": 0,
+    "libredwg": 290
+   }
+  ],
+  "agree": true,
+  "layer_naming_differs": true
+ },
+ "8556f20831a24a577140e0e3d823a404f4f64cda4474ea64cb1a5f5c24f60ec4": {
+  "file": "9335 Xocavend nezaretci otagi dk.dwg",
+  "sha256": "8556f20831a24a577140e0e3d823a404f4f64cda4474ea64cb1a5f5c24f60ec4",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 1976,
+  "libredwg_total": 1976,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "606c374a55ff8cf7d8a62e0e38e90d84cbff5e3602a04f991167265ce216fdc4": {
+  "file": "9335 Xocavend sohbetgah dk.dwg",
+  "sha256": "606c374a55ff8cf7d8a62e0e38e90d84cbff5e3602a04f991167265ce216fdc4",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 3430,
+  "libredwg_total": 3430,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "890f5a394227f3836895cbdb257cb44d174e380d1dfbaa0a7ed6d8e6e1abcde3": {
+  "file": "9335 Xocavend su nasos stansiyasi dk.dwg",
+  "sha256": "890f5a394227f3836895cbdb257cb44d174e380d1dfbaa0a7ed6d8e6e1abcde3",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 2670,
+  "libredwg_total": 2670,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "2827fbb059d94a3119ad0b9aa2b234ed5b288421578a02d28ffadac29a74c232": {
+  "file": "9335 Xocavend transformator altliq dk.dwg",
+  "sha256": "2827fbb059d94a3119ad0b9aa2b234ed5b288421578a02d28ffadac29a74c232",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 639,
+  "libredwg_total": 639,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "cd42f89a3f68019581f9f9380789f1488c0e31b292873e26672785f21919f90d": {
+  "file": "9335 Xocavend yangin deposu dk son.dwg",
+  "sha256": "cd42f89a3f68019581f9f9380789f1488c0e31b292873e26672785f21919f90d",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 63335,
+  "libredwg_total": 63335,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [
+   {
+    "layer": "",
+    "oda": 143,
+    "libredwg": 0
+   },
+   {
+    "layer": "0 @ 1",
+    "oda": 0,
+    "libredwg": 14
+   },
+   {
+    "layer": "KON cedvel",
+    "oda": 142,
+    "libredwg": 210
+   }
+  ],
+  "agree": true,
+  "layer_naming_differs": true
+ },
+ "49d98f55560af221adef33cc8a871d59602f65495b9eb18996156645b350e4cc": {
+  "file": "9335 Xocavənd ayaqyolu dk.dwg",
+  "sha256": "49d98f55560af221adef33cc8a871d59602f65495b9eb18996156645b350e4cc",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 1638,
+  "libredwg_total": 1638,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "5ed62808af32da5ff8d29f9dcb922916e7a3c8ad858754ce345d434b8071db57": {
+  "file": "9335 Xocevend yangin su anbari dk.dwg",
+  "sha256": "5ed62808af32da5ff8d29f9dcb922916e7a3c8ad858754ce345d434b8071db57",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 5027,
+  "libredwg_total": 5027,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "c073cebf0e68a497b11dedf544b69f3daee474580cd9a3cc03db024171a663ba": {
+  "file": "9335 Xocevend-telim qullesi dk.dwg",
+  "sha256": "c073cebf0e68a497b11dedf544b69f3daee474580cd9a3cc03db024171a663ba",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 20145,
+  "libredwg_total": 20145,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [
+   {
+    "layer": "0 @ 1",
+    "oda": 0,
+    "libredwg": 156
+   },
+   {
+    "layer": "оси",
+    "oda": 22,
+    "libredwg": 9
+   },
+   {
+    "layer": "размер",
+    "oda": 38,
+    "libredwg": 24
+   }
+  ],
+  "agree": true,
+  "layer_naming_differs": true
+ },
+ "cdefac6e58033a69f820becb7d60e11ec06bf894123905cf9327ca00d0571102": {
+  "file": "9335 Xocavənd  rayon   POS.dwg",
+  "sha256": "cdefac6e58033a69f820becb7d60e11ec06bf894123905cf9327ca00d0571102",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 3997,
+  "libredwg_total": 3967,
+  "total_diff": 0.0075,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 30,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "polygon",
+    "oda": 51,
+    "libredwg": 21
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "93e9e43ba3145f4b079946be14d5414603c2b816119d8bd251d86f2b1848cfe0": {
+  "file": "Xocavənd DQT.dwg",
+  "sha256": "93e9e43ba3145f4b079946be14d5414603c2b816119d8bd251d86f2b1848cfe0",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 2844,
+  "libredwg_total": 2844,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "acbcf96cf13e6c61bdf1292376f1fc0c6067c911484e062f2689a5148e00fb58": {
+  "file": "9335-0- Xocavənd  rayon   DYNX.dwg",
+  "sha256": "acbcf96cf13e6c61bdf1292376f1fc0c6067c911484e062f2689a5148e00fb58",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 7911,
+  "libredwg_total": 7881,
+  "total_diff": 0.0038,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 30,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "polygon",
+    "oda": 48,
+    "libredwg": 18
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "c174f3883f39fa0ac1057a5c49c92035b8bf226393c141843fa0a3e085aa8a76": {
+  "file": "AK-  Xocavənd Qazanxana vəİstilik şəbəkəsi.dwg",
+  "sha256": "c174f3883f39fa0ac1057a5c49c92035b8bf226393c141843fa0a3e085aa8a76",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 2684,
+  "libredwg_total": 2684,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "d1852d2b906cac5b06e83e407d884e20da0c5802703f227014f77f01e1dc7ff7": {
+  "file": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg",
+  "sha256": "d1852d2b906cac5b06e83e407d884e20da0c5802703f227014f77f01e1dc7ff7",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 7880,
+  "libredwg_total": 7790,
+  "total_diff": 0.0114,
+  "type_diffs": [
+   {
+    "type": "REGION",
+    "oda": 90,
+    "libredwg": 0
+   }
+  ],
+  "layer_diffs": [
+   {
+    "layer": "polygon",
+    "oda": 138,
+    "libredwg": 48
+   }
+  ],
+  "agree": false,
+  "layer_naming_differs": false
+ },
+ "06ace14859d91968c010770c66dcfeeab479d163dc428a62edb613afc0df0b85": {
+  "file": "Xocavənd AQ.dwg",
+  "sha256": "06ace14859d91968c010770c66dcfeeab479d163dc428a62edb613afc0df0b85",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 1675,
+  "libredwg_total": 1675,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "fb1f2cbcd44c8e42d992e84c957ed7f854a390b77ec6724cecd297008e9d33b1": {
+  "file": "YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+  "sha256": "fb1f2cbcd44c8e42d992e84c957ed7f854a390b77ec6724cecd297008e9d33b1",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 32442,
+  "libredwg_total": 32442,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ },
+ "f8a55e4da3206e97a31d1f4ee7bbb3841ae0b85f9b86fb371cde84440c833d25": {
+  "file": "YRS - VN -9335 hadrut xocevend (SON).dwg",
+  "sha256": "f8a55e4da3206e97a31d1f4ee7bbb3841ae0b85f9b86fb371cde84440c833d25",
+  "oda_status": "converted",
+  "libredwg_status": "ok",
+  "libredwg_error": null,
+  "oda_total": 166125,
+  "libredwg_total": 166117,
+  "total_diff": 0.0,
+  "type_diffs": [],
+  "layer_diffs": [],
+  "agree": true,
+  "layer_naming_differs": false
+ }
+}

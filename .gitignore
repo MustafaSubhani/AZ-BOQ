@@ -1,0 +1,29 @@
+# Raw client package: not pushed (the derived cache/ is)
+/data/
+
+# DXF files over GitHub's 100 MB limit; regenerate with: python -m azboq convert
+/cache/dxf/44e3b5a27cc1.dxf
+/cache/dxf/539ada08f999.dxf
+/cache/dxf/6882a1d9c16b.dxf
+/cache/dxf/ec2b4f88b691.dxf
+/cache/dxf/f8a55e4da320.dxf
+
+# Debug output
+/cache/shots/
+/cache/*.log
+/cache/shapes*.txt
+
+# Third-party tools: ODA File Converter may not be redistributed; install it into tools/oda/
+/tools/oda/
+/tools/downloads/
+node_modules/
+
+# Third-party design reference screenshots
+/app/docs/design-samples/
+
+# Python and editor noise
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env

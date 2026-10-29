@@ -1,0 +1,314 @@
+{
+ "А": {
+  "to": "A",
+  "score": 1.0,
+  "second": "W",
+  "second_score": 0.359,
+  "pdf": "9335 Qüllə.pdf",
+  "page": 6
+ },
+ "Г": {
+  "to": "Q",
+  "score": 0.996,
+  "second": "O",
+  "second_score": 0.819,
+  "pdf": "9335 Qüllə.pdf",
+  "page": 6
+ },
+ "Д": {
+  "to": "D",
+  "score": 0.995,
+  "second": "B",
+  "second_score": 0.598,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "Е": {
+  "to": "E",
+  "score": 1.0,
+  "second": "F",
+  "second_score": 0.655,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "И": {
+  "to": "İ",
+  "score": 1.0,
+  "second": "I",
+  "second_score": 0.651,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "Л": {
+  "to": "L",
+  "score": 1.0,
+  "second": "E",
+  "second_score": 0.403,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "М": {
+  "to": "M",
+  "score": 1.0,
+  "second": "V",
+  "second_score": 0.399,
+  "pdf": "9335 MH.pdf",
+  "page": 20
+ },
+ "С": {
+  "to": "S",
+  "score": 0.996,
+  "second": "Ş",
+  "second_score": 0.888,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "а": {
+  "to": "a",
+  "score": 0.996,
+  "second": "ə",
+  "second_score": 0.668,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "б": {
+  "to": "b",
+  "score": 0.988,
+  "second": "p",
+  "second_score": 0.772,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "в": {
+  "to": "v",
+  "score": 1.0,
+  "second": "y",
+  "second_score": 0.719,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "г": {
+  "to": "q",
+  "score": 0.986,
+  "second": "d",
+  "second_score": 0.77,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "д": {
+  "to": "d",
+  "score": 0.992,
+  "second": "q",
+  "second_score": 0.773,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "е": {
+  "to": "e",
+  "score": 0.993,
+  "second": "o",
+  "second_score": 0.749,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ж": {
+  "to": "j",
+  "score": 0.995,
+  "second": "ş",
+  "second_score": 0.206,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "з": {
+  "to": "z",
+  "score": 0.994,
+  "second": "x",
+  "second_score": 0.452,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "и": {
+  "to": "i",
+  "score": 1.0,
+  "second": "l",
+  "second_score": 0.865,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "й": {
+  "to": "y",
+  "score": 0.998,
+  "second": "v",
+  "second_score": 0.72,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "к": {
+  "to": "k",
+  "score": 1.0,
+  "second": "h",
+  "second_score": 0.438,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "л": {
+  "to": "l",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.865,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "м": {
+  "to": "m",
+  "score": 0.996,
+  "second": "ı",
+  "second_score": 0.249,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "н": {
+  "to": "n",
+  "score": 0.993,
+  "second": "h",
+  "second_score": 0.84,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "о": {
+  "to": "o",
+  "score": 0.99,
+  "second": "ö",
+  "second_score": 0.851,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "п": {
+  "to": "p",
+  "score": 0.987,
+  "second": "b",
+  "second_score": 0.767,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "р": {
+  "to": "r",
+  "score": 0.99,
+  "second": "f",
+  "second_score": 0.262,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "с": {
+  "to": "s",
+  "score": 0.997,
+  "second": "ş",
+  "second_score": 0.841,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "т": {
+  "to": "t",
+  "score": 1.0,
+  "second": "l",
+  "second_score": 0.571,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "у": {
+  "to": "u",
+  "score": 1.0,
+  "second": "ü",
+  "second_score": 0.856,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ф": {
+  "to": "f",
+  "score": 0.998,
+  "second": "t",
+  "second_score": 0.546,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "х": {
+  "to": "x",
+  "score": 1.0,
+  "second": "z",
+  "second_score": 0.453,
+  "pdf": "9335 Qüllə.pdf",
+  "page": 6
+ },
+ "ц": {
+  "to": "ü",
+  "score": 1.0,
+  "second": "u",
+  "second_score": 0.856,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ч": {
+  "to": "ç",
+  "score": 0.992,
+  "second": "c",
+  "second_score": 0.81,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ш": {
+  "to": "ş",
+  "score": 0.997,
+  "second": "s",
+  "second_score": 0.841,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "щ": {
+  "to": "h",
+  "score": 0.997,
+  "second": "n",
+  "second_score": 0.843,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ы": {
+  "to": "ı",
+  "score": 1.0,
+  "second": "i",
+  "second_score": 0.822,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ь": {
+  "to": "ğ",
+  "score": 0.995,
+  "second": "g",
+  "second_score": 0.887,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "э": {
+  "to": "g",
+  "score": 0.995,
+  "second": "ğ",
+  "second_score": 0.888,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "ю": {
+  "to": "ö",
+  "score": 0.991,
+  "second": "o",
+  "second_score": 0.851,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ },
+ "я": {
+  "to": "ə",
+  "score": 0.95,
+  "second": "o",
+  "second_score": 0.782,
+  "pdf": "9335 MH.pdf",
+  "page": 2
+ }
+}

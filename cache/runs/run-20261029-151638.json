@@ -1,0 +1,123 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "BP.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/BP.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "DK.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/DK.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "EYS,ET,YS.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/EYS,ET,YS.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "Izahat.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/Izahat.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "MH.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/MH.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "SMETA.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/SMETA.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "warning",
+   "message": "Ümumi İZAHAT.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Depo Xocavənd Ümumi İzahat/Ümumi İZAHAT.pdf"
+  },
+  {
+   "t": 1793268998.169,
+   "stage": "vision",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.0
+  }
+ ],
+ "review": [
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "BP.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/BP.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "DK.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/DK.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "EYS,ET,YS.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/EYS,ET,YS.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "Izahat.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/Izahat.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "MH.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/MH.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "SMETA.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Hadrut Xocavend transform 9526/SMETA.pdf"
+  },
+  {
+   "stage": "vision",
+   "severity": "warning",
+   "message": "Ümumi İZAHAT.pdf: scan not read (no OPENAI_API_KEY); its lines stay unchecked",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Depo Xocavənd Ümumi İzahat/Ümumi İZAHAT.pdf"
+  }
+ ],
+ "stages": [
+  "vision"
+ ]
+}

@@ -1,0 +1,1415 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793266190.777,
+   "stage": "bill",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793266191.474,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2100; id uses the row",
+   "row": 2100
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2101; id uses the row",
+   "row": 2101
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2102; id uses the row",
+   "row": 2102
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2103; id uses the row",
+   "row": 2103
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2104; id uses the row",
+   "row": 2104
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2108; id uses the row",
+   "row": 2108
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2109; id uses the row",
+   "row": 2109
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2110; id uses the row",
+   "row": 2110
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2111; id uses the row",
+   "row": 2111
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2112; id uses the row",
+   "row": 2112
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2113; id uses the row",
+   "row": 2113
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2114; id uses the row",
+   "row": 2114
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2116; id uses the row",
+   "row": 2116
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2117; id uses the row",
+   "row": 2117
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2118; id uses the row",
+   "row": 2118
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2119; id uses the row",
+   "row": 2119
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2120; id uses the row",
+   "row": 2120
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2121; id uses the row",
+   "row": 2121
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2122; id uses the row",
+   "row": 2122
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2124; id uses the row",
+   "row": 2124
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2125; id uses the row",
+   "row": 2125
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2126; id uses the row",
+   "row": 2126
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2127; id uses the row",
+   "row": 2127
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2128; id uses the row",
+   "row": 2128
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2129; id uses the row",
+   "row": 2129
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2130; id uses the row",
+   "row": 2130
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2132; id uses the row",
+   "row": 2132
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2133; id uses the row",
+   "row": 2133
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2134; id uses the row",
+   "row": 2134
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2135; id uses the row",
+   "row": 2135
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2136; id uses the row",
+   "row": 2136
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2137; id uses the row",
+   "row": 2137
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2138; id uses the row",
+   "row": 2138
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2140; id uses the row",
+   "row": 2140
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2141; id uses the row",
+   "row": 2141
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2142; id uses the row",
+   "row": 2142
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2143; id uses the row",
+   "row": 2143
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2144; id uses the row",
+   "row": 2144
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2145; id uses the row",
+   "row": 2145
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2146; id uses the row",
+   "row": 2146
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2148; id uses the row",
+   "row": 2148
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2149; id uses the row",
+   "row": 2149
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2150; id uses the row",
+   "row": 2150
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2151; id uses the row",
+   "row": 2151
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2152; id uses the row",
+   "row": 2152
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2153; id uses the row",
+   "row": 2153
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2154; id uses the row",
+   "row": 2154
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2156; id uses the row",
+   "row": 2156
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2157; id uses the row",
+   "row": 2157
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2158; id uses the row",
+   "row": 2158
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2159; id uses the row",
+   "row": 2159
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2160; id uses the row",
+   "row": 2160
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2161; id uses the row",
+   "row": 2161
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2162; id uses the row",
+   "row": 2162
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2164; id uses the row",
+   "row": 2164
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2165; id uses the row",
+   "row": 2165
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2166; id uses the row",
+   "row": 2166
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2167; id uses the row",
+   "row": 2167
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2168; id uses the row",
+   "row": 2168
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2169; id uses the row",
+   "row": 2169
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2170; id uses the row",
+   "row": 2170
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2172; id uses the row",
+   "row": 2172
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2173; id uses the row",
+   "row": 2173
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2174; id uses the row",
+   "row": 2174
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2175; id uses the row",
+   "row": 2175
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2176; id uses the row",
+   "row": 2176
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2177; id uses the row",
+   "row": 2177
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2178; id uses the row",
+   "row": 2178
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2180; id uses the row",
+   "row": 2180
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2181; id uses the row",
+   "row": 2181
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2182; id uses the row",
+   "row": 2182
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2183; id uses the row",
+   "row": 2183
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2184; id uses the row",
+   "row": 2184
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2185; id uses the row",
+   "row": 2185
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2186; id uses the row",
+   "row": 2186
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2188; id uses the row",
+   "row": 2188
+  },
+  {
+   "t": 1793266191.475,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2189; id uses the row",
+   "row": 2189
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2190; id uses the row",
+   "row": 2190
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2191; id uses the row",
+   "row": 2191
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2192; id uses the row",
+   "row": 2192
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2193; id uses the row",
+   "row": 2193
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2194; id uses the row",
+   "row": 2194
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2196; id uses the row",
+   "row": 2196
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2197; id uses the row",
+   "row": 2197
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2198; id uses the row",
+   "row": 2198
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2199; id uses the row",
+   "row": 2199
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2200; id uses the row",
+   "row": 2200
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2201; id uses the row",
+   "row": 2201
+  },
+  {
+   "t": 1793266191.476,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "item number repeats in section 25.1 at row 2202; id uses the row",
+   "row": 2202
+  },
+  {
+   "t": 1793266191.477,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  },
+  {
+   "t": 1793266191.479,
+   "stage": "bill",
+   "kind": "info",
+   "message": "132 sections, 2175 lines, line sum 3,110,505.89"
+  },
+  {
+   "t": 1793266191.479,
+   "stage": "bill",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.7
+  },
+  {
+   "t": 1793266192.115,
+   "stage": "takeoff",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793266192.333,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot long side: 45.2004 m [geometry, verified]"
+  },
+  {
+   "t": 1793266192.37,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot short side: 34.6 m [geometry, verified]"
+  },
+  {
+   "t": 1793266192.376,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Bay module: 6 m [geometry, extracted]"
+  },
+  {
+   "t": 1793266192.437,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement storey height: 2.7 m [stated, verified]"
+  },
+  {
+   "t": 1793266192.503,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Upper storey height: 3.3 m [stated, extracted]"
+  },
+  {
+   "t": 1793266192.543,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor area: 1395.8 m² [schedule, extracted]"
+  },
+  {
+   "t": 1793266192.588,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement area: 1360.8 m² [schedule, review]"
+  },
+  {
+   "t": 1793266192.632,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site fill: 12996 m³ [schedule, review]"
+  },
+  {
+   "t": 1793266192.637,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site cut: 3167 m³ [schedule, review]"
+  },
+  {
+   "t": 1793266192.642,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Suitable soil shortfall: 8683 m³ [schedule, review]"
+  },
+  {
+   "t": 1793266192.645,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Topsoil to landscaped area: 522 m³ [stated, review]"
+  },
+  {
+   "t": 1793266192.648,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Landscaped area: 3482.3 m² [stated, review]"
+  },
+  {
+   "t": 1793266192.651,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Reinforced-concrete roads: 1021 m² [stated, review]"
+  },
+  {
+   "t": 1793266192.654,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Asphalt roads, internal and external together: 599.7 m² [stated, review]"
+  },
+  {
+   "t": 1793266192.657,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pavements and yards: 1437.8 m² [stated, review]"
+  },
+  {
+   "t": 1793266192.695,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Demolition volume: 7625.4 m³ [stated, review]"
+  },
+  {
+   "t": 1793266192.809,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, metal roof tile area: 9.6 m² [stated, verified]"
+  },
+  {
+   "t": 1793266192.839,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, roof timber total: 0.23 m³ [schedule, verified]"
+  },
+  {
+   "t": 1793266192.853,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, metal roof tile area: 27.64 m² [stated, extracted]"
+  },
+  {
+   "t": 1793266192.871,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, roof timber total: 0.33 m³ [schedule, verified]"
+  },
+  {
+   "t": 1793266192.881,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank, concrete B25 per element: 8.71 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793266192.891,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank, concrete B25 per element: 16.07 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793266192.905,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, smoke detectors: 12 each [schedule, extracted]"
+  },
+  {
+   "t": 1793266192.919,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, manual call points: 5 each [schedule, extracted]"
+  },
+  {
+   "t": 1793266192.919,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Depot external wall net length: blocked (measurement method not built in this demo)",
+   "item": "wall_length_depot"
+  },
+  {
+   "t": 1793266192.919,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  },
+  {
+   "t": 1793266193.251,
+   "stage": "takeoff",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.14
+  },
+  {
+   "t": 1793266193.308,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793266196.854,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 9, different 2, matched 26, not_found 499, printed 1301, review 337"
+  },
+  {
+   "t": 1793266196.854,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 3.55
+  }
+ ],
+ "review": [
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2100; id uses the row",
+   "row": 2100
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2101; id uses the row",
+   "row": 2101
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2102; id uses the row",
+   "row": 2102
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2103; id uses the row",
+   "row": 2103
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2104; id uses the row",
+   "row": 2104
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2108; id uses the row",
+   "row": 2108
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2109; id uses the row",
+   "row": 2109
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2110; id uses the row",
+   "row": 2110
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2111; id uses the row",
+   "row": 2111
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2112; id uses the row",
+   "row": 2112
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2113; id uses the row",
+   "row": 2113
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2114; id uses the row",
+   "row": 2114
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2116; id uses the row",
+   "row": 2116
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2117; id uses the row",
+   "row": 2117
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2118; id uses the row",
+   "row": 2118
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2119; id uses the row",
+   "row": 2119
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2120; id uses the row",
+   "row": 2120
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2121; id uses the row",
+   "row": 2121
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2122; id uses the row",
+   "row": 2122
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2124; id uses the row",
+   "row": 2124
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2125; id uses the row",
+   "row": 2125
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2126; id uses the row",
+   "row": 2126
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2127; id uses the row",
+   "row": 2127
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2128; id uses the row",
+   "row": 2128
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2129; id uses the row",
+   "row": 2129
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2130; id uses the row",
+   "row": 2130
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2132; id uses the row",
+   "row": 2132
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2133; id uses the row",
+   "row": 2133
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2134; id uses the row",
+   "row": 2134
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2135; id uses the row",
+   "row": 2135
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2136; id uses the row",
+   "row": 2136
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2137; id uses the row",
+   "row": 2137
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2138; id uses the row",
+   "row": 2138
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2140; id uses the row",
+   "row": 2140
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2141; id uses the row",
+   "row": 2141
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2142; id uses the row",
+   "row": 2142
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2143; id uses the row",
+   "row": 2143
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2144; id uses the row",
+   "row": 2144
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2145; id uses the row",
+   "row": 2145
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2146; id uses the row",
+   "row": 2146
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2148; id uses the row",
+   "row": 2148
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2149; id uses the row",
+   "row": 2149
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2150; id uses the row",
+   "row": 2150
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2151; id uses the row",
+   "row": 2151
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2152; id uses the row",
+   "row": 2152
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2153; id uses the row",
+   "row": 2153
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2154; id uses the row",
+   "row": 2154
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2156; id uses the row",
+   "row": 2156
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2157; id uses the row",
+   "row": 2157
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2158; id uses the row",
+   "row": 2158
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2159; id uses the row",
+   "row": 2159
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2160; id uses the row",
+   "row": 2160
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2161; id uses the row",
+   "row": 2161
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2162; id uses the row",
+   "row": 2162
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2164; id uses the row",
+   "row": 2164
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2165; id uses the row",
+   "row": 2165
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2166; id uses the row",
+   "row": 2166
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2167; id uses the row",
+   "row": 2167
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2168; id uses the row",
+   "row": 2168
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2169; id uses the row",
+   "row": 2169
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2170; id uses the row",
+   "row": 2170
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2172; id uses the row",
+   "row": 2172
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2173; id uses the row",
+   "row": 2173
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2174; id uses the row",
+   "row": 2174
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2175; id uses the row",
+   "row": 2175
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2176; id uses the row",
+   "row": 2176
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2177; id uses the row",
+   "row": 2177
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2178; id uses the row",
+   "row": 2178
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2180; id uses the row",
+   "row": 2180
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2181; id uses the row",
+   "row": 2181
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2182; id uses the row",
+   "row": 2182
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2183; id uses the row",
+   "row": 2183
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2184; id uses the row",
+   "row": 2184
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2185; id uses the row",
+   "row": 2185
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2186; id uses the row",
+   "row": 2186
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2188; id uses the row",
+   "row": 2188
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2189; id uses the row",
+   "row": 2189
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2190; id uses the row",
+   "row": 2190
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2191; id uses the row",
+   "row": 2191
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2192; id uses the row",
+   "row": 2192
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2193; id uses the row",
+   "row": 2193
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2194; id uses the row",
+   "row": 2194
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2196; id uses the row",
+   "row": 2196
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2197; id uses the row",
+   "row": 2197
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2198; id uses the row",
+   "row": 2198
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2199; id uses the row",
+   "row": 2199
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2200; id uses the row",
+   "row": 2200
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2201; id uses the row",
+   "row": 2201
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "item number repeats in section 25.1 at row 2202; id uses the row",
+   "row": 2202
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Depot external wall net length: blocked (measurement method not built in this demo)",
+   "item": "wall_length_depot"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  }
+ ],
+ "stages": [
+  "bill",
+  "source_map",
+  "takeoff",
+  "match"
+ ]
+}

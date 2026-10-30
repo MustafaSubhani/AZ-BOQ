@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ArrowDown, ArrowUp, Search, X } from '../icons'
 import { useData } from '../api'
 import { fmt, matches, money } from '../az'
 import { T } from '../i18n'
 import { go, href, type Route } from '../router'
-import { Card, ErrorBox, LINE_STATUS, Loading, SourceCard, StatusTag, targetOf, tradeName, useBuildingName, type Source, type Target } from '../ui'
+import { Card, Empty, ErrorBox, LINE_STATUS, Loading, SourceCard, StatusTag, targetOf, tradeName, useBuildingName, type Source, type Target } from '../ui'
 import { Viewer } from '../Viewer'
 
 type Line = {
@@ -37,6 +38,7 @@ export function Bill({ route }: { route: Route }) {
   const status = route.query.get('status') || 'all'
   const building = route.query.get('building') || ''
   const selId = route.query.get('line')
+  const table = useRef<HTMLDivElement>(null)
   const nav = (patch: Record<string, string | null>) => {
     const cur: Record<string, string | null> = { status: status === 'all' ? null : status, building: building || null, line: selId }
     go('bill', { ...cur, ...patch })
@@ -53,18 +55,57 @@ export function Bill({ route }: { route: Route }) {
   }, [data])
   const buildings = useMemo(() => [...new Set((data?.lines || []).map((l) => l.building))], [data])
 
+  const { bySection, visible } = useMemo(() => {
+    const bySection = new Map<string, Line[]>()
+    const visible: Line[] = []
+    if (!data) return { bySection, visible }
+    const titleHit = new Set(q ? data.sections.filter((s) => matches(q, s.code, s.title)).map((s) => s.code) : [])
+    for (const l of data.lines) {
+      const s = l.check?.status || ''
+      if (status === 'checked' ? !CHECKED.has(s) : status !== 'all' && s !== status) continue
+      if (building && l.building !== building) continue
+      if (!(titleHit.has(l.section) || matches(q, l.id, l.description, l.comment))) continue
+      bySection.set(l.section, [...(bySection.get(l.section) || []), l])
+    }
+    for (const s of data.sections) visible.push(...(bySection.get(s.code) || []))
+    return { bySection, visible }
+  }, [data, q, status, building])
+
+  // Bring the chosen line into view, also when it was opened from another screen.
+  useEffect(() => {
+    if (!selId) return
+    const el = table.current?.querySelector<HTMLElement>(`tr[data-line="${CSS.escape(selId)}"]`)
+    el?.scrollIntoView({ block: 'nearest' })
+  }, [selId, data])
+
+  // ↑/↓ walk the visible lines, Esc closes the line.
+  const visibleRef = useRef(visible)
+  visibleRef.current = visible
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      const list = visibleRef.current
+      if (!list.length) return
+      const at = list.findIndex((l) => l.id === selId)
+      if (e.key === 'ArrowDown' || e.key === 'j') {
+        e.preventDefault()
+        setTarget(null)
+        nav({ line: list[Math.min(at + 1, list.length - 1)].id })
+      } else if (e.key === 'ArrowUp' || e.key === 'k') {
+        e.preventDefault()
+        setTarget(null)
+        nav({ line: list[Math.max(at - 1, 0)].id })
+      } else if (e.key === 'Escape' && selId) nav({ line: null })
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selId, status, building])
+
   if (error) return <ErrorBox error={error} />
   if (!data) return <Loading what="the bill" />
 
-  const titleHit = new Set(q ? data.sections.filter((s) => matches(q, s.code, s.title)).map((s) => s.code) : [])
-  const keep = (l: Line) => {
-    const s = l.check?.status || ''
-    if (status === 'checked' ? !CHECKED.has(s) : status !== 'all' && s !== status) return false
-    if (building && l.building !== building) return false
-    return titleHit.has(l.section) || matches(q, l.id, l.description, l.comment)
-  }
-  const bySection = new Map<string, Line[]>()
-  for (const l of data.lines) if (keep(l)) bySection.set(l.section, [...(bySection.get(l.section) || []), l])
   const sel = data.lines.find((l) => l.id === selId) || null
   const item = sel?.check?.item ? take.data?.items.find((i) => i.id === sel.check!.item) : undefined
   const itemSources = item ? [...(item.viewer ? [item.viewer] : []), ...item.value.sources.filter((s) => s !== item.viewer)].slice(0, 6) : []
@@ -79,26 +120,40 @@ export function Bill({ route }: { route: Route }) {
     ['not_found', 'Not on drawings'],
   ]
   const head = data.totals.contract_price_c5
+  const selIdx = sel ? visible.findIndex((l) => l.id === sel.id) : -1
+  const different = sel?.check?.status === 'different'
+  const step = (d: number) => {
+    const next = selIdx >= 0 ? visible[selIdx + d] : undefined
+    if (!next) return
+    setTarget(null)
+    nav({ line: next.id })
+  }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: sel ? 'minmax(0, 1fr) 400px' : 'minmax(0,1fr)', gap: 14, flex: 1, minHeight: 0 }}>
+    <div className={`fill-row ${sel ? 'with-insp' : ''}`}>
       <Card style={{ overflow: 'hidden' }}>
         <div className="toolbar">
-          {chips.map(([k, label]) => (
-            <button key={k} className={`chip ${status === k ? 'on' : ''}`} onClick={() => nav({ status: k === 'all' ? null : k })} title={LINE_STATUS[k]?.hint}>
-              {label} <b>{fmt(k === 'all' ? data.lines.length : counts[k] || 0)}</b>
-            </button>
-          ))}
-          <select className="search" style={{ minWidth: 150 }} value={building} onChange={(e) => nav({ building: e.target.value || null })}>
+          <div className="chips">
+            {chips.map(([k, label]) => (
+              <button key={k} className={`chip ${status === k ? 'on' : ''}`} onClick={() => nav({ status: k === 'all' ? null : k })} title={LINE_STATUS[k]?.hint}>
+                {label} <b>{fmt(k === 'all' ? data.lines.length : counts[k] || 0)}</b>
+              </button>
+            ))}
+          </div>
+          <select className="search" style={{ minWidth: 150 }} value={building} onChange={(e) => nav({ building: e.target.value || null })} aria-label="Building">
             <option value="">All buildings</option>
             {buildings.map((b) => <option key={b} value={b}>{bname(b)}</option>)}
           </select>
-          <input className="search" placeholder="Search code or words (ə = e, ı = i…)" value={q} onChange={(e) => setQ(e.target.value)} />
-          <span className="muted" style={{ marginLeft: 'auto', fontSize: 12 }}>
-            Header {money(head)} · lines {money(data.line_sum)}
+          <label className="field grow">
+            <Search size={14} />
+            <input placeholder="Search code or words (ə = e, ı = i…)" value={q} onChange={(e) => setQ(e.target.value)} />
+            {q ? <button onClick={() => setQ('')} aria-label="Clear search" style={{ display: 'grid', color: 'var(--faint)' }}><X size={14} /></button> : null}
+          </label>
+          <span className="muted" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>
+            <span className="mono" style={{ color: 'var(--ink)' }}>{fmt(visible.length)}</span> lines shown · header <span className="mono">{money(head)}</span>
           </span>
         </div>
-        <div className="scroll" style={{ flex: 1 }}>
+        <div className="scroll" style={{ flex: 1 }} ref={table}>
           <table>
             <thead>
               <tr>
@@ -113,20 +168,20 @@ export function Bill({ route }: { route: Route }) {
                   <tr key={s.code + s.row} className="sec">
                     <td className="code">
                       {s.code}
-                      {s.code_repaired ? <span className="tag warn" title={`Stored in the workbook as ${s.stored_code}; repaired from its position`}> *</span> : null}
+                      {s.code_repaired ? <span className="note warn" title={`Stored in the workbook as ${s.stored_code}; repaired from its position`}> *</span> : null}
                     </td>
                     <td colSpan={6}>
-                      <T az={s.title} /> <span className="muted" style={{ fontWeight: 500 }}>· {bname(s.building)} · {tradeName(s.trade)}</span>
+                      <T az={s.title} /> <span className="muted" style={{ fontWeight: 400 }}>· {bname(s.building)} · {tradeName(s.trade)} · {ls.length} {ls.length === 1 ? 'line' : 'lines'}</span>
                     </td>
                   </tr>,
                   ...ls.map((l) => (
-                    <tr key={l.id} className={`click ${sel?.id === l.id ? 'sel' : ''}`} onClick={() => { setTarget(null); nav({ line: l.id }) }}>
+                    <tr key={l.id} data-line={l.id} className={`click ${sel?.id === l.id ? 'sel' : ''}`} onClick={() => { setTarget(null); nav({ line: l.id }) }}>
                       <td className="code">{l.id}</td>
                       <td className="desc"><T az={l.description} />{l.comment ? <span className="pill" style={{ marginLeft: 6 }} title={l.comment}>reviewer note</span> : null}</td>
-                      <td title={l.unit_known ? undefined : 'Unit not recognised'} className={l.unit_known ? '' : 'tag warn'}>{l.unit_raw}</td>
+                      <td>{l.unit_known ? l.unit_raw : <span className="note warn" title="Unit not recognised">{l.unit_raw}</span>}</td>
                       <td className="r num">{fmt(l.qty, 3)}</td>
-                      <td className="r num" style={{ color: l.check?.status === 'different' ? 'var(--bad)' : undefined, fontWeight: l.check?.status === 'different' ? 650 : undefined }}>
-                        {l.check?.our_qty === null || l.check?.our_qty === undefined ? '—' : fmt(l.check.our_qty, 3)}
+                      <td className={`r num ${l.check?.status === 'different' ? 'bad-fig' : ''}`}>
+                        {l.check?.our_qty === null || l.check?.our_qty === undefined ? <span className="faint">—</span> : fmt(l.check.our_qty, 3)}
                       </td>
                       <td className="r num">{money(l.amount)}</td>
                       <td>{l.check ? <StatusTag status={l.check.status} /> : null}</td>
@@ -136,27 +191,48 @@ export function Bill({ route }: { route: Route }) {
               })}
             </tbody>
           </table>
-          {!bySection.size ? <div className="empty-state">No line matches these filters.</div> : null}
+          {!bySection.size ? <Empty icon={<Search size={20} />} title="No line matches these filters">Clear the search or choose another status or building.</Empty> : null}
         </div>
       </Card>
 
       {sel ? (
-        <Card title={<span>Line {sel.id}</span>} right={<button className="chip" onClick={() => nav({ line: null })}>Close</button>} style={{ overflow: 'hidden' }}>
-          <div className="insp" style={{ flex: '0 0 auto', maxHeight: '55%' }}>
-            <div className="eyebrow">{bname(sel.building)} · {tradeName(sel.trade)} · row {sel.row}</div>
-            <h1 style={{ fontSize: 15 }}><T az={sel.description} /></h1>
-            <div className="pair"><span>Bill</span><span className="num">{fmt(sel.qty, 3)} {sel.unit} × {money(sel.rate)} = <b>{money(sel.amount)}</b></span></div>
-            <div className="pair"><span>From drawings</span><span className="num">{sel.check?.our_qty === null || sel.check?.our_qty === undefined ? '—' : `${fmt(sel.check.our_qty, 3)} ${sel.unit}`}</span></div>
+        <Card
+          title={<span>Line <span className="mono">{sel.id}</span></span>}
+          sub={selIdx >= 0 ? `${selIdx + 1} of ${fmt(visible.length)} shown · ↑ ↓ to move` : 'Not in the current filter'}
+          right={
+            <>
+              <button className="icon" style={{ width: 30, height: 30 }} title="Previous line (↑)" disabled={selIdx <= 0} onClick={() => step(-1)}><ArrowUp size={14} /></button>
+              <button className="icon" style={{ width: 30, height: 30 }} title="Next line (↓)" disabled={selIdx < 0 || selIdx >= visible.length - 1} onClick={() => step(1)}><ArrowDown size={14} /></button>
+              <button className="icon" style={{ width: 30, height: 30 }} title="Close (Esc)" onClick={() => nav({ line: null })}><X size={14} /></button>
+            </>
+          }
+          className="inspector"
+          style={{ overflow: 'hidden' }}
+        >
+          <div className="insp" style={{ flex: '0 1 auto', maxHeight: '58%' }}>
+            <div className="eyebrow accent">{bname(sel.building)} · {tradeName(sel.trade)} · workbook row {sel.row}</div>
+            <h1><T az={sel.description} /></h1>
+            <div className="vs">
+              <div>
+                <small>Bill says</small>
+                <b>{fmt(sel.qty, 3)} <span>{sel.unit}</span></b>
+                <span className="mono">× {money(sel.rate)} = {money(sel.amount)}</span>
+              </div>
+              <div className={different ? 'bad' : sel.check && LINE_STATUS[sel.check.status]?.cls === 'ok' ? 'ok' : ''}>
+                <small>Drawings say</small>
+                <b>{sel.check?.our_qty === null || sel.check?.our_qty === undefined ? '—' : fmt(sel.check.our_qty, 3)} <span>{sel.check?.our_qty != null ? sel.unit : ''}</span></b>
+                {sel.check ? <StatusTag status={sel.check.status} /> : <span>Not checked</span>}
+              </div>
+            </div>
             {sel.check ? (
               <>
-                <div className="pair"><span>Check</span><StatusTag status={sel.check.status} /></div>
                 <div className={`box ${LINE_STATUS[sel.check.status]?.cls === 'bad' ? 'bad' : LINE_STATUS[sel.check.status]?.cls === 'ok' ? 'ok' : ''}`}>
                   <small>Reason</small>
                   {sel.check.reason}
-                  {sel.check.gap ? <div>Gap {fmt(sel.check.gap, 3)} {sel.unit} ({fmt(sel.check.gap_pct, 1)}%), worth about {money(sel.check.gap * (sel.rate || 0))} before mark-ups.</div> : null}
+                  {sel.check.gap ? <div style={{ marginTop: 4 }}>Gap <b className="mono">{fmt(sel.check.gap, 3)} {sel.unit}</b> ({fmt(sel.check.gap_pct, 1)}%), worth about <b className="mono">{money(sel.check.gap * (sel.rate || 0))}</b> before mark-ups.</div> : null}
                 </div>
-                {sel.check.item ? <div className="pair"><span>Measured item</span><a href={href('takeoff', { item: sel.check.item })}>{sel.check.item}</a></div> : null}
-                {sel.check.derived_from ? <div className="pair"><span>Follows from</span><a href={href('bill', { line: sel.check.derived_from })}>line {sel.check.derived_from}</a></div> : null}
+                {sel.check.item ? <div className="pair"><span>Measured item</span><a href={href('takeoff', { item: sel.check.item })} className="mono">{sel.check.item}</a></div> : null}
+                {sel.check.derived_from ? <div className="pair"><span>Follows from</span><a href={href('bill', { line: sel.check.derived_from })}>line <span className="mono">{sel.check.derived_from}</span></a></div> : null}
               </>
             ) : null}
             {sel.comment ? (
@@ -168,13 +244,13 @@ export function Bill({ route }: { route: Route }) {
             ) : null}
             {selSources.length ? (
               <>
-                <div className="eyebrow" style={{ marginTop: 12 }}>{sel.check?.sources ? 'Where it is printed' : itemSources.length ? 'Evidence for the measured item' : 'Weak candidates, not accepted'}</div>
+                <div className="section-label"><span className="eyebrow">{sel.check?.sources ? 'Where it is printed' : itemSources.length ? 'Evidence for the measured item' : 'Weak candidates, not accepted'}</span></div>
                 {selSources.map((s, i) => <SourceCard key={i} src={s} onOpen={setTarget} active={JSON.stringify(targetOf(s)) === JSON.stringify(shown)} />)}
               </>
             ) : null}
           </div>
           <div style={{ flex: 1, display: 'flex', minHeight: 260, borderTop: '1px solid var(--line)' }}>
-            <Viewer target={shown} />
+            <Viewer target={shown} emptyText={sel.check?.status === 'not_found' ? 'No drawing of this building prints or measures this line, so there is no sheet to show.' : 'This line has no source to show on a sheet.'} />
           </div>
         </Card>
       ) : null}

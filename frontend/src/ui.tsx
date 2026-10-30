@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { WarningCircle } from './icons'
 import { useLang } from './i18n'
 
 export type Source = {
@@ -39,6 +40,18 @@ export const LINE_STATUS: Record<string, { label: string; cls: string; dot: stri
   review: { label: 'Needs review', cls: 'warn', dot: 'warn', hint: 'Only weak candidates were found' },
   blocked: { label: 'Blocked', cls: 'warn', dot: 'warn', hint: 'An input the measurement needs is missing' },
   not_found: { label: 'Not on drawings', cls: 'muted', dot: '', hint: 'No measured item and the number is not printed on any drawing of this building' },
+}
+
+/** Order and colour of the check results when they are drawn side by side. */
+export const STATUS_ORDER = ['matched', 'printed', 'derived', 'different', 'review', 'blocked', 'not_found']
+export const STATUS_COLOR: Record<string, string> = {
+  matched: 'var(--ok)',
+  printed: 'color-mix(in srgb, var(--ok) 55%, var(--paper))',
+  derived: 'var(--info)',
+  different: 'var(--bad)',
+  review: 'var(--warn)',
+  blocked: 'var(--accent)',
+  not_found: 'var(--line-3)',
 }
 
 export const VALUE_STATUS: Record<string, { label: string; cls: string }> = {
@@ -151,8 +164,7 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
   const loc = src.locator || {}
   return (
     <button
-      className="src"
-      style={active ? { borderColor: 'var(--accent)' } : undefined}
+      className={`src ${active ? 'on' : ''}`}
       onClick={() => t && onOpen?.(t)}
       disabled={!t}
       title={src.file_name}
@@ -161,7 +173,7 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
       <span lang="az">{src.decoded_text || '—'}</span>
       {src.raw_text && src.raw_text !== src.decoded_text ? (
         <span className="faint" style={{ display: 'block', fontSize: 11.5 }}>
-          stored as: {src.raw_text.slice(0, 80)}
+          stored as: <span className="mono">{src.raw_text.slice(0, 80)}</span>
         </span>
       ) : null}
       {src.row_label ? <span className="muted" style={{ display: 'block', fontSize: 11.5 }}>row: {src.row_label}</span> : null}
@@ -176,23 +188,70 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
 }
 
 export function Loading({ what }: { what?: string }) {
-  return <div className="loading">Loading {what || ''}…</div>
+  return (
+    <div className="loading" role="status">
+      <div className="spin" />
+      <span>Loading {what || ''}…</span>
+    </div>
+  )
 }
 
 export function ErrorBox({ error }: { error: string }) {
-  return <div className="err">Could not load: {error}</div>
+  return (
+    <div className="err" role="alert">
+      <WarningCircle size={18} />
+      <div>
+        <b>Could not load this screen.</b>
+        <div style={{ fontSize: 12.5, marginTop: 2 }}>{error.slice(0, 400)}</div>
+      </div>
+    </div>
+  )
 }
 
-export function Card({ title, right, children, className, style }: { title?: ReactNode; right?: ReactNode; children: ReactNode; className?: string; style?: React.CSSProperties }) {
+export function Card({ title, sub, right, children, className, style }: { title?: ReactNode; sub?: ReactNode; right?: ReactNode; children: ReactNode; className?: string; style?: CSSProperties }) {
   return (
     <div className={`card ${className || ''}`} style={style}>
       {title || right ? (
         <div className="card-h">
-          {title}
+          <div style={{ minWidth: 0 }}>
+            {title}
+            {sub ? <span className="sub">{sub}</span> : null}
+          </div>
           {right ? <div className="right">{right}</div> : null}
         </div>
       ) : null}
       {children}
     </div>
   )
+}
+
+/** Progress ring: share of a whole, drawn from 12 o'clock. */
+export function Ring({ value, size = 44, stroke = 5, label, color }: { value: number; size?: number; stroke?: number; label?: ReactNode; color?: string }) {
+  const r = (size - stroke) / 2
+  const c = 2 * Math.PI * r
+  const v = Math.max(0, Math.min(1, value || 0))
+  return (
+    <span className="ring" style={{ width: size, height: size }}>
+      <svg width={size} height={size} aria-hidden>
+        <circle className="track" cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} />
+        <circle className="arc" cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} strokeDasharray={`${Math.max(v * c, v ? 2 : 0)} ${c}`} style={color ? { stroke: color } : undefined} />
+      </svg>
+      {label !== undefined ? <i>{label}</i> : null}
+    </span>
+  )
+}
+
+export function Empty({ icon, title, children }: { icon?: ReactNode; title?: ReactNode; children?: ReactNode }) {
+  return (
+    <div className="empty-state">
+      {icon ? <span className="well idle">{icon}</span> : null}
+      {title ? <b>{title}</b> : null}
+      {children ? <p>{children}</p> : null}
+    </div>
+  )
+}
+
+export function pct(part: number, whole: number, digits = 1) {
+  if (!whole) return '0%'
+  return `${((part / whole) * 100).toFixed(digits)}%`
 }

@@ -54,6 +54,9 @@ def summary():
 
 @lru_cache(maxsize=64)
 def _page_count(path: str) -> int:
+    # The raw package (data/) is not shipped with the caches; a missing file has no pages to list.
+    if not Path(path).exists():
+        return 0
     return len(pymupdf.open(path))
 
 
@@ -78,7 +81,7 @@ def register():
             row["sheets"] = sheets["pdf"][f["sha256"]]["pages"]
         elif f["kind"] in ("drawing_scan", "explanatory_note_scan", "estimate_scan"):
             row["sheets"] = [{"page": p, "kind": "scan", "title": None, "building": f.get("building")}
-                             for p in range(_page_count(f["path"]))]
+                             for p in range(f.get("pages") or _page_count(f["path"]))]
         files.append(row)
     return {"files": files, "duplicates": reg["duplicates"], "counts": reg["counts"], "total": reg["total"]}
 

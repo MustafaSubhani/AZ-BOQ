@@ -6,7 +6,7 @@ runs are decoded one by one and then joined, never split on a run boundary.
 import re
 from dataclasses import dataclass
 
-from .legacy import Decoded, decode
+from .legacy import Decoded, decode, fold_mixed_words
 
 _SPECIAL = {"c": "Ø", "d": "°", "p": "±", "%": "%"}
 
@@ -130,7 +130,7 @@ def decode_mtext(raw: str, base_font: str | None = None) -> TextResult:
         if r.font and r.font not in fonts:
             fonts.append(r.font)
     plain_raw = "".join(r.text for r in runs)
-    decoded = "".join(pieces)
+    decoded = fold_mixed_words("".join(pieces))
     scheme = "unicode" if not schemes else (schemes.pop() if len(schemes) == 1 else "mixed")
     return TextResult(raw, _tidy(plain_raw), _tidy(decoded), scheme, conf, fonts)
 
@@ -139,7 +139,7 @@ def decode_text(raw: str, font: str | None = None) -> TextResult:
     """Single-line TEXT, ATTRIB, DIMENSION override: no inline font switches, only %% codes."""
     plain = _percent_codes(raw or "")
     d = decode(plain, font)
-    return TextResult(raw or "", _tidy(plain), _tidy(d.text), d.scheme, d.confidence, [font] if font else [])
+    return TextResult(raw or "", _tidy(plain), _tidy(fold_mixed_words(d.text)), d.scheme, d.confidence, [font] if font else [])
 
 
 def _tidy(s: str) -> str:

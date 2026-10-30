@@ -47,7 +47,15 @@ def test_mtext_font_switch_inside_word_and_percent_codes():
     assert decode_mtext(r"Sütun\PS -1").decoded == "Sütun\nS -1"
 
 
+def test_mixed_script_word_is_one_azeri_word():
+    from azboq.text.legacy import fold_mixed_words
+    assert fold_mixed_words("Haмarlayıcı seмenт-quм мəhlulu - 27 мм") == "Hamarlayıcı sement-qum məhlulu - 27 mm"
+    assert fold_mixed_words("ГОСТ 5781-82*") == "ГОСТ 5781-82*"
+    assert fold_mixed_words("А500C") == "A500C"
+
+
 def test_homoglyphs_folded_only_in_codes():
+    assert fold_homoglyphs("А500C") == "A500C"
     assert fold_homoglyphs("Ø8 А240C L=1760") == "Ø8 A240C L=1760"
     assert fold_homoglyphs("Мtv-1") == "Mtv-1"
     assert fold_homoglyphs("ГОСТ 34028-2016") == "ГОСТ 34028-2016"

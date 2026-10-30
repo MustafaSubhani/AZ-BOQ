@@ -1,0 +1,422 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793368385.647,
+   "stage": "schedules",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793368388.166,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 2 yerlik ayaqyolu.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368388.473,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 İSTİLİK MƏNTƏQƏSİ.pdf: 2 ruled tables, 1 area cells"
+  },
+  {
+   "t": 1793368390.418,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 MH.pdf: 9 ruled tables, 33 area cells"
+  },
+  {
+   "t": 1793368390.627,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 nəzarətçi otağı.pdf: 3 ruled tables, 3 area cells"
+  },
+  {
+   "t": 1793368391.576,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Qüllə.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368391.981,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 su nasos stansiyası.pdf: 3 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368392.163,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "KTY-250kVA- Xocavənd.pdf: 2 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368392.531,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend yangi ve icmeli su anbari .pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368392.921,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend Yangin su anbari.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368392.941,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji effektivliyi hesabatı.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368392.946,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji sinfi.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.057,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd depo son istilik itkiləri.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.079,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd izolyasiya.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.479,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 EE.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.489,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.522,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "1.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.703,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 KTM.pdf: 2 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.728,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "-AT.pdf: 1 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.832,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "su nasos stansiyasi 9335.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.844,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.887,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "NBM 9335.pdf: 1 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368393.897,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368394.137,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "QULLE 9335.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793368394.137,
+   "stage": "schedules",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 8.49
+  },
+  {
+   "t": 1793368394.534,
+   "stage": "takeoff",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793368394.888,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot long side: 45.2004 m [geometry, verified]"
+  },
+  {
+   "t": 1793368394.921,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot short side: 34.6 m [geometry, verified]"
+  },
+  {
+   "t": 1793368394.925,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Bay module: 6 m [geometry, extracted]"
+  },
+  {
+   "t": 1793368394.99,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement storey height: 2.7 m [stated, verified]"
+  },
+  {
+   "t": 1793368395.096,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Upper storey height: 3.3 m [stated, extracted]"
+  },
+  {
+   "t": 1793368395.138,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor area: 1395.8 m² [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.184,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement area: 1360.8 m² [schedule, review]"
+  },
+  {
+   "t": 1793368395.219,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site fill: 12996 m³ [schedule, review]"
+  },
+  {
+   "t": 1793368395.225,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site cut: 3167 m³ [schedule, review]"
+  },
+  {
+   "t": 1793368395.232,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Suitable soil shortfall: 8683 m³ [schedule, review]"
+  },
+  {
+   "t": 1793368395.235,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Topsoil to landscaped area: 522 m³ [stated, review]"
+  },
+  {
+   "t": 1793368395.239,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Landscaped area: 3482.3 m² [stated, review]"
+  },
+  {
+   "t": 1793368395.242,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Reinforced-concrete roads: 1021 m² [stated, review]"
+  },
+  {
+   "t": 1793368395.246,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Asphalt roads, internal and external together: 599.7 m² [stated, review]"
+  },
+  {
+   "t": 1793368395.249,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pavements and yards: 1437.8 m² [stated, review]"
+  },
+  {
+   "t": 1793368395.279,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Demolition volume: 7625.4 m³ [stated, extracted]"
+  },
+  {
+   "t": 1793368395.36,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, metal roof tile area: 9.6 m² [stated, verified]"
+  },
+  {
+   "t": 1793368395.387,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, roof timber total: 0.23 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.4,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, metal roof tile area: 27.64 m² [stated, extracted]"
+  },
+  {
+   "t": 1793368395.417,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, roof timber total: 0.33 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.43,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank, concrete B25 per element: 8.71 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.445,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank, concrete B25 per element: 16.07 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.462,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, smoke detectors: 12 each [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.478,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, manual call points: 5 each [schedule, extracted]"
+  },
+  {
+   "t": 1793368395.501,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement type 2 keramzit: 1.533 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793368395.503,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 4 polystyrene: 7.322 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793368395.505,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 5 polystyrene: 13.174 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793368395.506,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 4 mesh: 0.14121 t [derived, extracted]"
+  },
+  {
+   "t": 1793368395.508,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 5 mesh: 0.25407 t [derived, extracted]"
+  },
+  {
+   "t": 1793368395.509,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Window glass P-1 to P-4: 252.276 m² [derived, extracted]"
+  },
+  {
+   "t": 1793368395.511,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "PVC window P-5: 2.88 m² [derived, extracted]"
+  },
+  {
+   "t": 1793368395.512,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Glazed doors QP-1 to QP-3: 38.988 m² [derived, extracted]"
+  },
+  {
+   "t": 1793368395.512,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "t": 1793368395.512,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  },
+  {
+   "t": 1793368396.068,
+   "stage": "takeoff",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.53
+  },
+  {
+   "t": 1793368396.132,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793368397.179,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 4, matched 39, not_found 1210, printed 140, review 768"
+  },
+  {
+   "t": 1793368397.18,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.05
+  }
+ ],
+ "review": [
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  }
+ ],
+ "stages": [
+  "schedules",
+  "takeoff",
+  "match"
+ ]
+}

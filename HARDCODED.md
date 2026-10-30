@@ -50,11 +50,36 @@ File: `demo_rules/extractors.yaml`
 | guard_roof_timber | Guard room, roof timber total | Guard-room roof element schedule, 'Cəmi' row |  |  |
 | pump_roof_tile | Pump station, metal roof tile area | NƏZARƏT.dwg sheet 9336-04-MT (pump station): 'S dam= 27.64 m²' |  |  |
 | pump_roof_timber | Pump station, roof timber total | NƏZARƏT.dwg sheet 9336-04-MT roof element schedule 'Cəmi 0.33' |  |  |
-| fire_tank_concrete | Fire tank, concrete B25 per element | Fire-tank DK sheets, 'Beton "B25" … m³' in each material table |  |  |
-| drinking_tank_concrete | Drinking tank, concrete B25 per element | Drinking-tank DK sheets, material tables |  |  |
+| fire_tank_cover | Fire tank cover slab | Fire-tank DK, Örtük tavasının armaturlanması: Beton B25 |  |  |
+| fire_tank_bottom | Fire tank bottom slab | Fire-tank DK, Bünövrə tavasının armaturlanması: Beton "B 25" |  |  |
+| fire_tank_wall | Fire tank wall Md-1, one element | Fire-tank DK, Monolit divar Md-1, marked 1 ədəd üçün |  |  |
+| fire_tank_walls_bottom | Fire tank walls and bottom | Fire-tank DK: bottom plus one Md-1 wall times the plan count. The count is not assumed. |  |  |
+| drinking_tank_cover | Drinking tank cover slab | Drinking-tank DK, Örtük tavasının armaturlanması: Beton B25 |  |  |
+| drinking_tank_bottom | Drinking tank bottom slab | Drinking-tank DK, Bünövrə tavasının armaturlanması: Beton B25 |  |  |
+| drinking_tank_wall | Drinking tank walls | Drinking-tank DK wall table. It does not say 1 ədəd üçün, so the printed volume is the walls. |  |  |
+| drinking_tank_walls_bottom | Drinking tank walls and bottom | Drinking-tank DK: bottom plus the wall-table volume, with no multiplier |  |  |
 | tower_smoke_detectors | Tower, smoke detectors | (SON).dwg sheet 9335-6-YS equipment schedule, legacy-font rows |  |  |
 | tower_manual_call | Tower, manual call points | (SON).dwg sheet 9335-6-YS equipment schedule |  |  |
 | basement_wall_area | Basement limestone wall area | Brief §4.1: wall area = net length × storey height |  |  |
+| depot_keramzit_basement | Basement type 2 keramzit | 9335 MH.pdf floor schedule, basement type 2: keramzit çınqılı-35 mm times the row area |  |  |
+| depot_poly_type4 | First floor type 4 polystyrene | 9335 MH.pdf floor schedule, 1st floor type 4: penopolisterol 70 mm times the row area |  |  |
+| depot_poly_type5 | First floor type 5 polystyrene | 9335 MH.pdf floor schedule, 1st floor type 5: penopolisterol 70 mm times the row area |  |  |
+| depot_mesh_type4 | First floor type 4 mesh | 9335 MH.pdf floor schedule, 1st floor type 4: 1m2 -1.35kq times the row area |  |  |
+| depot_mesh_type5 | First floor type 5 mesh | 9335 MH.pdf floor schedule: type 5 has a mesh layer; 1.35 kg/m² is printed on type 4 |  |  |
+| depot_ceiling_whitewash | Basement ceiling whitewash | 9335 MH.pdf finish schedule, basement ceiling: Əhənglə ağardılır |  |  |
+| depot_ceiling_paint | Ceiling plaster and emulsion | 9335 MH.pdf finish schedule: smoothed and emulsion ceiling areas, every floor |  |  |
+| depot_ceiling_plasterboard | Plasterboard ceiling | 9335 MH.pdf finish schedule, room 10: alçıpan asma tavan |  |  |
+| depot_ceiling_metal | Metal suspended ceiling | 9335 MH.pdf finish schedule: metal asma tavan rows |  |  |
+| depot_wall_whitewash | Basement wall plaster and whitewash | 9335 MH.pdf finish schedule, basement walls: suvanır və əhənglə ağardılır |  |  |
+| depot_wall_plaster | Wall plaster and emulsion | 9335 MH.pdf finish schedule: plaster and emulsion wall areas above the basement |  |  |
+| depot_window_glass | Window glass P-1 to P-4 | 9335 MH.pdf window schedule (Qapı-pəncərə və pəncərələrin təsnifatı): area is B × H × count for P-1 to P-4 |  |  |
+| depot_window_pvc | PVC window P-5 | 9335 MH.pdf window schedule: P-5 is 1600 × 1800 mm, one opening |  |  |
+| depot_glazed_doors | Glazed doors QP-1 to QP-3 | 9335 MH.pdf window schedule: area is B × H × count for QP-1 to QP-3 |  |  |
+| depot_window_sills | Window sills Pa-1 to Pa-5 | 9335 MH.pdf window schedule: each Pa size is length × depth × thickness, times the count of that row |  |  |
+| depot_metal_doors | Metal doors | 9335 MH.pdf door schedule: metal rows Q-1, Q-9 and Q-9*, width × height × count |  |  |
+| depot_pvc_doors_to_3 | PVC doors up to 3 m² | Bill 2.6.2 says boşluğun sahəsi 3 m²-dək; the areas are the PVC rows on the door schedule |  |  |
+| depot_mdf_doors_to_3 | MDF doors up to 3 m² | Bill 2.6.3 says boşluğun sahəsi 3 m²-ə qədər (MDF); the areas are the MDF rows on the door schedule |  |  |
+| depot_mdf_doors_over_3 | MDF doors over 3 m² | Bill 2.6.4 says boşluğun sahəsi 3 m²-dən artıq (MDF); the areas are the MDF rows on the door schedule |  |  |
 | wall_length_depot | Depot external wall net length | Plan §11: geometry wall pairing |  |  |
 
 ## Bill lines linked to takeoff items by hand
@@ -78,6 +103,50 @@ File: `demo_rules/bill_map.yaml`
 | BM-013 | item tower_smoke_detectors ↔ lines 4.12.3, 4.12.4, 4.12.12 (equal) | bill 4.12 smoke detectors and bases |  |  |
 | BM-014 | item tower_manual_call ↔ lines 4.12.5, 4.12.6 (equal) | bill 4.12 manual call points |  |  |
 | BM-015 | item basement_wall_area ↔ lines 2.4.1 (equal) | bill 2.4.1 basement limestone wall (m²) |  |  |
+| BM-016 | item depot_window_glass ↔ lines 2.6.7 (equal) | bill 2.6.7 window glass, 252 m² |  |  |
+| BM-019 | item depot_keramzit_basement ↔ lines 2.7.3 (equal) | bill 2.7.3 keramzit, 1.533 m³ |  |  |
+| BM-020 | item depot_poly_type4 ↔ lines 2.7.30 (equal) | bill 2.7.30 polystyrene, 7.322 m³ |  |  |
+| BM-021 | item depot_poly_type5 ↔ lines 2.7.37 (equal) | bill 2.7.37 polystyrene, 13.174 m³ |  |  |
+| BM-022 | item depot_mesh_type4 ↔ lines 2.7.31, 2.7.32 (equal) | bill 2.7.31 and 2.7.32 mesh, 0.141 t |  |  |
+| BM-023 | item depot_mesh_type5 ↔ lines 2.7.38, 2.7.39 (equal) | bill 2.7.38 and 2.7.39 mesh, 0.254 t |  |  |
+| BM-017 | item depot_window_pvc ↔ lines 2.6.8 (equal) | bill 2.6.8 PVC window, 2.88 m² |  |  |
+| BM-018 | item depot_glazed_doors ↔ lines 2.6.10 (equal) | bill 2.6.10 glazed doors, 39 m² |  |  |
+| BM-030 | item depot_window_sills ↔ lines 2.6.11 (equal) | bill 2.6.11 window sills, 37.52 m² |  |  |
+| BM-035 | item depot_metal_doors ↔ lines 2.6.1 (equal) | bill 2.6.1 metal door blocks, 23.1 m² |  |  |
+| BM-036 | item depot_pvc_doors_to_3 ↔ lines 2.6.2 (equal) | bill 2.6.2 PVC doors up to 3 m², 41.79 m² |  |  |
+| BM-037 | item depot_mdf_doors_to_3 ↔ lines 2.6.3 (equal) | bill 2.6.3 MDF doors up to 3 m², 71.19 m² |  |  |
+| BM-038 | item depot_mdf_doors_over_3 ↔ lines 2.6.4 (equal) | bill 2.6.4 MDF doors over 3 m², 15.54 m² |  |  |
+| BM-031 | item fire_tank_cover ↔ lines 10.1.24, 11.1.24 (equal) | bill 10.1.24 and 11.1.24 fire-tank cover, 4.13 m³ |  |  |
+| BM-032 | item fire_tank_walls_bottom ↔ lines 10.1.15, 11.1.15 (equal) | bill 10.1.15 and 11.1.15 fire-tank walls and bottom, 27.73 m³ |  |  |
+| BM-033 | item drinking_tank_cover ↔ lines 12.1.22, 13.1.22 (equal) | bill 12.1.22 and 13.1.22 drinking-tank cover, 1.58 m³ |  |  |
+| BM-034 | item drinking_tank_walls_bottom ↔ lines 12.1.13, 13.1.13 (equal) | bill 12.1.13 and 13.1.13 drinking-tank walls and bottom, 14.49 m³ |  |  |
+| BM-024 | item depot_ceiling_whitewash ↔ lines 2.8.1 (equal) | bill 2.8.1 basement ceiling whitewash, 1333.6 m² |  |  |
+| BM-025 | item depot_ceiling_paint ↔ lines 2.8.2, 2.8.3 (equal) | bill 2.8.2 and 2.8.3 ceiling plaster and paint, 1983.9 m² |  |  |
+| BM-026 | item depot_ceiling_plasterboard ↔ lines 2.8.4, 2.8.5 (equal) | bill 2.8.4 and 2.8.5 plasterboard ceiling, 96 m² |  |  |
+| BM-027 | item depot_ceiling_metal ↔ lines 2.8.6 (equal) | bill 2.8.6 aluminium suspended ceiling, 86.6 m² |  |  |
+| BM-028 | item depot_wall_whitewash ↔ lines 2.8.7, 2.8.8 (equal) | bill 2.8.7 and 2.8.8 basement walls, 3260 m² |  |  |
+| BM-029 | item depot_wall_plaster ↔ lines 2.8.9, 2.8.10 (equal) | bill 2.8.9 and 2.8.10 wall plaster and paint, 3647 m² |  |  |
+
+## Element words read from a bill description
+
+File: `demo_rules/bill_elements.yaml`
+
+| id | what | citation | why hardcoded | how to automate |
+|---|---|---|---|---|
+| EL-001 | sill: ['pencerealti'] | bill 2.6.11 pəncərəaltı |  |  |
+| EL-002 | downpipe: ['novalca'] | bill 2.5.14 su axıdıcı and novalça |  |  |
+| EL-003 | gutter: ['nov'] | bill 2.5.13 nov; növbəti is a different word |  |  |
+| EL-004 | window: ['pencere'] | bill 2.6.7 pəncərə |  |  |
+| EL-005 | door: ['qapi'] | bill 2.6.1 qapı |  |  |
+| EL-006 | mesh: ['armatur meftil'] | bill mesh lines, armatur məftil |  |  |
+| EL-007 | mesh: ['dosenek', 'armatur'] | bill döşənək armaturlanması |  |  |
+| EL-008 | polystyrene: ['penopolist'] | bill 2.7.30 penopolistirol |  |  |
+| EL-009 | porcelain: ['keramoqranit'] | bill keramoqranit floor |  |  |
+| EL-010 | laminate: ['laminat'] | bill laminat floor |  |  |
+| EL-011 | terrazzo: ['mozaik', 'terraso'] | bill mozaik and terraso floors |  |  |
+| EL-012 | wall_tiles: ['divar'] | bill 2.8.12 divar tile facing (tavalarla üzlənmə); the schedule says keramik. Confirm before using 190 and 180 m² |  |  |
+| EL-013 | wall_plaster: ['divar', 'suva'] | bill 2.8.9 and 2.8.11 divarların suvanması |  |  |
+| EL-014 | ceiling: ['tavan'] | bill 2.8.1 zirzəmi tavan |  |  |
 
 ## Known conflicts between documents, with the suggested side
 
@@ -108,6 +177,6 @@ File: `demo_rules/layer_roles.yaml`
 - Blocked takeoff item `wall_length_depot` (Depot external wall net length): no measurement method for this value yet.
 - Blocked takeoff item `basement_wall_area` (Basement limestone wall area): missing external_wall_length_m.
 - Scans not read (7): BP.pdf, DK.pdf, EYS,ET,YS.pdf, Izahat.pdf, MH.pdf, SMETA.pdf, Ümumi İZAHAT.pdf. The vision stage needs OPENAI_API_KEY; Tesseract is not installed. Lines that depend on them stay unchecked.
-- 1118 Azerbaijani strings have no English (OPENAI_API_KEY not set); run `python -m azboq translate`.
-- 9 DWGs where LibreDWG and ODA disagree on entity counts; values from them stay in review.
+- 1131 Azerbaijani strings have no English (OPENAI_API_KEY not set); run `python -m azboq translate`.
+- 7 DWGs where LibreDWG and ODA disagree on entity counts; values from them stay in review.
 - The filled bill prints 73 pages against the client's 63: this Excel wraps some descriptions onto more lines than the client's Excel did. Cells and styles are unchanged.

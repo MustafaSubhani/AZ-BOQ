@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowDown, ArrowUp, Search, X } from '../icons'
-import { useData } from '../api'
+import { clearCache, postJSON, useData } from '../api'
 import { fmt, matches, money } from '../az'
 import { T } from '../i18n'
 import { go, href, type Route } from '../router'
 import { Card, Empty, ErrorBox, LINE_STATUS, Loading, SourceCard, StatusTag, targetOf, tradeName, useBuildingName, type Source, type Target } from '../ui'
 import { Viewer } from '../Viewer'
+import { reasonText } from '../reasons'
 
 type Line = {
   id: string
@@ -22,7 +23,12 @@ type Line = {
   building: string
   trade: string
   comment: string | null
-  check: { status: string; reason: string; our_qty: number | null; gap?: number | null; gap_pct?: number | null; item?: string; sources?: Source[]; candidates?: Source[]; derived_from?: string; reviewer?: any; method?: string; group_total?: number } | null
+  check: { status: string; reason: string; our_qty: number | null; gap?: number | null; gap_pct?: number | null; item?: string; sources?: Source[]; candidates?: Source[]; derived_from?: string; reviewer?: any; method?: string; group_total?: number; review_reasons?: { code: string; link?: string; citation?: string; rule?: string; note?: string; accepted_by?: string; file?: string }[] } | null
+}
+type Explain = {
+  item?: { label_en?: string; formula?: string | null; substituted?: string | null; citation?: string } | null
+  inputs: { label: string; value: number | null; unit: string; sources: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean; citation?: string | null }[] }[]
+  printed: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean }[]
 }
 type Section = { code: string; stored_code: any; row: number; title: string; trade: string; building: string; code_repaired: boolean }
 type BillData = { sections: Section[]; lines: Line[]; totals: Record<string, number>; chain: Record<string, any>; line_sum: number; unknown_units: any[]; external_links: any }
@@ -34,10 +40,13 @@ export function Bill({ route }: { route: Route }) {
   const take = useData<{ items: { id: string; value: { sources: Source[] }; viewer?: Source | null }[] }>('/api/takeoff')
   const [q, setQ] = useState(route.query.get('q') || '')
   const [target, setTarget] = useState<Target | null>(null)
+  const [who, setWho] = useState(() => { try { return localStorage.getItem('azboq.author') || '' } catch { return '' } })
+  const [why, setWhy] = useState('')
   const bname = useBuildingName()
   const status = route.query.get('status') || 'all'
   const building = route.query.get('building') || ''
   const selId = route.query.get('line')
+  const explained = useData<Explain>(selId ? `/api/line/${selId}/explain` : null)
   const table = useRef<HTMLDivElement>(null)
   const nav = (patch: Record<string, string | null>) => {
     const cur: Record<string, string | null> = { status: status === 'all' ? null : status, building: building || null, line: selId }
@@ -175,7 +184,7 @@ export function Bill({ route }: { route: Route }) {
                     </td>
                   </tr>,
                   ...ls.map((l) => (
-                    <tr key={l.id} data-line={l.id} className={`click ${sel?.id === l.id ? 'sel' : ''}`} onClick={() => { setTarget(null); nav({ line: l.id }) }}>
+                    <tr key={l.id} data-line={l.id} tabIndex={0} className={`click ${sel?.id === l.id ? 'sel' : ''}`} onClick={() => { setTarget(null); nav({ line: l.id }) }} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); setTarget(null); nav({ line: l.id }) } }}>
                       <td className="code">{l.id}</td>
                       <td className="desc"><T az={l.description} />{l.comment ? <span className="pill" style={{ marginLeft: 6 }} title={l.comment}>reviewer note</span> : null}</td>
                       <td>{l.unit_known ? l.unit_raw : <span className="note warn" title="Unit not recognised">{l.unit_raw}</span>}</td>
@@ -222,6 +231,27 @@ export function Bill({ route }: { route: Route }) {
                 <small>Drawings say</small>
                 <b>{sel.check?.our_qty === null || sel.check?.our_qty === undefined ? '—' : fmt(sel.check.our_qty, 3)} <span>{sel.check?.our_qty != null ? sel.unit : ''}</span></b>
                 {sel.check ? <StatusTag status={sel.check.status} /> : <span>Not checked</span>}
+                {(sel.check?.review_reasons || []).map((reason) => (
+                  <div key={reason.code + (reason.link || reason.rule || '')} className="faint" style={{ marginTop: 4 }}>
+                    {reasonText(reason)}
+                  </div>
+                ))}
+                {(sel.check?.review_reasons || []).some((reason) => !reason.accepted_by) ? (
+                  <form className="box" onSubmit={async (e) => {
+                    e.preventDefault()
+                    const open = (sel.check?.review_reasons || []).find((reason) => !reason.accepted_by)
+                    if (!open || !who.trim() || !why.trim()) return
+                    try { localStorage.setItem('azboq.author', who.trim()) } catch { /* keep going */ }
+                    await postJSON('/api/review', { target_kind: 'reason', target_id: `reason:${sel.id}:${open.code}`, action: 'accept', reason: why.trim(), author: who.trim(), payload: {} })
+                    clearCache()
+                    window.location.reload()
+                  }}>
+                    <small>Accept a review reason</small>
+                    <input placeholder="Your name" value={who} onChange={(e) => setWho(e.target.value)} />
+                    <input placeholder="Why you accept it" value={why} onChange={(e) => setWhy(e.target.value)} />
+                    <button className="btn" type="submit">Accept</button>
+                  </form>
+                ) : null}
               </div>
             </div>
             {sel.check ? (
@@ -232,6 +262,29 @@ export function Bill({ route }: { route: Route }) {
                   {sel.check.gap ? <div style={{ marginTop: 4 }}>Gap <b className="mono">{fmt(sel.check.gap, 3)} {sel.unit}</b> ({fmt(sel.check.gap_pct, 1)}%), worth about <b className="mono">{money(sel.check.gap * (sel.rate || 0))}</b> before mark-ups.</div> : null}
                 </div>
                 {sel.check.item ? <div className="pair"><span>Measured item</span><a href={href('takeoff', { item: sel.check.item })} className="mono">{sel.check.item}</a></div> : null}
+                {explained.data?.item?.formula ? (
+                  <div className="box">
+                    <small>How it is calculated</small>
+                    <div>{explained.data.item.label_en}</div>
+                    <div className="mono">{explained.data.item.formula}</div>
+                    {explained.data.item.substituted ? <div className="mono">{explained.data.item.substituted}</div> : null}
+                  </div>
+                ) : null}
+                {explained.data?.inputs?.length ? (
+                  <div className="section-label"><span className="eyebrow">Dimensions and counts used</span></div>
+                ) : null}
+                {explained.data?.inputs?.map((input) => {
+                  const src = input.sources[0]
+                  const where = src
+                    ? [src.file?.split('/').pop(), src.page != null ? `page ${src.page + 1}` : null, src.row, src.col].filter(Boolean).join(' · ')
+                    : ''
+                  return (
+                    <div key={input.label + String(input.value)} className="pair">
+                      <span>{input.label}</span>
+                      <b className="mono">{input.value == null ? '—' : fmt(input.value, 3)} {input.unit}{where ? ` · ${where}` : ''}</b>
+                    </div>
+                  )
+                })}
                 {sel.check.derived_from ? <div className="pair"><span>Follows from</span><a href={href('bill', { line: sel.check.derived_from })}>line <span className="mono">{sel.check.derived_from}</span></a></div> : null}
               </>
             ) : null}

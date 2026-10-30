@@ -12,9 +12,27 @@ def bill():
 
 
 def test_counts(bill):
-    assert len(bill["sections"]) == 132
+    top = [s for s in bill["sections"] if not s.get("parent")]
+    children = [s for s in bill["sections"] if s.get("parent")]
+    assert len(top) == 132
+    assert len(children) == 13
     assert len(bill["lines"]) == 2175
     assert all(l["qty"] and l["qty"] > 0 for l in bill["lines"])
+
+
+def test_retaining_wall_subsections(bill):
+    walls = [s for s in bill["sections"] if s.get("mark")]
+    assert [s["mark"] for s in walls] == [f"İD-{i}" for i in range(1, 14)]
+    assert all(s["parent"] == "25.1" and s["code"] == f"25.1.{i}" for i, s in enumerate(walls, start=1))
+    assert all(len(s["lines"]) == 7 for s in walls)
+    assert all(s["trade"] != "earthworks" for s in walls)
+    assert all(not line["id"].startswith("25.1.r") for line in bill["lines"])
+
+
+def test_building_is_inherited_when_the_title_names_none(bill):
+    by_code = {s["code"]: s for s in bill["sections"]}
+    assert by_code["9.13"]["building"] == "heating_point"
+    assert by_code["24.1"]["building"] == "sand_pit"
 
 
 def test_totals_chain_to_the_cent(bill):

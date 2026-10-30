@@ -67,7 +67,7 @@ def write_client_bill(out_path: Path, quantities: dict[int, float] | None = None
     wf.calculation.fullCalcOnLoad = True
     if evidence_rows is not None:
         ev = wf.create_sheet("Evidence")
-        headers = ["Line", "Row", "Status", "Our quantity", "Bill quantity", "Unit", "Method", "Source", "Reason"]
+        headers = ["Line", "Row", "Status", "Our quantity", "Bill quantity", "Unit", "Method", "Source", "Reason", "Review"]
         ev.append(headers)
         for e in evidence_rows:
             ev.append([e.get(h.lower().replace(" ", "_")) for h in headers])
@@ -79,27 +79,78 @@ def write_client_bill(out_path: Path, quantities: dict[int, float] | None = None
             "changed_rows": changed, "rows_pinned_to_default_height": pinned}
 
 
+def run_bounded(work, timeout_s: int, kill) -> dict:
+    """Run work(box) and kill its process if it exceeds timeout_s. box['pid'] is the process to stop."""
+    import threading
+    box: dict = {}
+
+    def target():
+        try:
+            box["result"] = work(box)
+        except Exception as exc:
+            box["error"] = exc
+
+    thread = threading.Thread(target=target, daemon=True)
+    thread.start()
+    thread.join(timeout_s)
+    if thread.is_alive():
+        kill(box.get("pid"))
+        raise TimeoutError(f"Excel did not finish within {timeout_s}s")
+    if "error" in box:
+        raise box["error"]
+    return box.get("result") or {}
+
+
+def _excel_pid(excel) -> int | None:
+    import ctypes
+    raw = getattr(excel, "Hwnd", None)
+    if raw is None:
+        return None
+    hwnd = int(raw)
+    if hwnd == 0:
+        return None
+    pid = ctypes.c_ulong()
+    ctypes.windll.user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+    value = int(pid.value)
+    if value == 0:
+        return None
+    return value
+
+
 def excel_finish(xlsx: Path, pdf: Path | None = None, timeout_s: int = 300) -> dict:
-    """Recalculate and save with real Excel, then print to PDF. Windows only."""
-    import pythoncom
-    import win32com.client as win32
-    pythoncom.CoInitialize()
-    excel = win32.DispatchEx("Excel.Application")
-    excel.Visible = False
-    excel.DisplayAlerts = False
-    excel.AskToUpdateLinks = False
-    result = {}
-    try:
-        wb = excel.Workbooks.Open(str(xlsx.resolve()), UpdateLinks=0)
-        excel.CalculateFull()
-        wb.Save()
-        if pdf is not None:
-            pdf.parent.mkdir(parents=True, exist_ok=True)
-            wb.Worksheets("BOQ").ExportAsFixedFormat(0, str(pdf.resolve()))
-            result["pdf"] = str(pdf)
-        result["links"] = list(wb.LinkSources(1) or [])
-        wb.Close(SaveChanges=False)
-    finally:
-        excel.Quit()
-        pythoncom.CoUninitialize()
-    return result
+    """Recalculate and save with real Excel, then print to PDF. Windows only.
+
+    If Excel hangs, only the Excel process this call started is stopped.
+    """
+    def kill(pid):
+        if not pid:
+            return
+        import subprocess
+        subprocess.run(["taskkill", "/PID", str(pid), "/F"], check=False, capture_output=True)
+
+    def work(box):
+        import pythoncom
+        import win32com.client as win32
+        pythoncom.CoInitialize()
+        excel = win32.DispatchEx("Excel.Application")
+        box["pid"] = _excel_pid(excel)
+        excel.Visible = False
+        excel.DisplayAlerts = False
+        excel.AskToUpdateLinks = False
+        result = {}
+        try:
+            wb = excel.Workbooks.Open(str(xlsx.resolve()), UpdateLinks=0)
+            excel.CalculateFull()
+            wb.Save()
+            if pdf is not None:
+                pdf.parent.mkdir(parents=True, exist_ok=True)
+                wb.Worksheets("BOQ").ExportAsFixedFormat(0, str(pdf.resolve()))
+                result["pdf"] = str(pdf)
+            result["links"] = list(wb.LinkSources(1) or [])
+            wb.Close(SaveChanges=False)
+        finally:
+            excel.Quit()
+            pythoncom.CoUninitialize()
+        return result
+
+    return run_bounded(work, timeout_s, kill)

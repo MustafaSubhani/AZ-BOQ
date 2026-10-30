@@ -86,6 +86,7 @@ const BUILDINGS: Record<string, [string, string]> = {
   drinking_tanks: ['Drinking water tanks', 'İçməli su çənləri'],
   fire_tanks: ['Fire water tanks', 'Yanğın su çənləri'],
   drinking_tank_5: ['Drinking water tank 5 m³', 'İçməli su çəni 5 m³'],
+  sand_pit: ['Sand pit', 'Qum meydançası'],
   roads: ['Roads', 'Yollar'],
   grading: ['Grading', 'Vertikal planlaşdırma'],
   networks: ['External networks', 'Xarici şəbəkələr'],
@@ -138,6 +139,10 @@ export function ValueTag({ status }: { status: string }) {
   return <span className={`tag ${s.cls}`}>{s.label}</span>
 }
 
+export function readableRow(label: string) {
+  return label.replace(/\bfloor_2\b/g, '2nd floor').replace(/\bfloor_1\b/g, '1st floor')
+}
+
 export function shortFile(name: string | null | undefined) {
   if (!name) return '—'
   return name.split('/').pop() || name
@@ -176,7 +181,7 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
           stored as: <span className="mono">{src.raw_text.slice(0, 80)}</span>
         </span>
       ) : null}
-      {src.row_label ? <span className="muted" style={{ display: 'block', fontSize: 11.5 }}>row: {src.row_label}</span> : null}
+      {src.row_label ? <span className="muted" style={{ display: 'block', fontSize: 11.5 }}>row: {readableRow(src.row_label)}</span> : null}
       {loc.kind === 'dxf_dimension' && loc.measurement ? (
         <span className="muted" style={{ display: 'block', fontSize: 11.5 }}>
           measured {Number(loc.measurement).toFixed(1)}

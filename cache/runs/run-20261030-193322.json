@@ -1,0 +1,189 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793370789.587,
+   "stage": "schedules",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793370792.493,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 2 yerlik ayaqyolu.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370792.916,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 İSTİLİK MƏNTƏQƏSİ.pdf: 2 ruled tables, 1 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370795.459,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 MH.pdf: 9 ruled tables, 33 area cells, 65 room rows"
+  },
+  {
+   "t": 1793370795.797,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 nəzarətçi otağı.pdf: 3 ruled tables, 3 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370797.001,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Qüllə.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370797.541,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 su nasos stansiyası.pdf: 3 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370797.8,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "KTY-250kVA- Xocavənd.pdf: 2 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370798.296,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend yangi ve icmeli su anbari .pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370798.803,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend Yangin su anbari.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370798.846,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji effektivliyi hesabatı.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370798.855,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji sinfi.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370799.106,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd depo son istilik itkiləri.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370799.152,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd izolyasiya.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370799.67,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 EE.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370799.689,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370799.734,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "1.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.017,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 KTM.pdf: 2 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.06,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "-AT.pdf: 1 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.223,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "su nasos stansiyasi 9335.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.242,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.321,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "NBM 9335.pdf: 1 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.338,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.634,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "QULLE 9335.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793370800.634,
+   "stage": "schedules",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 11.05
+  },
+  {
+   "t": 1793370800.656,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793370801.998,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 17, matched 52, not_found 1196, printed 138, review 758"
+  },
+  {
+   "t": 1793370802.056,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.4
+  }
+ ],
+ "review": [],
+ "stages": [
+  "schedules",
+  "match"
+ ]
+}

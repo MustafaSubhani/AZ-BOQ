@@ -74,13 +74,27 @@ export function Inputs() {
 
 export function Conflicts() {
   const { data, error } = useData<Takeoff>('/api/takeoff')
+  const report = useData<{ drawing_conflicts?: { id: string; text: string }[] }>('/api/report')
   const [target, setTarget] = useState<Target | null>(null)
   if (error) return <ErrorBox error={error} />
   if (!data) return <Loading what="conflicts" />
   const itemConflicts = data.items.filter((i) => i.value.conflicts?.length)
+  const drawn = report.data?.drawing_conflicts || []
+  const lineFor = (id: string) => id === 'room-1-floor_1' ? '2.7.12' : id === 'downpipes' ? '2.5.14' : null
   return (
     <div className="fill-row" style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 0.95fr)' }}>
       <div className="stack" style={{ overflow: 'auto', minHeight: 0, paddingRight: 2 }}>
+        {drawn.map((c) => {
+          const line = lineFor(c.id)
+          return (
+            <Card key={c.id} title={<span>{c.id.startsWith('cemi') ? 'Room schedule total' : c.id === 'downpipes' ? 'Downpipes' : 'Drawing conflict'}</span>} right={<span className="tag warn">Not decided</span>}>
+              <div className="card-body">
+                <div className="box warn">{c.text}</div>
+                {line ? <a href={href('bill', { line })}>Open line {line}</a> : c.id.startsWith('cemi') ? <a href={href('areas')}>Open the area book</a> : null}
+              </div>
+            </Card>
+          )
+        })}
         {data.conflicts.map((c) => (
           <Card key={c.id} title={<span>{c.topic}</span>} right={<span className={`tag ${c.decided ? 'ok' : 'warn'}`}>{c.decided ? 'Decided' : 'Not decided'}</span>}>
             <div className="card-body">
@@ -117,7 +131,7 @@ export function Conflicts() {
             </div>
           </Card>
         ))}
-        {!data.conflicts.length && !itemConflicts.length ? <Empty title="No conflicts">No two documents disagree.</Empty> : null}
+        {!data.conflicts.length && !itemConflicts.length && !drawn.length ? <Empty title="No conflicts">No two documents disagree.</Empty> : null}
       </div>
       <Card title="On the sheet" sub="Pick a drawing text on the left">
         <Viewer target={target} />

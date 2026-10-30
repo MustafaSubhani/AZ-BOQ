@@ -5,6 +5,7 @@ import time
 from .. import config, runlog, store
 from .client_bill import excel_finish, write_client_bill
 from .fidelity import compare_print, compare_styles, compare_values
+from .floor_bill import write_floor_bill
 from .generated_bill import write_generated_bill
 from .report import write_report_pdf, write_report_xlsx
 
@@ -22,10 +23,14 @@ def export_all(use_excel: bool = True) -> dict:
                 if r["status"] == "different":
                     quantities[l["row"]] = r["our_qty"]
                     notes[l["row"]] = f"AZ-BOQ: bill {l['qty']:g}, drawing {r['our_qty']:g} {l['unit']}. {r['reason']}"
+            if not l.get("unit_known"):
+                note = "AZ-BOQ: this unit is not a measured unit, so the line is left as printed."
+                notes[l["row"]] = f"{notes[l['row']]} {note}".strip() if notes.get(l["row"]) else note
             src = (r.get("sources") or [{}])[0]
             evidence.append({"line": l["id"], "row": l["row"], "status": r["status"], "our_quantity": r.get("our_qty"),
                              "bill_quantity": l["qty"], "unit": l["unit"], "method": r.get("method"),
-                             "source": src.get("file_name") or r.get("item") or "", "reason": r["reason"]})
+                             "source": src.get("file_name") or r.get("item") or "", "reason": r["reason"],
+                             "review": ", ".join(item.get("code", "") for item in (r.get("review_reasons") or []))})
         filled = out_dir / "BOQ-Hadrut-checked.xlsx"
         res = write_client_bill(filled, quantities, notes, evidence)
         info["client_bill"] = {k: v for k, v in res.items() if k != "changed_rows"}
@@ -42,6 +47,12 @@ def export_all(use_excel: bool = True) -> dict:
         info["report_pdf"] = write_report_pdf(report, out_dir / "Hadrut-discrepancy-report.pdf")
         gen = write_generated_bill(bill, report, out_dir / "BOQ-Hadrut-generated.xlsx")
         info["generated_bill"] = gen
+        floors = store.get("floors")
+        if floors:
+            info["floor_bill"] = write_floor_bill(bill, report, floors, out_dir / "BOQ-Hadrut-by-floor.xlsx")
+            if use_excel:
+                info["floor_excel"] = excel_finish(out_dir / "BOQ-Hadrut-by-floor.xlsx",
+                                                   out_dir / "BOQ-Hadrut-by-floor.pdf")
         if use_excel:
             info["generated_excel"] = excel_finish(out_dir / "BOQ-Hadrut-generated.xlsx",
                                                    out_dir / "BOQ-Hadrut-generated.pdf")

@@ -5,6 +5,7 @@ import { fmt, matches } from '../az'
 import { go, href, type Route } from '../router'
 import { Card, Empty, ErrorBox, Label, Loading, METHOD, SourceCard, targetOf, useBuildingName, ValueTag, type Source, type Target, type Value } from '../ui'
 import { Viewer } from '../Viewer'
+import { reasonText } from '../reasons'
 
 export type Item = {
   id: string
@@ -39,16 +40,18 @@ function rejectedText(r: Record<string, any>) {
 }
 
 function ValueNode({ name, v, onOpen, depth = 0 }: { name: string; v: Value; onOpen: (t: Target) => void; depth?: number }) {
+  const label = v.note && v.note.includes('·') ? v.note.split('|')[0].trim() : name.replace(/_/g, ' ')
+  const open = v.sources.map((s) => targetOf(s)).find((t): t is Target => t != null)
   return (
     <div className="node">
       <div className="head">
-        <span>{name.replace(/_/g, ' ')}</span>
+        {open ? <button onClick={() => onOpen(open)}>{label}</button> : <span>{label}</span>}
         <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
           <span className="mono">{v.value === null ? '—' : fmt(v.value, 4)} {v.unit}</span> <ValueTag status={v.status} />
         </span>
       </div>
       <div className="muted" style={{ fontSize: 12 }}>{METHOD[v.method] || v.method}{v.note ? ` · ${v.note}` : ''}</div>
-      {v.missing?.length ? <div className="note bad">missing: {v.missing.join(', ')}</div> : null}
+      {v.missing?.length && !v.note ? <div className="note bad">missing: {v.missing.join(', ')}</div> : null}
       {v.sources.slice(0, 2).map((s, i) => (
         <SourceCard key={i} src={s} onOpen={onOpen} />
       ))}
@@ -65,6 +68,7 @@ function ValueNode({ name, v, onOpen, depth = 0 }: { name: string; v: Value; onO
 
 export function Takeoff({ route }: { route: Route }) {
   const { data, error } = useData<Takeoff>('/api/takeoff')
+  const report = useData<{ lines: Record<string, { item?: string; review_reasons?: { code: string; accepted_by?: string; link?: string; citation?: string; rule?: string; file?: string }[] }> }>('/api/report')
   const [q, setQ] = useState('')
   const [target, setTarget] = useState<Target | null>(null)
   const bname = useBuildingName()
@@ -143,13 +147,16 @@ export function Takeoff({ route }: { route: Route }) {
               {sel.value.value !== null ? <small>{sel.unit}</small> : null}
             </div>
             <div className="pair"><span>Status</span><ValueTag status={sel.value.status} /></div>
+            {Object.values(report.data?.lines || {}).flatMap((row) => (row.item === sel.id ? row.review_reasons || [] : [])).map((reason) => (
+              <div key={reason.code + (reason.link || '')} className="faint" style={{ marginTop: 4 }}>{reasonText(reason)}</div>
+            ))}
             <div className="pair"><span>Method</span><span>{METHOD[sel.value.method] || sel.value.method}</span></div>
             <div className="pair"><span>Rule</span><span className="mono" style={{ fontSize: 12 }}>{sel.citation}</span></div>
             {sel.value.note ? <div className="box">{sel.value.note}</div> : null}
             {sel.value.status === 'blocked' ? (
               <div className="box bad">
                 <small>No number, by design</small>
-                Missing {sel.value.missing.join(', ') || 'an input'}. Nothing is guessed in its place; the bill lines that need it are marked Blocked.
+                Missing an input. Nothing is guessed in its place; the bill lines that need it are marked Blocked.
               </div>
             ) : null}
             {sel.value.formula ? <div className="box info formula"><small>Formula</small>{sel.value.formula}</div> : null}

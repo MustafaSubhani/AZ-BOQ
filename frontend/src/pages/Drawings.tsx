@@ -6,7 +6,8 @@ import { T } from '../i18n'
 import { sheetCount, useRegister, type FileRow, type Sheet } from '../register'
 import { go, href, type Route } from '../router'
 import { Card, Empty, ErrorBox, Loading, shortFile, useBuildingName, type Target } from '../ui'
-import { Viewer } from '../Viewer'
+import { openTab, visibleTabs, type Tab } from '../tabs'
+import { Viewer, type SheetShape } from '../Viewer'
 
 const KIND_LABEL: Record<string, string> = { drawing_cad: 'DWG', drawing_pdf: 'PDF', drawing_scan: 'Scan' }
 const KIND_CLS: Record<string, string> = { drawing_cad: 'dwg', drawing_pdf: 'pdf', drawing_scan: 'scan' }
@@ -245,22 +246,68 @@ export function DrawingDetail({ route }: { route: Route }) {
   const vision = useData<{ model: string | null; files: { sha256: string; status: string; reason?: string; pages: any[] }[] }>('/api/vision')
   const [texts, setTexts] = useState<{ key: string; text: string; target: Target }[]>([])
   const [q, setQ] = useState('')
+  const [shapes, setShapes] = useState<SheetShape[]>([])
+  const [banner, setBanner] = useState<string | null>(null)
+  const [picked, setPicked] = useState<string | null>(null)
+  const [tabs, setTabs] = useState<Tab[]>([])
+  const [mru, setMru] = useState<string[]>([])
+  const [showCopies, setShowCopies] = useState(false)
   const bname = useBuildingName()
   const file = data?.files.find((f) => f.sha256 && f.sha256.startsWith(sha))
   const sheets = useSheets(file, sha)
+  const isPdf = file?.kind !== 'drawing_cad'
+  const sheetParam = route.query.get('sheet')
+  const regionId = !isPdf && sheets.length ? sheetParam || sheets[0]?.id || null : null
+  useEffect(() => {
+    if (!file || isPdf || !regionId) {
+      setShapes([])
+      setBanner(null)
+      return
+    }
+    let alive = true
+    getJSON<{ shapes: SheetShape[]; banner?: string }>(`/api/drawing/${sha}/region/${regionId}/shapes`)
+      .then((row) => {
+        if (!alive) return
+        setShapes(row.shapes || [])
+        setBanner(row.banner || null)
+        setPicked(null)
+      })
+      .catch(() => alive && setShapes([]))
+    return () => {
+      alive = false
+    }
+  }, [sha, regionId, isPdf, file])
+  useEffect(() => {
+    if (!regionId) return
+    const sheet = sheets.find((item) => item.id === regionId)
+    const num = typeof sheet?.number === 'string' ? sheet.number : sheet?.number?.raw
+    setTabs((prev) => openTab(prev, { key: regionId, title: String(num || regionId), pinned: true }, false))
+    setMru((prev) => [regionId, ...prev.filter((key) => key !== regionId)].slice(0, 24))
+  }, [regionId, sheets])
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'w') {
+        e.preventDefault()
+        setTabs((prev) => prev.filter((tab) => tab.key !== regionId))
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [regionId])
   if (error) return <ErrorBox error={error} />
   if (!data) return <Loading what="the drawing" />
   if (!file) return <ErrorBox error={`No drawing with the id ${sha} in this package.`} />
-  const isPdf = file.kind !== 'drawing_cad'
-  const sheetParam = route.query.get('sheet')
   const at = route.query.get('at')
   const current: Target | null = isPdf
     ? { kind: 'pdf', sha, page: Number(sheetParam ?? sheets[0]?.page ?? 0), bbox: at ? at.split(',').map(Number) : null }
     : sheets.length
-      ? { kind: 'dwg', sha, region: sheetParam || sheets[0].id || null, at: at ? at.split(',').map(Number) : null }
+      ? { kind: 'dwg', sha, region: regionId, at: at ? at.split(',').map(Number) : null }
       : null
   const curId = current ? (current.kind === 'pdf' ? String(current.page) : current.region) : null
   const shownTexts = texts.filter((t) => matches(q, t.text))
+  const { shown: shownTabs, overflow } = visibleTabs(tabs, regionId || '', mru)
+  const pickedShape = shapes.find((shape) => shape.id === picked) || null
+  const copyCount = sheets.filter((s) => s.copy_of).length
 
   return (
     <>
@@ -268,6 +315,7 @@ export function DrawingDetail({ route }: { route: Route }) {
         <Card title={<span>Sheets</span>} sub={<a href={href('drawings')}>← all drawings</a>} right={<span className="tag bare">{sheets.length}</span>}>
           <div className="rows">
             {sheets.map((s, i) => {
+              if (s.copy_of && !showCopies) return null
               const id = isPdf ? String(s.page ?? i) : s.id!
               const num = typeof s.number === 'string' ? s.number : s.number?.raw
               return (
@@ -291,12 +339,27 @@ export function DrawingDetail({ route }: { route: Route }) {
               )
             })}
             {!sheets.length ? <Empty icon={<Stack size={20} />} title="No sheets">No sheets were detected in this file. It is listed so the gap is visible.</Empty> : null}
+            {copyCount ? <button className="list-item" onClick={() => setShowCopies((v) => !v)}><span className="t">{showCopies ? 'Hide copies' : `${copyCount} copies of other sheets`}</span></button> : null}
           </div>
         </Card>
         <Card title={<span lang="az">{shortFile(file.rel)}</span>} sub={<span lang="az">{file.rel.split('/').slice(0, -1).join(' / ')}</span>} right={<span className={`pill ${KIND_CLS[file.kind] || ''}`}>{KIND_LABEL[file.kind]}</span>}>
-          <Viewer
-            target={current}
-            onMeta={(m, t) => {
+          {!isPdf && shownTabs.length ? (
+            <div className="tabbar">
+              {shownTabs.map((tab) => (
+                <button key={tab.key} className={`tab ${tab.key === regionId ? 'on' : ''} ${tab.pinned ? '' : 'preview'}`} title={tab.title} onClick={() => go(`drawing/${sha}`, { sheet: tab.key })}>
+                  {tab.title}
+                </button>
+              ))}
+              {overflow.length ? (
+                <select aria-label="More sheets" value="" onChange={(e) => e.target.value && go(`drawing/${sha}`, { sheet: e.target.value })}>
+                  <option value="">{`+${overflow.length}`}</option>
+                  {overflow.map((tab) => <option key={tab.key} value={tab.key}>{tab.title}</option>)}
+                </select>
+              ) : null}
+            </div>
+          ) : null}
+          {banner ? <div className="banner">{banner}</div> : null}
+          <Viewer target={current} shapes={shapes} selectedShape={picked} onShape={setPicked} onMeta={(m, t) => {
               if (!m || !t) return setTexts([])
               if (m.texts) setTexts(m.texts.filter((x) => x.text.trim()).map((x) => ({ key: x.handle, text: x.text, target: { ...(t as any), at: x.at, handle: x.handle } })))
               else if (m.lines) setTexts(m.lines.map((l, i) => ({ key: String(i), text: l.text, target: { ...(t as any), bbox: l.bbox } })))
@@ -306,6 +369,14 @@ export function DrawingDetail({ route }: { route: Route }) {
         </Card>
         <Card title="About this file">
           <div className="insp">
+            {pickedShape ? (
+              <div className="box">
+                <small>{pickedShape.kind === 'area_unlinked' ? 'Area, no room tag inside' : pickedShape.kind === 'area_conflict' ? 'More than one room tag' : 'Room'}</small>
+                <div>{pickedShape.label}</div>
+                <div className="mono">{pickedShape.area_m2 == null ? 'area not scaled' : `${pickedShape.area_m2.toFixed(2)} m² hatch`}{pickedShape.schedule_m2 != null ? ` · schedule ${pickedShape.schedule_m2} m²` : ''}</div>
+                {pickedShape.lines?.length ? <div>Bill lines {pickedShape.lines.map((id) => <a key={id} href={href('bill', { line: id })} className="mono"> {id}</a>)}</div> : null}
+              </div>
+            ) : null}
             <div className="pair"><span>Kind</span><span className={`pill ${KIND_CLS[file.kind] || ''}`}>{KIND_LABEL[file.kind] || file.kind}</span></div>
             <div className="pair"><span>Building</span><span>{bname(file.building)}</span></div>
             <div className="pair"><span>Read</span>{readTag(file)}</div>
@@ -335,9 +406,9 @@ export function DrawingDetail({ route }: { route: Route }) {
               <input placeholder="Find text (ə = e, ş = s…)" value={q} onChange={(e) => setQ(e.target.value)} />
             </label>
             <div style={{ marginTop: 4 }}>
-              {shownTexts.slice(0, 250).map((t) => (
+              {shownTexts.slice(0, 250).map((t, i) => (
                 <button
-                  key={t.key}
+                  key={`${t.key}-${i}`}
                   className="src"
                   onClick={() => {
                     const tg = t.target

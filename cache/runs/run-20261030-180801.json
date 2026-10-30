@@ -1,0 +1,124 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793365679.161,
+   "stage": "bill",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793365679.94,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "row 1149 is not a header or a line",
+   "row": 1149,
+   "a": 0,
+   "b": 0
+  },
+  {
+   "t": 1793365679.942,
+   "stage": "bill",
+   "kind": "info",
+   "message": "9.13 has no building in the title; inherits heating_point from section 9.1"
+  },
+  {
+   "t": 1793365679.949,
+   "stage": "bill",
+   "kind": "info",
+   "message": "17.2 has no building in the title; inherits site from section 17.1"
+  },
+  {
+   "t": 1793365679.952,
+   "stage": "bill",
+   "kind": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  },
+  {
+   "t": 1793365679.954,
+   "stage": "bill",
+   "kind": "info",
+   "message": "145 sections, 2175 lines, line sum 3,110,505.89"
+  },
+  {
+   "t": 1793365679.954,
+   "stage": "bill",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.79
+  },
+  {
+   "t": 1793365680.076,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793365681.182,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 20, different 2, matched 29, not_found 1404, printed 84, review 635"
+  },
+  {
+   "t": 1793365681.183,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.11
+  },
+  {
+   "t": 1793365681.258,
+   "stage": "floors",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793365681.316,
+   "stage": "floors",
+   "kind": "info",
+   "message": "basement 37, floor_1 8, floor_2 39, roof 85, unstated 2006"
+  },
+  {
+   "t": 1793365681.316,
+   "stage": "floors",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.06
+  }
+ ],
+ "review": [
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "row 1149 is not a header or a line",
+   "row": 1149,
+   "a": 0,
+   "b": 0
+  },
+  {
+   "stage": "bill",
+   "severity": "warning",
+   "message": "unknown unit 'FF' on line 27.1.21 (row 2330)",
+   "line": "27.1.21",
+   "row": 2330
+  }
+ ],
+ "stages": [
+  "bill",
+  "source_map",
+  "match",
+  "floors",
+  "operations"
+ ]
+}

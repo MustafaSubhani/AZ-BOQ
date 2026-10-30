@@ -57,6 +57,18 @@ def test_values_have_sources_and_blocked_values_have_no_number():
 
 
 @needs_run
+def test_a_group_total_is_not_each_lines_quantity():
+    bill = {l["id"]: l for l in store.get("bill")["lines"]}
+    for lid, r in store.get("report")["lines"].items():
+        group = r.get("group")
+        if not group or r.get("our_qty") is None:
+            continue
+        assert r["our_qty"] == bill[lid]["qty"]
+        if len(group["lines"]) > 1 and bill[lid]["qty"] != group["drawing_total"]:
+            assert r["our_qty"] != group["drawing_total"]
+
+
+@needs_run
 def test_depot_gate_passes():
     gate = store.get("takeoff")["gate"]
     assert gate["pass"], gate

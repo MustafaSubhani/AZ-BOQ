@@ -34,6 +34,7 @@ import { go, href, useRoute } from './router'
 import { Bill } from './pages/Bill'
 import { DrawingDetail, Drawings } from './pages/Drawings'
 import { Conflicts, Coverage, Inputs, NotFound, RunLog, Translations } from './pages/Evidence'
+import { Areas } from './pages/Areas'
 import { Home } from './pages/Home'
 import { Operations } from './pages/Operations'
 import { Report } from './pages/Report'
@@ -52,6 +53,7 @@ const PAGES: Record<string, PageDef> = {
   bill: { title: 'Bill', desc: 'The client bill, line by line, against the drawings', icon: Receipt, group: 'Bill check', fill: true },
   report: { title: 'Report', desc: 'Differences, gaps and the files to hand over', icon: ChartBar, group: 'Bill check' },
   inputs: { title: 'Inputs ledger', desc: 'Every number the check uses and where it came from', icon: TreeStructure, group: 'Evidence' },
+  areas: { title: 'Area book', desc: 'Room areas from the schedules, and hatch areas where a room tag sits inside one', icon: GridFour, group: 'Evidence', fill: true },
   conflicts: { title: 'Conflicts', desc: 'Where two documents disagree; both sides are kept and nothing is averaged', icon: GitDiff, group: 'Evidence', fill: true },
   coverage: { title: 'Coverage', desc: 'Which buildings and trades the package has drawings for', icon: GridFour, group: 'Evidence' },
   translations: { title: 'Translations', desc: 'English is for reading only; the Azerbaijani is what the check uses', icon: Translate, group: 'Evidence', fill: true },
@@ -379,6 +381,7 @@ function Shell() {
     case 'bill': body = <Bill key={route.query.get('q') || ''} route={route} />; break
     case 'report': body = <Report route={route} />; break
     case 'inputs': body = <Inputs />; break
+    case 'areas': body = <Areas />; break
     case 'conflicts': body = <Conflicts />; break
     case 'coverage': body = <Coverage />; break
     case 'translations': body = <Translations />; break
@@ -403,7 +406,7 @@ function Shell() {
       desc: 'Where every number came from',
       icon: ShieldCheck,
       alert: !!s?.conflicts,
-      items: [{ to: 'inputs' }, { to: 'conflicts', count: s?.conflicts, hot: !!s?.conflicts }, { to: 'coverage' }, { to: 'translations' }, { to: 'runlog', count: s?.review_items }],
+      items: [{ to: 'inputs' }, { to: 'areas' }, { to: 'conflicts', count: s?.conflicts, hot: !!s?.conflicts }, { to: 'coverage' }, { to: 'translations' }, { to: 'runlog', count: s?.review_items }],
     },
     {
       label: 'Operations',

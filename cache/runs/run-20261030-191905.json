@@ -1,0 +1,348 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793369942.451,
+   "stage": "takeoff",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793369942.79,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot long side: 45.2004 m [geometry, verified]"
+  },
+  {
+   "t": 1793369942.823,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot short side: 34.6 m [geometry, verified]"
+  },
+  {
+   "t": 1793369942.827,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Bay module: 6 m [geometry, extracted]"
+  },
+  {
+   "t": 1793369942.89,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement storey height: 2.7 m [stated, verified]"
+  },
+  {
+   "t": 1793369942.994,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Upper storey height: 3.3 m [stated, extracted]"
+  },
+  {
+   "t": 1793369943.043,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor area: 1395.8 m² [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.089,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement area: 1360.8 m² [schedule, review]"
+  },
+  {
+   "t": 1793369943.125,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site fill: 12996 m³ [schedule, review]"
+  },
+  {
+   "t": 1793369943.131,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site cut: 3167 m³ [schedule, review]"
+  },
+  {
+   "t": 1793369943.137,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Suitable soil shortfall: 8683 m³ [schedule, review]"
+  },
+  {
+   "t": 1793369943.141,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Topsoil to landscaped area: 522 m³ [stated, review]"
+  },
+  {
+   "t": 1793369943.145,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Landscaped area: 3482.3 m² [stated, review]"
+  },
+  {
+   "t": 1793369943.148,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Reinforced-concrete roads: 1021 m² [stated, review]"
+  },
+  {
+   "t": 1793369943.151,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Asphalt roads, internal and external together: 599.7 m² [stated, review]"
+  },
+  {
+   "t": 1793369943.156,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pavements and yards: 1437.8 m² [stated, review]"
+  },
+  {
+   "t": 1793369943.188,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Demolition volume: 7625.4 m³ [stated, extracted]"
+  },
+  {
+   "t": 1793369943.264,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, metal roof tile area: 9.6 m² [stated, verified]"
+  },
+  {
+   "t": 1793369943.29,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, roof timber total: 0.23 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.302,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, metal roof tile area: 27.64 m² [stated, extracted]"
+  },
+  {
+   "t": 1793369943.318,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, roof timber total: 0.33 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.409,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank cover slab: 4.13 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.429,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank bottom slab: 9.41 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.451,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank wall Md-1, one element: 4.58 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.514,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank walls and bottom: 27.73 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793369943.545,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank cover slab: 1.58 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.569,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank bottom slab: 3.89 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.598,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank walls: 10.6 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.672,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank walls and bottom: 14.49 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793369943.687,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, smoke detectors: 12 each [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.705,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, manual call points: 5 each [schedule, extracted]"
+  },
+  {
+   "t": 1793369943.709,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement type 2 keramzit: 1.533 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793369943.71,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 4 polystyrene: 7.322 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793369943.712,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 5 polystyrene: 13.174 m³ [derived, extracted]"
+  },
+  {
+   "t": 1793369943.713,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 4 mesh: 0.14121 t [derived, extracted]"
+  },
+  {
+   "t": 1793369943.715,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor type 5 mesh: 0.25407 t [derived, extracted]"
+  },
+  {
+   "t": 1793369943.717,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement ceiling whitewash: 1368.7 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.718,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Ceiling plaster and emulsion: 2005.6 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.719,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Plasterboard ceiling: 96 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.721,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Metal suspended ceiling: 61.4 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.722,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement wall plaster and whitewash: 3380 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.723,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Wall plaster and emulsion: 3892.7 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.726,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Window glass P-1 to P-4: 252.276 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.727,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "PVC window P-5: 2.88 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.729,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Glazed doors QP-1 to QP-3: 38.988 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.73,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Window sills Pa-1 to Pa-5: 37.52 m² [derived, extracted]"
+  },
+  {
+   "t": 1793369943.73,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "t": 1793369943.73,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  },
+  {
+   "t": 1793369944.323,
+   "stage": "takeoff",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.87
+  },
+  {
+   "t": 1793369944.399,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793369945.707,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 14, matched 52, not_found 1199, printed 132, review 764"
+  },
+  {
+   "t": 1793369945.785,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.39
+  }
+ ],
+ "review": [
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  }
+ ],
+ "stages": [
+  "takeoff",
+  "match"
+ ]
+}

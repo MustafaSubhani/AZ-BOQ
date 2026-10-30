@@ -35,7 +35,7 @@ def compare_styles(original, written) -> dict:
         if abs(ho - hw) > 0.1:
             layout.append(f"row {r} height {ho} vs {hw}")
     for k, d in wo.column_dimensions.items():
-        if round(d.width or 0, 2) != round(ww.column_dimensions[k].width or 0, 2):
+        if round(d.width or 0, 2) != round(ww.column_dimensions[k].width or 0, 2):  # allow-default: missing column width, not a quantity
             layout.append(f"column {k} width {d.width} vs {ww.column_dimensions[k].width}")
     if sorted(map(str, wo.merged_cells.ranges)) != sorted(map(str, ww.merged_cells.ranges)):
         layout.append("merged ranges differ")
@@ -67,7 +67,7 @@ def compare_values(original, written, changed_rows: set[int]) -> dict:
         for col in range(1, LAST_COL + 1):
             a, b = vo.cell(r, col).value, vw.cell(r, col).value
             if isinstance(a, float) and isinstance(b, (int, float)):
-                if abs(a - b) > 1e-6 * max(1.0, abs(a)):
+                if abs(a - b) > 1e-6 * max(1.0, abs(a)):  # allow-default: value comparison epsilon, not a quantity
                     diffs.append((vo.cell(r, col).coordinate, a, b))
             elif a != b and not (a in (None, "") and b in (None, "")):
                 diffs.append((vo.cell(r, col).coordinate, a, b))

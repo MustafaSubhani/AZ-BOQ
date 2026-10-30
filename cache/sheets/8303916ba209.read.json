@@ -1,0 +1,1 @@
+{"texts": 246, "tables": 2, "geom_counts": {"lines": 276, "circles": 25, "arcs": 16, "ellipses": 3, "polys": 0, "hatches": 34}, "dropped_by_type": {"HATCH without a usable boundary": 1, "SPLINE": 205, "LEADER": 11}}

@@ -1,0 +1,884 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-0-XSK  Xocavənd  Baş plan.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: single reader",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-13 -SK-2 yerlik ayaqyolu.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon  Vertikalka.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon  Vertikalka.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 hadrut xocevend elektrik.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Elektrik/9335 hadrut xocevend elektrik.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavend istilik menteqesi.dwg: single reader",
+   "file": "Hadrut DEPO/Xocavend dk/9335 Xocavend istilik menteqesi.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335 Xocavənd  rayon   POS.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Xocavənd  rayon   POS.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "9335-0- Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/9335-0- Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "t": 1793366818.521,
+   "stage": "conversion",
+   "kind": "warning",
+   "message": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg"
+  },
+  {
+   "t": 1793366818.592,
+   "stage": "sheets",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9083 - 6 - YS is the only copy and carries order 9083; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R4)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R4"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R6)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R6"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R7)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R7"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9336- 02 - MH is the only copy and carries order 9336; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R16"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 6 - YS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R35)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R35"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R36)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R36"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - VM is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R37)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R37"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R38)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R38"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-08-MT differs from 9335-08-MT (only on the copy: [9.0, 400.0, 408.05, 408.5, 408.65, 9336.0]; only on the canonical: [695.4, 695.55, 696.2, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R1"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-08-MT differs from 9335-08-MT (only on the copy: [0.2, 9.0, 400.0, 467.7, 469.1, 469.3]; only on the canonical: [0.15, 695.4, 695.55, 696.2, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R2"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-04-MT differs from 9335-04-MT (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R8"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-04-MT differs from 9335-04-MT (only on the copy: [0.15, 400.0, 407.1, 408.25, 408.55, 408.9]; only on the canonical: [0.4, 690.2, 691.2, 692.4, 694.0, 694.2])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R9"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [400.0, 409.1, 9336.0]; only on the canonical: [600.0, 694.3, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R10"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [400.0, 468.6, 9337.0]; only on the canonical: [600.0, 694.3, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R11"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [407.85, 407.95, 408.15, 408.25, 408.8, 408.85]; only on the canonical: [688.2, 688.7, 689.5, 693.9, 694.0, 694.1])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R14"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [467.75, 467.9, 468.0, 468.3, 468.4, 468.5]; only on the canonical: [688.2, 688.7, 689.5, 693.9, 694.0, 694.1])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R15"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9336- 02 - MH (only on the copy: [467.75, 467.9, 468.0, 468.3, 468.4, 468.5]; only on the canonical: [0.25, 4.0, 407.85, 407.95, 408.15, 408.25])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R17"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-04-MT differs from 9335-04-MT (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R19"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-04-MT differs from 9335-04-MT (only on the copy: [400.0, 466.7, 467.8, 468.5, 468.7, 9337.0]; only on the canonical: [0.4, 690.2, 691.2, 692.4, 694.0, 694.2])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R20"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R21"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R22"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [5.1, 53.2, 100.0, 9336.0]; only on the canonical: [0.0, 1.136, 1.2, 2.01, 2.02, 2.13])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R24"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [5.1, 53.2, 100.0, 9337.0]; only on the canonical: [0.0, 1.136, 1.2, 2.01, 2.02, 2.13])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R25"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R29"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R30"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R32"
+  },
+  {
+   "t": 1793366822.235,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R33"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R15"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9042 -1- RS is the only copy and carries order 9042; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R16"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R17"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R26)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R26"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R27)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R27"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "sheet 9336- 01- MH is the only copy and carries order 9336; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R30"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "warning",
+   "message": "YRS - VN -9335 hadrut xocevend (SON).dwg: 9042- 1- RS differs from 9042 -1- RS (only on the copy: [2.04, 2.08, 60.0, 89.0, 94.0]; only on the canonical: [7.0, 9.0, 10.0, 11.0, 12.0, 13.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R28"
+  },
+  {
+   "t": 1793366822.679,
+   "stage": "sheets",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 4.09
+  },
+  {
+   "t": 1793366823.601,
+   "stage": "index",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793366826.129,
+   "stage": "index",
+   "kind": "info",
+   "message": "78527 numbers indexed, 31165 strong"
+  },
+  {
+   "t": 1793366826.129,
+   "stage": "index",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 2.53
+  },
+  {
+   "t": 1793366826.235,
+   "stage": "takeoff",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793366826.554,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot long side: 45.2004 m [geometry, review]"
+  },
+  {
+   "t": 1793366826.59,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Depot short side: 34.6 m [geometry, review]"
+  },
+  {
+   "t": 1793366826.594,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Bay module: 6 m [geometry, extracted]"
+  },
+  {
+   "t": 1793366826.656,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement storey height: 2.7 m [stated, review]"
+  },
+  {
+   "t": 1793366826.765,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Upper storey height: 3.3 m [stated, extracted]"
+  },
+  {
+   "t": 1793366826.808,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "First floor area: 1395.8 m² [schedule, extracted]"
+  },
+  {
+   "t": 1793366826.851,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Basement area: 1360.8 m² [schedule, review]"
+  },
+  {
+   "t": 1793366826.887,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site fill: 12996 m³ [schedule, review]"
+  },
+  {
+   "t": 1793366826.894,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Site cut: 3167 m³ [schedule, review]"
+  },
+  {
+   "t": 1793366826.9,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Suitable soil shortfall: 8683 m³ [schedule, review]"
+  },
+  {
+   "t": 1793366826.904,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Topsoil to landscaped area: 522 m³ [stated, review]"
+  },
+  {
+   "t": 1793366826.907,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Landscaped area: 3482.3 m² [stated, review]"
+  },
+  {
+   "t": 1793366826.91,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Reinforced-concrete roads: 1021 m² [stated, review]"
+  },
+  {
+   "t": 1793366826.914,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Asphalt roads, internal and external together: 599.7 m² [stated, review]"
+  },
+  {
+   "t": 1793366826.917,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pavements and yards: 1437.8 m² [stated, review]"
+  },
+  {
+   "t": 1793366826.947,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Demolition volume: 7625.4 m³ [stated, extracted]"
+  },
+  {
+   "t": 1793366827.024,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, metal roof tile area: 9.6 m² [stated, verified]"
+  },
+  {
+   "t": 1793366827.049,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Guard room, roof timber total: 0.23 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.062,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, metal roof tile area: 27.64 m² [stated, extracted]"
+  },
+  {
+   "t": 1793366827.079,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Pump station, roof timber total: 0.33 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.149,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Fire tank, concrete B25 per element: 8.71 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.163,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Drinking tank, concrete B25 per element: 16.07 m³ [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.184,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, smoke detectors: 12 each [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.2,
+   "stage": "takeoff",
+   "kind": "info",
+   "message": "Tower, manual call points: 5 each [schedule, extracted]"
+  },
+  {
+   "t": 1793366827.2,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "t": 1793366827.2,
+   "stage": "takeoff",
+   "kind": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  },
+  {
+   "t": 1793366827.692,
+   "stage": "takeoff",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.46
+  },
+  {
+   "t": 1793366827.743,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793366829.001,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 22, different 2, matched 29, not_found 1290, printed 114, review 717"
+  },
+  {
+   "t": 1793366829.001,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.26
+  }
+ ],
+ "review": [
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: reader disagreement",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-0-XSK  Xocavənd  Baş plan.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: single reader",
+   "file": "Hadrut DEPO/9335-SK Xocavənd r Hadrud q YD/9335-13 -SK-2 yerlik ayaqyolu.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon  Vertikalka.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Depo  Hadrut BP/9335 Xocavənd  rayon  Vertikalka.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 hadrut xocevend elektrik.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Elektrik/9335 hadrut xocevend elektrik.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavend istilik menteqesi.dwg: single reader",
+   "file": "Hadrut DEPO/Xocavend dk/9335 Xocavend istilik menteqesi.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335 Xocavənd  rayon   POS.dwg: reader disagreement",
+   "file": "Hadrut DEPO/Xocavənd DEPO DQT  Izahat Tikintinin təşkili/9335 Xocavənd  rayon   POS.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "9335-0- Xocavənd  rayon   DYNX.dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/9335-0- Xocavənd  rayon   DYNX.dwg"
+  },
+  {
+   "stage": "conversion",
+   "severity": "warning",
+   "message": "TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg: reader disagreement",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/TVM -0 - 9335 Xocavənd  rayon  POS (TAPRQ).dwg"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9083 - 6 - YS is the only copy and carries order 9083; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R4)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R4"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R6)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R6"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R7)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R7"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9336- 02 - MH is the only copy and carries order 9336; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R16"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 6 - YS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R35)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R35"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R36)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R36"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - VM is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R37)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R37"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9183 - 2 - YRS is the only copy and carries order 9183; kept, but its values stay in review (YRS - VM - XOCAVEND-NƏZARƏT.dwg, R38)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R38"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-08-MT differs from 9335-08-MT (only on the copy: [9.0, 400.0, 408.05, 408.5, 408.65, 9336.0]; only on the canonical: [695.4, 695.55, 696.2, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R1"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-08-MT differs from 9335-08-MT (only on the copy: [0.2, 9.0, 400.0, 467.7, 469.1, 469.3]; only on the canonical: [0.15, 695.4, 695.55, 696.2, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R2"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-04-MT differs from 9335-04-MT (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R8"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336-04-MT differs from 9335-04-MT (only on the copy: [0.15, 400.0, 407.1, 408.25, 408.55, 408.9]; only on the canonical: [0.4, 690.2, 691.2, 692.4, 694.0, 694.2])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R9"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [400.0, 409.1, 9336.0]; only on the canonical: [600.0, 694.3, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R10"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [400.0, 468.6, 9337.0]; only on the canonical: [600.0, 694.3, 9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R11"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [407.85, 407.95, 408.15, 408.25, 408.8, 408.85]; only on the canonical: [688.2, 688.7, 689.5, 693.9, 694.0, 694.1])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R14"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [467.75, 467.9, 468.0, 468.3, 468.4, 468.5]; only on the canonical: [688.2, 688.7, 689.5, 693.9, 694.0, 694.1])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R15"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9336- 02 - MH (only on the copy: [467.75, 467.9, 468.0, 468.3, 468.4, 468.5]; only on the canonical: [0.25, 4.0, 407.85, 407.95, 408.15, 408.25])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R17"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-04-MT differs from 9335-04-MT (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R19"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337-04-MT differs from 9335-04-MT (only on the copy: [400.0, 466.7, 467.8, 468.5, 468.7, 9337.0]; only on the canonical: [0.4, 690.2, 691.2, 692.4, 694.0, 694.2])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R20"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R21"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R22"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [5.1, 53.2, 100.0, 9336.0]; only on the canonical: [0.0, 1.136, 1.2, 2.01, 2.02, 2.13])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R24"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [5.1, 53.2, 100.0, 9337.0]; only on the canonical: [0.0, 1.136, 1.2, 2.01, 2.02, 2.13])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R25"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R29"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R30"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9336- 02 - MH differs from 9335- 02 - MH (only on the copy: [9336.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R32"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 9337- 02 - MH differs from 9335- 02 - MH (only on the copy: [9337.0]; only on the canonical: [9335.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VM - XOCAVEND-NƏZARƏT.dwg",
+   "region": "R33"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R15)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R15"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9042 -1- RS is the only copy and carries order 9042; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R16)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R16"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R17)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R17"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R26)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R26"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9337- 1- RS is the only copy and carries order 9337; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R27)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R27"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "sheet 9336- 01- MH is the only copy and carries order 9336; kept, but its values stay in review (YRS - VN -9335 hadrut xocevend (SON).dwg, R30)",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R30"
+  },
+  {
+   "stage": "sheets",
+   "severity": "warning",
+   "message": "YRS - VN -9335 hadrut xocevend (SON).dwg: 9042- 1- RS differs from 9042 -1- RS (only on the copy: [2.04, 2.08, 60.0, 89.0, 94.0]; only on the canonical: [7.0, 9.0, 10.0, 11.0, 12.0, 13.0])",
+   "file": "Hadrut DEPO/YRS - VM - Xocavənd/YRS - VN -9335 hadrut xocevend (SON).dwg",
+   "region": "R28"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Depot external wall net length: blocked (no measurement method for this value yet)",
+   "item": "wall_length_depot"
+  },
+  {
+   "stage": "takeoff",
+   "severity": "warning",
+   "message": "Basement limestone wall area: blocked (missing external_wall_length_m)",
+   "item": "basement_wall_area"
+  }
+ ],
+ "stages": [
+  "conversion",
+  "sheets",
+  "index",
+  "takeoff",
+  "match"
+ ]
+}

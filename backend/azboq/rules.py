@@ -79,6 +79,7 @@ def write_hardcoded_report() -> str:
         ("legacy_font_overrides", "Legacy font slots fixed by hand"),
         ("extractors", "Where the engine looks for each takeoff item (rules of where to look; the values come off the drawings)"),
         ("bill_map", "Bill lines linked to takeoff items by hand"),
+        ("bill_elements", "Element words read from a bill description"),
         ("conflicts", "Known conflicts between documents, with the suggested side"),
         ("sheet_marks", "Sheet-number marks used to classify sheets"),
         ("layer_roles", "Layer-name patterns and the role each maps to"),
@@ -95,6 +96,8 @@ def write_hardcoded_report() -> str:
                 what = r.get("label_en") or r.get("topic") or r.get("slot") or r.get("font") or r.get("type") or ""
                 if name == "bill_map":
                     what = f"item {r['item']} ↔ lines {', '.join(r['lines'])} ({r.get('relation', 'equal')})"
+                elif name == "bill_elements":
+                    what = f"{r['element']}: {r.get('all') or r.get('words') or r.get('any') or r.get('phrases')}"
                 elif name == "conflicts":
                     what = f"{r['topic']}: suggested {r.get('suggestion')}"
                 elif "value" in r:

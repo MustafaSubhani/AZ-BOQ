@@ -16,6 +16,9 @@ from .normalise import az_lower, az_upper, fold_key
 
 _CYR = re.compile(r"[\u0400-\u04FF]")
 _WORD = re.compile(r"[\w\u0400-\u04FF'’]+")
+_MIXED_WORD = re.compile(r"[\wƏəÖöÜüÇçŞşĞğİı\u0400-\u04FF]+")
+_LATIN = re.compile(r"[A-Za-zƏəÖöÜüÇçŞşĞğİı]")
+_CYR_UNIT = {"мм": "mm", "ММ": "mm", "м²": "m²", "м³": "m³", "м2": "m2", "м3": "m3"}
 
 DEFAULT_FAMILY = "A3ArialAzLatNormal"
 
@@ -86,6 +89,18 @@ def _table(family: str) -> dict:
         if partner != slot and partner not in table:
             table[partner] = (az_upper(to) if slot.islower() else az_lower(to))
     return table
+
+
+def fold_mixed_words(text: str) -> str:
+    """A word that mixes scripts is one word drawn with two fonts: 'seмenт' is 'sement'."""
+    def fix(m):
+        w = m.group(0)
+        if w in _CYR_UNIT:
+            return _CYR_UNIT[w]
+        if _CYR.search(w) and _LATIN.search(w):
+            return decode_with_family(w, DEFAULT_FAMILY).text
+        return w
+    return _MIXED_WORD.sub(fix, text)
 
 
 def decode_with_family(text: str, family: str) -> Decoded:

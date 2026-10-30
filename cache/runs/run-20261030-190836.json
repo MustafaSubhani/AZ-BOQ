@@ -1,0 +1,37 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793369315.625,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793369316.832,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 14, matched 42, not_found 1201, printed 138, review 766"
+  },
+  {
+   "t": 1793369316.896,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.27
+  }
+ ],
+ "review": [],
+ "stages": [
+  "match"
+ ]
+}

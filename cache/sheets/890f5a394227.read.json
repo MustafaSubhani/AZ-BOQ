@@ -1,0 +1,1 @@
+{"texts": 756, "tables": 0, "geom_counts": {"lines": 1793, "circles": 107, "arcs": 33, "ellipses": 6, "polys": 2, "hatches": 125}, "dropped_by_type": {"LINE": 22, "LWPOLYLINE": 20, "CIRCLE": 16, "SPLINE": 359, "VIEWPORT": 2}}

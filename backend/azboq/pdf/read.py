@@ -6,7 +6,7 @@ import pymupdf
 
 from .. import config, runlog
 from ..sheets import classify_sheet, STAMP_WORDS
-from ..text.legacy import decode
+from ..text.legacy import decode, fold_mixed_words
 from ..text.normalise import fold_homoglyphs
 
 
@@ -30,7 +30,7 @@ def dump_pdf(path, file_building: str, file_discipline: str) -> dict:
                         schemes.add(d.scheme)
                     if font not in fonts:
                         fonts.append(font)
-                text = re.sub(r"\s+", " ", "".join(dec_parts)).strip()
+                text = fold_mixed_words(re.sub(r"\s+", " ", "".join(dec_parts)).strip())
                 if not text:
                     continue
                 lines.append({"text": text, "code_text": fold_homoglyphs(text), "raw": "".join(raw_parts),

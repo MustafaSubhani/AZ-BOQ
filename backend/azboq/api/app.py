@@ -69,13 +69,16 @@ def register():
     for f in reg["files"]:
         row = dict(f)
         row.pop("path", None)
+        summary_path = config.CACHE_DIR / "sheets" / f"{f['sha256'][:12]}.read.json"
+        if summary_path.exists():
+            row["reader"] = json.loads(summary_path.read_text(encoding="utf-8"))
         if f["sha256"] in conv:
             row["read_status"] = conv[f["sha256"]]["status"]
             row["crosscheck"] = conv[f["sha256"]]["crosscheck"]
             row["oda"] = conv[f["sha256"]]["oda"]
         if f["sha256"] in sheets["dwg"]:
             row["sheets"] = [{k: r.get(k) for k in ("id", "number", "building", "building_from", "discipline", "title",
-                                                    "scale", "paper", "method", "text_count")}
+                                                    "scale", "paper", "method", "text_count", "copy_of", "only_other_order")}
                              for r in sheets["dwg"][f["sha256"]]["regions"]]
         elif f["sha256"] in sheets["pdf"]:
             row["sheets"] = sheets["pdf"][f["sha256"]]["pages"]
@@ -86,17 +89,29 @@ def register():
     return {"files": files, "duplicates": reg["duplicates"], "counts": reg["counts"], "total": reg["total"]}
 
 
+@app.get("/api/line/{line_id}/explain")
+def explain_line(line_id: str):
+    from ..match.explain import explain_line as build
+    data = build(line_id, _need("bill"), _need("report"), _need("takeoff"))
+    if data is None:
+        raise HTTPException(404, "no such line")
+    return data
+
+
 @app.get("/api/bill")
 def bill():
     b = _need("bill")
     report = store.get("report") or {"lines": {}}
+    floors = (store.get("floors") or {"lines": {}})["lines"]
     lines = []
     for l in b["lines"]:
         row = {k: l[k] for k in ("id", "row", "section", "item", "description", "unit_raw", "unit", "unit_known", "qty",
                                   "rate", "amount", "building", "trade", "comment")}
         row["check"] = report["lines"].get(l["id"])
+        row["floor"] = floors.get(l["id"])
         lines.append(row)
-    sections = [{k: s[k] for k in ("code", "stored_code", "row", "title", "trade", "building", "code_repaired")}
+    sections = [{k: s.get(k) for k in ("code", "stored_code", "row", "title", "trade", "building", "code_repaired",
+                                              "parent", "mark")}
                 for s in b["sections"]]
     return {"sections": sections, "lines": lines, "totals": b["totals"], "chain": b["chain"],
             "line_sum": b["line_sum"], "unknown_units": b["unknown_units"], "external_links": b["external_links"]}
@@ -165,6 +180,19 @@ def drawing_region_meta(sha: str, rid: str):
     return {**meta, "region": region, "texts": texts, "png_url": f"/api/drawing/{sha}/region/{rid}.png"}
 
 
+@app.get("/api/drawing/{sha}/region/{rid}/shapes")
+def drawing_shapes(sha: str, rid: str):
+    from ..areas import region_shapes
+    meta = drawing_region_meta(sha, rid)
+    return region_shapes(sha, rid, meta, store.get("takeoff"), store.get("report"))
+
+
+@app.get("/api/areas")
+def areas():
+    from ..areas import area_book
+    return area_book(_need("register"), store.get("takeoff"), store.get("report"), store.get("sheets") or {})
+
+
 @app.get("/api/drawing/{sha}/region/{rid}.png")
 def drawing_region_png(sha: str, rid: str):
     meta = drawing_region_meta(sha, rid)
@@ -204,14 +232,16 @@ def pdf_page_meta(sha: str, page: int):
     if not f:
         raise HTTPException(404, "file not found")
     d = load_pdf_dump(f["sha256"])
+    from ..crops import pdf_transform
     if d is None:
         doc = pymupdf.open(f["path"])
         p = doc[page]
         return {"width": p.rect.width, "height": p.rect.height, "lines": [], "png_url": f"/api/pdf/{sha}/page/{page}.png",
-                "scanned": True}
+                "scanned": True, "transform": pdf_transform()}
     pg = d["pages"][page]
     return {"width": pg["width"], "height": pg["height"], "lines": pg["lines"], "number": pg.get("number"),
-            "building": pg.get("building"), "png_url": f"/api/pdf/{sha}/page/{page}.png"}
+            "building": pg.get("building"), "png_url": f"/api/pdf/{sha}/page/{page}.png",
+            "transform": pdf_transform()}
 
 
 @app.get("/api/exports")
@@ -224,7 +254,7 @@ def exports():
     return {"files": files, "info": info}
 
 
-@app.get("/api/exports/file/{name}")
+@app.api_route("/api/exports/file/{name}", methods=["GET", "HEAD"])
 def export_file(name: str):
     p = (config.EXPORT_DIR / name).resolve()
     if p.parent != config.EXPORT_DIR.resolve() or not p.exists():
@@ -240,6 +270,42 @@ def vision():
 @app.get("/api/operations")
 def operations():
     return _need("operations") if store.get("operations") else {"registers": []}
+
+
+@app.get("/api/reviews")
+def reviews(target: str | None = None):
+    from ..reviews import active_reviews
+    rows = active_reviews()
+    if target:
+        rows = [row for row in rows if row["target_id"] == target or str(row["target_id"]).startswith(target)]
+    return {"reviews": rows}
+
+
+@app.post("/api/review")
+def review_add(payload: dict = Body(...)):
+    from ..pipeline import stage_match, stage_reviews
+    from ..reviews import ExprError, add_review
+    try:
+        review_id = add_review(payload["target_kind"], payload["target_id"], payload["action"],
+                               payload.get("payload") or {}, payload.get("reason") or "", payload.get("author") or "")
+    except (ExprError, KeyError) as exc:
+        raise HTTPException(400, str(exc)) from exc
+    stage_reviews()
+    stage_match()
+    return {"id": review_id}
+
+
+@app.delete("/api/review/{review_id}")
+def review_supersede(review_id: int, payload: dict = Body(...)):
+    from ..pipeline import stage_match, stage_reviews
+    from ..reviews import ExprError, supersede
+    try:
+        reset_id = supersede(review_id, payload.get("author") or "", payload.get("reason") or "")
+    except ExprError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    stage_reviews()
+    stage_match()
+    return {"id": reset_id}
 
 
 _dist = config.ROOT / "frontend" / "dist"

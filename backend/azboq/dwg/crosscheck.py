@@ -110,6 +110,17 @@ def run_crosscheck() -> dict:
     return results
 
 
+def reading_status(oda_status: str, cross: dict) -> str:
+    """LibreDWG crashing or returning nothing is one reader. A difference in entity counts is a disagreement."""
+    if oda_status == "failed":
+        return "failed"
+    if oda_status not in ("converted", "cached"):
+        return oda_status or "not converted"
+    if cross.get("libredwg_status") != "ok" or not cross.get("libredwg_total"):
+        return "single reader"
+    return "read" if cross.get("agree") else "reader disagreement"
+
+
 def load_crosscheck() -> dict:
     p = config.LIBREDWG_DIR / "crosscheck.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}

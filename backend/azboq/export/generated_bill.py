@@ -19,9 +19,9 @@ FIRST = 10
 
 
 def row_height(text: str, col_width_chars: float, font_pt: float) -> float:
-    chars_per_line = max(col_width_chars * 1.15, 10)
-    lines = max(1, sum(math.ceil(max(len(part), 1) / chars_per_line) for part in str(text).split("\n")))
-    return round(max(15.4, lines * font_pt * 1.32), 2)
+    chars_per_line = max(col_width_chars * 1.15, 10)  # allow-default: row-height estimate, not a quantity
+    lines = max(1, sum(math.ceil(max(len(part), 1) / chars_per_line) for part in str(text).split("\n")))  # allow-default: row-height estimate, not a quantity
+    return round(max(15.4, lines * font_pt * 1.32), 2)  # allow-default: row-height estimate, not a quantity
 
 
 def write_generated_bill(bill: dict, report: dict, out: Path) -> dict:
@@ -44,12 +44,14 @@ def write_generated_bill(bill: dict, report: dict, out: Path) -> dict:
         for c, v in enumerate(row, start=1):
             if not isinstance(ws.cell(r, c), openpyxl.cell.cell.MergedCell):
                 ws.cell(r, c).value = v
-    col_b = ws.column_dimensions["B"].width or 60.8
+    col_b = ws.column_dimensions["B"].width or 60.8  # allow-default: column width, not a quantity
     by_id = {l["id"]: l for l in bill["lines"]}
     r = FIRST
     written = 0
     for s in bill["sections"]:
-        rows = [by_id[x] for x in s["lines"] if report["lines"][x]["status"] in ("matched", "different", "printed", "derived")]
+        rows = [by_id[x] for x in s["lines"]
+                if report["lines"][x]["status"] in ("matched", "different", "printed", "derived")
+                and report["lines"][x].get("our_qty") is not None]
         if not rows:
             continue
         for col in range(1, 13):
@@ -65,7 +67,7 @@ def write_generated_bill(bill: dict, report: dict, out: Path) -> dict:
             res = report["lines"][l["id"]]
             for col in range(1, 13):
                 ws.cell(r, col)._style = copy(line_styles[col - 1])
-            qty = res.get("our_qty") if res.get("our_qty") is not None else l["qty"]
+            qty = res["our_qty"]
             ws.cell(r, 1).value = i
             ws.cell(r, 2).value = l["description"]
             ws.cell(r, 3).value = l["unit_raw"]

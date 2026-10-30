@@ -14,6 +14,8 @@ from ..text.normalise import canonical_unit, fold_key
 
 FIRST_DATA_ROW = 10
 TOTALS = {"temporary": 2331, "contingency": 2332, "subtotal": 2333, "vat": 2334, "total": 2335}
+_HEADER_CODE = re.compile(r"^\s*\d+(?:[.,]\d+)+\s*$")
+_MARK = re.compile(r"(?:İ|I)D\s*[-–]?\s*(\d+)", re.IGNORECASE)
 
 TRADES = [
     (r"torpaq", "earthworks"), (r"bunovre", "foundations"), (r"d/b|konst|kostr|karkas", "reinforced_concrete"),
@@ -30,6 +32,7 @@ TRADES = [
 ]
 
 BUILDING_BY_SECTION_PREFIX = [
+    (r"qum meydan", "sand_pit"),
     (r"yangin deposu", "depot"), (r"nezaretci", "guard_room"), (r"qulle", "tower"), (r"istilik", "heating_point"),
     (r"81 m3.*1-ci", "fire_tank_3"), (r"81 m3.*2-ci", "fire_tank_3a"), (r"27 m3.*1-ci", "drinking_tank_5"),
     (r"27 m3.*2-ci", "drinking_tank_5a"), (r"nasos", "pump_station"), (r"avtoyuma", "vehicle_wash"),
@@ -43,12 +46,32 @@ def _trade(title: str) -> str:
     return next((t for pat, t in TRADES if re.search(pat, text)), "other")
 
 
-def _building(title: str, section_no: int) -> str:
+def _named_building(title: str) -> str | None:
+    """The building the title itself names. None when the title only names a trade."""
     key = fold_key(title)
     for pat, b in BUILDING_BY_SECTION_PREFIX:
         if re.search(pat, key):
             return b
-    return "site"
+    return None
+
+
+def _mark(title: str) -> str | None:
+    m = _MARK.search(title or "")
+    return f"İD-{int(m.group(1))}" if m else None
+
+
+def _header_parts(a) -> list[str] | None:
+    """A section code in column A: a float such as 2.1, or a string such as '25,1,1'."""
+    if isinstance(a, bool) or a in (None, ""):
+        return None
+    if isinstance(a, float):
+        if a == 0:
+            return None
+        # 2.1 is one decimal; 2.10 cannot be told from 2.1, so the integer sequence repairs it later.
+        return None
+    if isinstance(a, str) and _HEADER_CODE.match(a):
+        return [str(int(p)) for p in re.split(r"[.,]", a.strip())]
+    return None
 
 
 def _num(v):
@@ -66,29 +89,50 @@ def parse_bill(path=config.BILL_PATH) -> dict:
                     comments[c.coordinate] = re.sub(r"\s+", " ", c.comment.text).strip()
         sections, lines = [], []
         seq_by_building = defaultdict(int)
+        first_of: dict[int, tuple[str, str]] = {}
         current = None
         unknown_units = []
         seen_ids = set()
         for r in range(FIRST_DATA_ROW, TOTALS["temporary"]):
             a, b, c, d, e, f = (wv.cell(r, i).value for i in range(1, 7))
-            if b is None and c in (None, 0) and d in (None, 0):
+            if all(v is None for v in (a, b, c, d, e, f)):
                 continue
-            is_header = isinstance(a, float) and (c in (None, 0)) and (d in (None, 0))
-            if is_header:
-                building_no = int(a)
-                seq_by_building[building_no] += 1
-                k = seq_by_building[building_no]
-                code = f"{building_no}.{k}"
-                stored_ok = abs(float(code) - a) < 1e-9
-                if not stored_ok:
-                    runlog.warn("bill", f"section code {code} does not match stored {a} at row {r}", row=r)
+            blank_qty = c in (None, 0, 0.0, "") and d in (None, 0, 0.0, "")
+            parts = _header_parts(a)
+            is_float_header = isinstance(a, float) and not isinstance(a, bool) and a != 0 and blank_qty
+            if (parts or is_float_header) and blank_qty and b not in (None, ""):
                 title = str(b).strip()
-                current = {"code": code, "stored_code": a, "row": r, "building_no": building_no, "seq": k,
-                           "title": title, "trade": _trade(title), "building": _building(title, building_no),
-                           "code_repaired": str(a) != code, "lines": []}
+                if parts:
+                    code = ".".join(parts)
+                    building_no = int(parts[0])
+                    parent = ".".join(parts[:-1]) if len(parts) > 2 else None
+                    repaired = "," in str(a)
+                else:
+                    building_no = int(a)
+                    seq_by_building[building_no] += 1
+                    code = f"{building_no}.{seq_by_building[building_no]}"
+                    parent = None
+                    repaired = str(a) != code
+                    if abs(float(code) - a) > 1e-9:
+                        runlog.warn("bill", f"section code {code} does not match stored {a} at row {r}", row=r)
+                named = _named_building(title)
+                if named:
+                    building = named
+                    first_of.setdefault(building_no, (code, named))
+                elif building_no in first_of:
+                    building = first_of[building_no][1]
+                    runlog.event("bill", "info",
+                                 f"{code} has no building in the title; inherits {building} from section {first_of[building_no][0]}")
+                else:
+                    building = "site"
+                    first_of[building_no] = (code, "site")
+                current = {"code": code, "stored_code": a, "row": r, "building_no": building_no,
+                           "title": title, "trade": _trade(title), "building": building,
+                           "code_repaired": repaired, "parent": parent, "mark": _mark(title), "lines": []}
                 sections.append(current)
                 continue
-            if current is None or c in (None, 0):
+            if current is None or c in (None, 0, 0.0, ""):
+                runlog.warn("bill", f"row {r} is not a header or a line", row=r, a=a, b=b)
                 continue
             unit, known = canonical_unit(c)
             item = int(a) if isinstance(a, (int, float)) else None
@@ -103,7 +147,7 @@ def parse_bill(path=config.BILL_PATH) -> dict:
                 "row": r, "section": current["code"], "item": item, "description": str(b).strip() if b else "",
                 "description_raw": b, "unit_raw": c, "unit": unit, "unit_known": known,
                 "qty": _num(d), "rate": _num(e), "amount": _num(f), "building": current["building"],
-                "trade": current["trade"], "comment": comments.get(f"B{r}"),
+                "trade": current["trade"], "mark": current.get("mark"), "comment": comments.get(f"B{r}"),
                 "progress_qty": _num(wv.cell(r, 7).value), "progress_amount": _num(wv.cell(r, 8).value),
                 "formula_desc": str(wf.cell(r, 2).value or ""),
             }

@@ -13,6 +13,7 @@ type ReportData = {
   lists: Record<string, Row[]>
   measured_no_bill_line: Item[]
   total_value: number
+  steel?: { id: string; label: string; status: string; marks: number; reason: string; bill_lines: { id: string; qty: number; unit: string; description: string }[] }[]
 }
 type Exports = { files: { name: string; size: number }[]; info: any }
 
@@ -77,6 +78,17 @@ export function Report({ route }: { route: Route }) {
           <div className="s">{fmt(data.counts.not_found || 0)} lines</div>
         </button>
       </div>
+      {data.steel?.length ? (
+        <Card title="Steel, by family" sub="Each table names one mark. The kilograms are not added into a bill quantity.">
+          {data.steel.map((family) => (
+            <div key={family.id} className="box">
+              <small>{family.label} · {family.status} · {fmt(family.marks)} marks</small>
+              {family.reason}
+              {family.bill_lines.length ? <div>Bill lines {family.bill_lines.map((line) => <a key={line.id} className="mono" href={href('bill', { line: line.id })}> {line.id}</a>)}</div> : null}
+            </div>
+          ))}
+        </Card>
+      ) : null}
 
       <div className="grid2" style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(300px, 380px)' }}>
         <Card style={{ overflow: 'hidden' }}>

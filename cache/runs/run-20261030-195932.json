@@ -1,0 +1,307 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793372358.407,
+   "stage": "schedules",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793372361.357,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 2 yerlik ayaqyolu.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372361.77,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 İSTİLİK MƏNTƏQƏSİ.pdf: 2 ruled tables, 1 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372364.287,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 MH.pdf: 10 ruled tables, 33 area cells, 67 room rows"
+  },
+  {
+   "t": 1793372364.621,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 nəzarətçi otağı.pdf: 3 ruled tables, 3 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372365.852,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Qüllə.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372366.405,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 su nasos stansiyası.pdf: 3 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372366.672,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "KTY-250kVA- Xocavənd.pdf: 2 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372367.183,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend yangi ve icmeli su anbari .pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372367.728,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend Yangin su anbari.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372367.775,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji effektivliyi hesabatı.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372367.784,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji sinfi.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.04,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd depo son istilik itkiləri.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.088,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd izolyasiya.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.643,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 EE.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.661,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.709,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "1.pdf: 1 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372368.969,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 KTM.pdf: 2 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.009,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "-AT.pdf: 1 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.167,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "su nasos stansiyasi 9335.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.186,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.265,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "NBM 9335.pdf: 1 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.285,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372369.632,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "QULLE 9335.pdf: 0 ruled tables, 0 area cells, 0 room rows"
+  },
+  {
+   "t": 1793372370.112,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-0-XSK  Xocavənd  Baş plan.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.137,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-1-SK Xocavənd depo 2-ci variant.dwg: 2 acad tables"
+  },
+  {
+   "t": 1793372370.141,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-13 -SK-2 yerlik ayaqyolu.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.145,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-2-SK İstilik məntəqəsi.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.147,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-3,3a-SK-81m³  Yanğın su anbarı..dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.153,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-4-SK SU NASOS STANSİYASI.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.155,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-5,5a -SK İçməli və yanğın əleyhinə su anbarı V= 27m³.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.158,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335-6-SK Xocavənd  QÜLLƏ.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.744,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend avtoyuma dk.dwg: 1 line-grid tables"
+  },
+  {
+   "t": 1793372370.746,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend generator altliq dk.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372370.772,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend istilik menteqesi.dwg: 2 line-grid tables"
+  },
+  {
+   "t": 1793372370.772,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend istilik menteqesi.dwg: 3 acad tables"
+  },
+  {
+   "t": 1793372371.092,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend istinad divari ve hasar dk.dwg: 91 acad tables"
+  },
+  {
+   "t": 1793372371.129,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend nezaretci otagi dk.dwg: 4 line-grid tables"
+  },
+  {
+   "t": 1793372371.142,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend sohbetgah dk.dwg: 2 line-grid tables"
+  },
+  {
+   "t": 1793372371.153,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend su nasos stansiyasi dk.dwg: 3 line-grid tables"
+  },
+  {
+   "t": 1793372371.156,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend transformator altliq dk.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372371.473,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavend yangin deposu dk son.dwg: 141 acad tables"
+  },
+  {
+   "t": 1793372371.495,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavənd ayaqyolu dk.dwg: 3 line-grid tables"
+  },
+  {
+   "t": 1793372371.495,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocavənd ayaqyolu dk.dwg: 1 acad tables"
+  },
+  {
+   "t": 1793372371.828,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocevend-telim qullesi dk.dwg: 7 line-grid tables"
+  },
+  {
+   "t": 1793372371.828,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Xocevend-telim qullesi dk.dwg: 6 acad tables"
+  },
+  {
+   "t": 1793372372.006,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "YRS - VM - XOCAVEND-NƏZARƏT.dwg: 3 line-grid tables"
+  },
+  {
+   "t": 1793372372.357,
+   "stage": "schedules",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 13.95
+  }
+ ],
+ "review": [],
+ "stages": [
+  "schedules"
+ ]
+}

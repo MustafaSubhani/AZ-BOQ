@@ -16,3 +16,26 @@
 - {id: BM-013, item: tower_smoke_detectors, lines: ["4.12.3", "4.12.4", "4.12.12"], relation: equal, citation: "bill 4.12 smoke detectors and bases"}
 - {id: BM-014, item: tower_manual_call, lines: ["4.12.5", "4.12.6"], relation: equal, citation: "bill 4.12 manual call points"}
 - {id: BM-015, item: basement_wall_area, lines: ["2.4.1"], relation: equal, citation: "bill 2.4.1 basement limestone wall (m²)"}
+- {id: BM-016, item: depot_window_glass, lines: ["2.6.7"], relation: equal, citation: "bill 2.6.7 window glass, 252 m²"}
+- {id: BM-019, item: depot_keramzit_basement, lines: ["2.7.3"], relation: equal, citation: "bill 2.7.3 keramzit, 1.533 m³"}
+- {id: BM-020, item: depot_poly_type4, lines: ["2.7.30"], relation: equal, citation: "bill 2.7.30 polystyrene, 7.322 m³"}
+- {id: BM-021, item: depot_poly_type5, lines: ["2.7.37"], relation: equal, citation: "bill 2.7.37 polystyrene, 13.174 m³"}
+- {id: BM-022, item: depot_mesh_type4, lines: ["2.7.31", "2.7.32"], relation: equal, citation: "bill 2.7.31 and 2.7.32 mesh, 0.141 t"}
+- {id: BM-023, item: depot_mesh_type5, lines: ["2.7.38", "2.7.39"], relation: equal, citation: "bill 2.7.38 and 2.7.39 mesh, 0.254 t"}
+- {id: BM-017, item: depot_window_pvc, lines: ["2.6.8"], relation: equal, citation: "bill 2.6.8 PVC window, 2.88 m²"}
+- {id: BM-018, item: depot_glazed_doors, lines: ["2.6.10"], relation: equal, citation: "bill 2.6.10 glazed doors, 39 m²"}
+- {id: BM-030, item: depot_window_sills, lines: ["2.6.11"], relation: equal, citation: "bill 2.6.11 window sills, 37.52 m²"}
+- {id: BM-035, item: depot_metal_doors, lines: ["2.6.1"], relation: equal, citation: "bill 2.6.1 metal door blocks, 23.1 m²"}
+- {id: BM-036, item: depot_pvc_doors_to_3, lines: ["2.6.2"], relation: equal, citation: "bill 2.6.2 PVC doors up to 3 m², 41.79 m²"}
+- {id: BM-037, item: depot_mdf_doors_to_3, lines: ["2.6.3"], relation: equal, citation: "bill 2.6.3 MDF doors up to 3 m², 71.19 m²"}
+- {id: BM-038, item: depot_mdf_doors_over_3, lines: ["2.6.4"], relation: equal, citation: "bill 2.6.4 MDF doors over 3 m², 15.54 m²"}
+- {id: BM-031, item: fire_tank_cover, lines: ["10.1.24", "11.1.24"], relation: equal, citation: "bill 10.1.24 and 11.1.24 fire-tank cover, 4.13 m³"}
+- {id: BM-032, item: fire_tank_walls_bottom, lines: ["10.1.15", "11.1.15"], relation: equal, citation: "bill 10.1.15 and 11.1.15 fire-tank walls and bottom, 27.73 m³"}
+- {id: BM-033, item: drinking_tank_cover, lines: ["12.1.22", "13.1.22"], relation: equal, citation: "bill 12.1.22 and 13.1.22 drinking-tank cover, 1.58 m³"}
+- {id: BM-034, item: drinking_tank_walls_bottom, lines: ["12.1.13", "13.1.13"], relation: equal, citation: "bill 12.1.13 and 13.1.13 drinking-tank walls and bottom, 14.49 m³"}
+- {id: BM-024, item: depot_ceiling_whitewash, lines: ["2.8.1"], relation: equal, citation: "bill 2.8.1 basement ceiling whitewash, 1333.6 m²"}
+- {id: BM-025, item: depot_ceiling_paint, lines: ["2.8.2", "2.8.3"], relation: equal, citation: "bill 2.8.2 and 2.8.3 ceiling plaster and paint, 1983.9 m²"}
+- {id: BM-026, item: depot_ceiling_plasterboard, lines: ["2.8.4", "2.8.5"], relation: equal, citation: "bill 2.8.4 and 2.8.5 plasterboard ceiling, 96 m²"}
+- {id: BM-027, item: depot_ceiling_metal, lines: ["2.8.6"], relation: equal, citation: "bill 2.8.6 aluminium suspended ceiling, 86.6 m²"}
+- {id: BM-028, item: depot_wall_whitewash, lines: ["2.8.7", "2.8.8"], relation: equal, citation: "bill 2.8.7 and 2.8.8 basement walls, 3260 m²"}
+- {id: BM-029, item: depot_wall_plaster, lines: ["2.8.9", "2.8.10"], relation: equal, citation: "bill 2.8.9 and 2.8.10 wall plaster and paint, 3647 m²"}

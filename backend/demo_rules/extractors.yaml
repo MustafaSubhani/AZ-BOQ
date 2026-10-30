@@ -3,6 +3,7 @@
   label_en: Depot long side
   building: depot
   element: plan_size
+  billable: false
   unit: m
   type: dimension_max_h
   factor: 0.001
@@ -22,6 +23,7 @@
   label_en: Depot short side
   building: depot
   element: plan_size
+  billable: false
   unit: m
   type: dimension_max_v
   factor: 0.001
@@ -41,6 +43,7 @@
   label_en: Bay module
   building: depot
   element: plan_size
+  billable: false
   unit: m
   type: dimension_mode
   factor: 0.001
@@ -55,6 +58,7 @@
   label_en: Basement storey height
   building: depot
   element: storey_height
+  billable: false
   unit: m
   type: floor_level_depth
   files:
@@ -68,6 +72,7 @@
   label_en: Upper storey height
   building: depot
   element: storey_height
+  billable: false
   unit: m
   type: slab_level_step
   files:
@@ -263,36 +268,96 @@
   files:
   - NƏZARƏT
   citation: NƏZARƏT.dwg sheet 9336-04-MT roof element schedule 'Cəmi 0.33'
-- id: fire_tank_concrete
-  label_az: Yanğın su anbarı, beton B25 (elementlər üzrə)
-  label_en: Fire tank, concrete B25 per element
+- id: fire_tank_cover
+  label_az: Yanğın su anbarı, örtük tavası
+  label_en: Fire tank cover slab
   building: fire_tanks
   element: concrete
   unit: m³
-  type: sum_pattern
-  pattern: ^beton "?b ?25"?$
-  value_unit: m³
-  fold: true
+  type: tank_part
+  role: cover
   files:
   - yangin su anbari dk
-  pdfs:
-  - Yangin su anbari.pdf
-  citation: Fire-tank DK sheets, 'Beton "B25" … m³' in each material table
-- id: drinking_tank_concrete
-  label_az: İçməli su anbarı, beton B25 (elementlər üzrə)
-  label_en: Drinking tank, concrete B25 per element
+  citation: 'Fire-tank DK, Örtük tavasının armaturlanması: Beton B25'
+- id: fire_tank_bottom
+  label_az: Yanğın su anbarı, bünövrə tavası
+  label_en: Fire tank bottom slab
+  building: fire_tanks
+  element: concrete
+  billable: false
+  unit: m³
+  type: tank_part
+  role: bottom
+  files:
+  - yangin su anbari dk
+  citation: 'Fire-tank DK, Bünövrə tavasının armaturlanması: Beton "B 25"'
+- id: fire_tank_wall
+  label_az: Yanğın su anbarı, Md-1 divar (1 ədəd)
+  label_en: Fire tank wall Md-1, one element
+  building: fire_tanks
+  element: concrete
+  billable: false
+  unit: m³
+  type: tank_part
+  role: wall
+  files:
+  - yangin su anbari dk
+  citation: 'Fire-tank DK, Monolit divar Md-1, marked 1 ədəd üçün'
+- id: fire_tank_walls_bottom
+  label_az: Yanğın su anbarı, divarlar və dib
+  label_en: Fire tank walls and bottom
+  building: fire_tanks
+  element: concrete
+  unit: m³
+  type: tank_sum
+  files:
+  - yangin su anbari dk
+  citation: 'Fire-tank DK: bottom plus one Md-1 wall times the plan count. The count is not assumed.'
+- id: drinking_tank_cover
+  label_az: İçməli su anbarı, örtük tavası
+  label_en: Drinking tank cover slab
   building: drinking_tanks
   element: concrete
   unit: m³
-  type: sum_pattern
-  pattern: ^beton "?b ?25"?$
-  value_unit: m³
-  fold: true
+  type: tank_part
+  role: cover
   files:
   - icmeli su anbari dk
-  pdfs:
-  - icmeli su anbari
-  citation: Drinking-tank DK sheets, material tables
+  citation: 'Drinking-tank DK, Örtük tavasının armaturlanması: Beton B25'
+- id: drinking_tank_bottom
+  label_az: İçməli su anbarı, bünövrə tavası
+  label_en: Drinking tank bottom slab
+  building: drinking_tanks
+  element: concrete
+  billable: false
+  unit: m³
+  type: tank_part
+  role: bottom
+  files:
+  - icmeli su anbari dk
+  citation: 'Drinking-tank DK, Bünövrə tavasının armaturlanması: Beton B25'
+- id: drinking_tank_wall
+  label_az: İçməli su anbarı, divarlar
+  label_en: Drinking tank walls
+  building: drinking_tanks
+  element: concrete
+  billable: false
+  unit: m³
+  type: tank_part
+  role: wall
+  files:
+  - icmeli su anbari dk
+  citation: 'Drinking-tank DK wall table. It does not say 1 ədəd üçün, so the printed volume is the walls.'
+- id: drinking_tank_walls_bottom
+  label_az: İçməli su anbarı, divarlar və dib
+  label_en: Drinking tank walls and bottom
+  building: drinking_tanks
+  element: concrete
+  unit: m³
+  type: tank_sum
+  files:
+  - icmeli su anbari dk
+  citation: 'Drinking-tank DK: bottom plus the wall-table volume, with no multiplier'
 - id: tower_smoke_detectors
   label_az: Qüllə, tüstü xəbərvericiləri
   label_en: Tower, smoke detectors
@@ -335,6 +400,255 @@
     basement_height_m:
       from: storey_basement
   citation: 'Brief §4.1: wall area = net length × storey height'
+- id: depot_keramzit_basement
+  label_az: Zirzəmi tip 2, keramzit
+  label_en: Basement type 2 keramzit
+  building: depot
+  element: floor_layer
+  unit: m³
+  type: layer_measure
+  page: 20
+  floor: basement
+  type_no: "2"
+  material: keramzit
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf floor schedule, basement type 2: keramzit çınqılı-35 mm times the row area'
+- id: depot_poly_type4
+  label_az: 1-ci mərtəbə tip 4, penopolistirol
+  label_en: First floor type 4 polystyrene
+  building: depot
+  element: floor_layer
+  unit: m³
+  type: layer_measure
+  page: 20
+  floor: floor_1
+  type_no: "4"
+  material: penopolist
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf floor schedule, 1st floor type 4: penopolisterol 70 mm times the row area'
+- id: depot_poly_type5
+  label_az: 1-ci mərtəbə tip 5, penopolistirol
+  label_en: First floor type 5 polystyrene
+  building: depot
+  element: floor_layer
+  unit: m³
+  type: layer_measure
+  page: 20
+  floor: floor_1
+  type_no: "5"
+  material: penopolist
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf floor schedule, 1st floor type 5: penopolisterol 70 mm times the row area'
+- id: depot_mesh_type4
+  label_az: 1-ci mərtəbə tip 4, tor
+  label_en: First floor type 4 mesh
+  building: depot
+  element: floor_mesh
+  unit: t
+  type: layer_measure
+  page: 20
+  floor: floor_1
+  type_no: "4"
+  material: torlu
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf floor schedule, 1st floor type 4: 1m2 -1.35kq times the row area'
+- id: depot_mesh_type5
+  label_az: 1-ci mərtəbə tip 5, tor
+  label_en: First floor type 5 mesh
+  building: depot
+  element: floor_mesh
+  unit: t
+  type: layer_measure
+  page: 20
+  floor: floor_1
+  type_no: "5"
+  material: torlu
+  weight_from_type: "4"
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf floor schedule: type 5 has a mesh layer; 1.35 kg/m² is printed on type 4'
+- id: depot_ceiling_whitewash
+  label_az: Zirzəmi tavanı, əhəng
+  label_en: Basement ceiling whitewash
+  building: depot
+  element: ceiling
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: ceiling
+  kind: whitewash
+  floors: [basement]
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule, basement ceiling: Əhənglə ağardılır'
+- id: depot_ceiling_paint
+  label_az: Tavan, hamarlama və emulsiya
+  label_en: Ceiling plaster and emulsion
+  building: depot
+  element: ceiling
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: ceiling
+  kind: paint
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule: smoothed and emulsion ceiling areas, every floor'
+- id: depot_ceiling_plasterboard
+  label_az: Alçıpan asma tavan
+  label_en: Plasterboard ceiling
+  building: depot
+  element: ceiling
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: ceiling
+  kind: plasterboard
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule, room 10: alçıpan asma tavan'
+- id: depot_ceiling_metal
+  label_az: Metal asma tavan
+  label_en: Metal suspended ceiling
+  building: depot
+  element: ceiling
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: ceiling
+  kind: metal
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule: metal asma tavan rows'
+- id: depot_wall_whitewash
+  label_az: Zirzəmi divarları, suvaq və əhəng
+  label_en: Basement wall plaster and whitewash
+  building: depot
+  element: wall
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: wall
+  kind: whitewash
+  floors: [basement]
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule, basement walls: suvanır və əhənglə ağardılır'
+- id: depot_wall_plaster
+  label_az: Divar suvağı və emulsiya
+  label_en: Wall plaster and emulsion
+  building: depot
+  element: wall
+  unit: m²
+  type: finish_sum
+  page: 21
+  side: wall
+  kind: plaster
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf finish schedule: plaster and emulsion wall areas above the basement'
+- id: depot_window_glass
+  label_az: Pəncərə şüşəsi P-1…P-4
+  label_en: Window glass P-1 to P-4
+  building: depot
+  element: window
+  unit: m²
+  type: window_openings
+  page: 21
+  marks: [P-1, P-2, P-3, P-4]
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf window schedule (Qapı-pəncərə və pəncərələrin təsnifatı): area is B × H × count for P-1 to P-4'
+- id: depot_window_pvc
+  label_az: P-5 PVC pəncərə
+  label_en: PVC window P-5
+  building: depot
+  element: window
+  unit: m²
+  type: window_openings
+  page: 21
+  marks: [P-5]
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf window schedule: P-5 is 1600 × 1800 mm, one opening'
+- id: depot_glazed_doors
+  label_az: Şüşəli qapılar QP-1…QP-3
+  label_en: Glazed doors QP-1 to QP-3
+  building: depot
+  element: door
+  unit: m²
+  type: window_openings
+  page: 21
+  marks: [QP-1, QP-2, QP-3]
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf window schedule: area is B × H × count for QP-1 to QP-3'
+- id: depot_window_sills
+  label_az: Pəncərəaltı tavalar Pa-1…Pa-5
+  label_en: Window sills Pa-1 to Pa-5
+  building: depot
+  element: sill
+  unit: m²
+  type: window_sills
+  page: 21
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf window schedule: each Pa size is length × depth × thickness, times the count of that row'
+- id: depot_metal_doors
+  label_az: Metal qapılar
+  label_en: Metal doors
+  building: depot
+  element: door
+  unit: m²
+  type: door_openings
+  page: 22
+  material: metal
+  pdfs:
+  - 9335 MH.pdf
+  citation: '9335 MH.pdf door schedule: metal rows Q-1, Q-9 and Q-9*, width × height × count'
+- id: depot_pvc_doors_to_3
+  label_az: PVC qapılar, 3 m²-dək
+  label_en: PVC doors up to 3 m²
+  building: depot
+  element: door
+  unit: m²
+  type: door_openings
+  page: 22
+  material: pvc
+  max_opening_m2: 3
+  pdfs:
+  - 9335 MH.pdf
+  citation: 'Bill 2.6.2 says boşluğun sahəsi 3 m²-dək; the areas are the PVC rows on the door schedule'
+- id: depot_mdf_doors_to_3
+  label_az: MDF qapılar, 3 m²-dək
+  label_en: MDF doors up to 3 m²
+  building: depot
+  element: door
+  unit: m²
+  type: door_openings
+  page: 22
+  material: mdf
+  max_opening_m2: 3
+  pdfs:
+  - 9335 MH.pdf
+  citation: 'Bill 2.6.3 says boşluğun sahəsi 3 m²-ə qədər (MDF); the areas are the MDF rows on the door schedule'
+- id: depot_mdf_doors_over_3
+  label_az: MDF qapılar, 3 m²-dən artıq
+  label_en: MDF doors over 3 m²
+  building: depot
+  element: door
+  unit: m²
+  type: door_openings
+  page: 22
+  material: mdf
+  min_opening_m2: 3
+  pdfs:
+  - 9335 MH.pdf
+  citation: 'Bill 2.6.4 says boşluğun sahəsi 3 m²-dən artıq (MDF); the areas are the MDF rows on the door schedule'
 - id: wall_length_depot
   label_az: Deponun xarici divar uzunluğu (netto)
   label_en: Depot external wall net length
@@ -343,6 +657,7 @@
   unit: m
   type: not_implemented
   searched:
-  - '(SON).dwg wall layers (Xarici divarlar, стены): pairing of parallel lines at 400 mm is not built yet'
-  - door and window schedule for opening deductions
-  citation: 'Plan §11: geometry wall pairing'
+  - '(SON).dwg wall layers: parallel lines at 400 mm are not paired yet'
+  - door and window openings would be deducted from that length
+  - 'hatch areas on the second-floor plan sum to about 72 m²; the room schedule total is 779 m², so hatches are not the floor or the wall'
+  citation: 'Plan §11: geometry wall pairing. Hatch areas were compared with the room schedule and do not agree, so they are not used.'

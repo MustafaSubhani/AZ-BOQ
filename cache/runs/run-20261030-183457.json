@@ -1,0 +1,209 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793367282.351,
+   "stage": "schedules",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793367285.041,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 2 yerlik ayaqyolu.pdf: 1 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367285.398,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 İSTİLİK MƏNTƏQƏSİ.pdf: 3 ruled tables, 1 area cells"
+  },
+  {
+   "t": 1793367287.438,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 MH.pdf: 11 ruled tables, 17 area cells"
+  },
+  {
+   "t": 1793367287.686,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 nəzarətçi otağı.pdf: 3 ruled tables, 3 area cells"
+  },
+  {
+   "t": 1793367288.724,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 Qüllə.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367289.157,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 su nasos stansiyası.pdf: 3 ruled tables, 1 area cells"
+  },
+  {
+   "t": 1793367289.372,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "KTY-250kVA- Xocavənd.pdf: 2 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367289.784,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend yangi ve icmeli su anbari .pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.21,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavend Yangin su anbari.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.253,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji effektivliyi hesabatı.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.265,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Enerji sinfi.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.391,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd depo son istilik itkiləri.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.444,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "Xocavənd izolyasiya.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.844,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 EE.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.88,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367290.924,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "1.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.139,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "9335 KTM.pdf: 2 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.19,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "-AT.pdf: 1 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.347,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "su nasos stansiyasi 9335.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.38,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.453,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "NBM 9335.pdf: 1 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.489,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "AT.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.76,
+   "stage": "schedules",
+   "kind": "info",
+   "message": "QULLE 9335.pdf: 0 ruled tables, 0 area cells"
+  },
+  {
+   "t": 1793367291.76,
+   "stage": "schedules",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 9.41
+  },
+  {
+   "t": 1793367293.074,
+   "stage": "index",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793367295.914,
+   "stage": "index",
+   "kind": "info",
+   "message": "78569 numbers indexed, 31207 strong"
+  },
+  {
+   "t": 1793367295.914,
+   "stage": "index",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 2.84
+  },
+  {
+   "t": 1793367296.019,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793367297.031,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 2, matched 29, not_found 1290, printed 137, review 703"
+  },
+  {
+   "t": 1793367297.031,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.01
+  }
+ ],
+ "review": [],
+ "stages": [
+  "schedules",
+  "index",
+  "match"
+ ]
+}

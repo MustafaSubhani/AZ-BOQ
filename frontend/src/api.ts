@@ -14,6 +14,14 @@ export async function postJSON<T>(path: string, body: unknown): Promise<T> {
 
 const cache = new Map<string, Promise<unknown>>()
 
+export function clearCache(prefix?: string) {
+  if (!prefix) {
+    cache.clear()
+    return
+  }
+  for (const key of [...cache.keys()]) if (key.startsWith(prefix)) cache.delete(key)
+}
+
 export function useData<T>(path: string | null): { data: T | null; error: string | null; loading: boolean } {
   const [state, setState] = useState<{ data: T | null; error: string | null; loading: boolean }>({ data: null, error: null, loading: !!path })
   useEffect(() => {

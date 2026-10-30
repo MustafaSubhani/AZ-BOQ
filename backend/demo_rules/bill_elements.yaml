@@ -1,0 +1,16 @@
+# Element words for bill descriptions. The first rule that fits wins.
+# Stems match an Azerbaijani ending (divarların). words match a whole word (nov, not növbəti).
+- {id: EL-001, element: sill, all: [pencerealti], citation: "bill 2.6.11 pəncərəaltı"}
+- {id: EL-002, element: downpipe, any: [novalca], phrases: ["su axidici"], citation: "bill 2.5.14 su axıdıcı and novalça"}
+- {id: EL-003, element: gutter, words: [nov], citation: "bill 2.5.13 nov; növbəti is a different word"}
+- {id: EL-004, element: window, all: [pencere], citation: "bill 2.6.7 pəncərə"}
+- {id: EL-005, element: door, all: [qapi], citation: "bill 2.6.1 qapı"}
+- {id: EL-006, element: mesh, phrases: ["armatur meftil"], citation: "bill mesh lines, armatur məftil"}
+- {id: EL-007, element: mesh, all: [dosenek, armatur], citation: "bill döşənək armaturlanması"}
+- {id: EL-008, element: polystyrene, all: [penopolist], citation: "bill 2.7.30 penopolistirol"}
+- {id: EL-009, element: porcelain, all: [keramoqranit], citation: "bill keramoqranit floor"}
+- {id: EL-010, element: laminate, all: [laminat], citation: "bill laminat floor"}
+- {id: EL-011, element: terrazzo, any: [mozaik, terraso], citation: "bill mozaik and terraso floors"}
+- {id: EL-012, element: wall_tiles, all: [divar], any: [keramik, tavala], confirm: true, citation: "bill 2.8.12 divar tile facing (tavalarla üzlənmə); the schedule says keramik. Confirm before using 190 and 180 m²"}
+- {id: EL-013, element: wall_plaster, all: [divar, suva], citation: "bill 2.8.9 and 2.8.11 divarların suvanması"}
+- {id: EL-014, element: ceiling, all: [tavan], citation: "bill 2.8.1 zirzəmi tavan"}

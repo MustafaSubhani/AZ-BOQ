@@ -13,9 +13,28 @@ type Meta = {
   lines?: { text: string; bbox: number[] }[]
   number?: string | null
   scanned?: boolean
+  transform?: { kind: string; scale: number; offset?: number[]; bbox?: number[]; dpi?: number }
 }
 
 export type Mark = { x: number; y: number; w?: number; h?: number; label?: string }
+
+export type SheetShape = {
+  id: string
+  kind: string
+  points: number[][]
+  label: string
+  area_m2: number | null
+  status?: string | null
+  lines?: string[]
+  room?: string | null
+  schedule_m2?: number | null
+}
+
+const SHAPE_COLOR: Record<string, string> = {
+  room: '#2f6fed',
+  area_unlinked: '#8a8f98',
+  area_conflict: '#c2410c',
+}
 
 const metaCache = new Map<string, Promise<Meta>>()
 
@@ -47,9 +66,20 @@ async function resolveRegion(t: Target): Promise<Target> {
 
 /** Marker position in image pixels. DWG: model coordinates inside the region box. PDF: points from the top-left. */
 function markOf(t: Target, meta: Meta, img: { w: number; h: number }): Mark | null {
+  const tr = meta.transform
+  if (t.kind === 'dwg' && t.at && tr?.kind === 'dxf' && tr.bbox && tr.offset) {
+    const [x0, , , y1] = tr.bbox
+    const [ox, oy] = tr.offset
+    return { x: ox + (t.at[0] - x0) * tr.scale, y: oy + (y1 - t.at[1]) * tr.scale, label: t.label }
+  }
   if (t.kind === 'dwg' && t.at && meta.bbox) {
     const [x0, y0, x1, y1] = meta.bbox
     return { x: ((t.at[0] - x0) / (x1 - x0)) * img.w, y: ((y1 - t.at[1]) / (y1 - y0)) * img.h, label: t.label }
+  }
+  if (t.kind === 'pdf' && t.bbox && tr?.kind === 'pdf') {
+    const s = tr.scale
+    const [a, b, c, d] = t.bbox
+    return { x: a * s, y: b * s, w: (c - a) * s, h: (d - b) * s, label: t.label }
   }
   if (t.kind === 'pdf' && t.bbox && meta.width) {
     const k = img.w / meta.width
@@ -59,7 +89,7 @@ function markOf(t: Target, meta: Meta, img: { w: number; h: number }): Mark | nu
   return null
 }
 
-export function Viewer({ target, onMeta, extraMarks, emptyText }: { target: Target | null; onMeta?: (m: Meta | null, t: Target | null) => void; extraMarks?: (meta: Meta, img: { w: number; h: number }) => Mark[]; emptyText?: string }) {
+export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selectedShape, onShape }: { target: Target | null; onMeta?: (m: Meta | null, t: Target | null) => void; extraMarks?: (meta: Meta, img: { w: number; h: number }) => Mark[]; emptyText?: string; shapes?: SheetShape[]; selectedShape?: string | null; onShape?: (id: string | null) => void }) {
   const box = useRef<HTMLDivElement>(null)
   const [state, setState] = useState<{ meta: Meta | null; t: Target | null; error: string | null; loading: boolean }>({ meta: null, t: null, error: null, loading: false })
   const [img, setImg] = useState<{ w: number; h: number } | null>(null)
@@ -199,6 +229,25 @@ export function Viewer({ target, onMeta, extraMarks, emptyText }: { target: Targ
                     </g>
                   )
                 ) : null}
+              </svg>
+            ) : null}
+            {img && shapes?.length ? (
+              <svg className="shapes" width={img.w} height={img.h} style={{ transform }}>
+                {shapes.map((shape) => (
+                  <polygon
+                    key={shape.id}
+                    points={shape.points.map((p) => p.join(',')).join(' ')}
+                    className={['shape', shape.id === selectedShape ? 'selected' : '', shape.status === 'different' || shape.kind === 'area_conflict' ? 'bad' : ''].join(' ')}
+                    style={{ ['--c' as string]: SHAPE_COLOR[shape.kind] || SHAPE_COLOR.area_unlinked }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onShape?.(shape.id)
+                    }}
+                  >
+                    <title>{`${shape.label}${shape.area_m2 != null ? ` · ${shape.area_m2.toFixed(2)} m²` : ''}`}</title>
+                  </polygon>
+                ))}
               </svg>
             ) : null}
           </>

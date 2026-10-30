@@ -2,7 +2,8 @@
 import ast
 from pathlib import Path
 
-ENGINE = Path(__file__).resolve().parents[1] / "azboq" / "engine"
+ROOT = Path(__file__).resolve().parents[1] / "azboq"
+SCAN = [ROOT / "engine", ROOT / "match", ROOT / "export"]
 ALLOW = "# allow-default:"
 
 
@@ -46,9 +47,10 @@ def _violations(path: Path):
 
 def test_engine_has_no_silent_defaults():
     problems = []
-    for path in sorted(ENGINE.rglob("*.py")):
-        for line, what in _violations(path):
-            problems.append(f"{path.relative_to(ENGINE.parent)}:{line}: {what}")
+    for folder in SCAN:
+        for path in sorted(folder.rglob("*.py")):
+            for line, what in _violations(path):
+                problems.append(f"{path.relative_to(ROOT)}:{line}: {what}")
     assert not problems, "silent defaults found:\n" + "\n".join(problems)
 
 

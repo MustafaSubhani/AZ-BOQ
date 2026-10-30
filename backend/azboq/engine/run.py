@@ -3,6 +3,7 @@ import re
 
 from .. import rules as R
 from .. import runlog
+from ..text.normalise import fold_key
 from ..values import Method, Source, Status, Value, iter_sources
 from . import locate as L
 from .extract import run_rule
@@ -32,10 +33,10 @@ def _project_conflicts() -> list[dict]:
     for c in R.load("conflicts"):
         sides = []
         for s in c["sides"]:
-            needle = s["search"].lower()
+            needle = fold_key(s["search"])
             hits = []
             for sha, t in texts:
-                if needle in t["text"].lower():
+                if needle in fold_key(t["text"]):
                     hits.append({"file": L.files()[sha]["rel"], "file_id": sha, "handle": t["handle"],
                                  "text": t["text"][:160], "region": (L.region_of(sha, t["at"]) or {}).get("id")})
                     if len(hits) >= 3:
@@ -65,6 +66,7 @@ def run_takeoff() -> dict:
             first = next(iter_sources(v), None)
             items.append({"id": rule["id"], "label_az": rule["label_az"], "label_en": rule["label_en"],
                           "building": rule["building"], "element": rule["element"], "unit": rule["unit"],
+                          "billable": rule.get("billable", True),
                           "type": rule["type"], "citation": rule["citation"], "parent": bool(rule.get("parent")),
                           "value": v.to_dict(), "viewer": first.to_dict() if first else None})
             _ledger(rule["id"], rule["label_en"], v, ledger)

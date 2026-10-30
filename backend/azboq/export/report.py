@@ -32,7 +32,7 @@ def write_report_xlsx(report: dict, path: Path):
         c.font = bold
     for key, title, _ in LISTS:
         rows = report["lists"].get(key, [])
-        ws.append([title, len(rows), round(sum(r["amount"] or 0 for r in rows), 2)])
+        ws.append([title, len(rows), round(sum(r["amount"] or 0 for r in rows), 2)])  # allow-default: money total, not a quantity
     ws.append(["Total", sum(len(report["lists"].get(k, [])) for k, *_ in LISTS), report["total_value"]])
     ws.column_dimensions["A"].width = 28
     ws.column_dimensions["B"].width = 10
@@ -94,7 +94,7 @@ def write_report_pdf(report: dict, path: Path):
     state["y"] += 26
     for key, title, note in LISTS:
         rows = report["lists"].get(key, [])
-        text(40, f"{title}: {len(rows)} lines, {sum(r['amount'] or 0 for r in rows):,.2f} AZN of line value", 10, True)
+        text(40, f"{title}: {len(rows)} lines, {sum(r['amount'] or 0 for r in rows):,.2f} AZN of line value", 10, True)  # allow-default: money total, not a quantity
         state["y"] += 14
     for key, title, note in LISTS[:3]:
         rows = report["lists"].get(key, [])

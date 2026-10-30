@@ -131,9 +131,11 @@ def render_region(dxf_path: str, bbox, out: Path, width_px: int = 2400) -> dict:
 
 def _meta(bbox, out: Path) -> dict:
     from PIL import Image
+    from ..crops import region_transform
     with Image.open(out) as im:
         w, h = im.size
-    return {"png": str(out), "width": w, "height": h, "bbox": list(bbox)}
+    return {"png": str(out), "width": w, "height": h, "bbox": list(bbox),
+            "transform": region_transform(list(bbox), w, h)}
 
 
 def render_all(sheets: dict, dxf_path_for, log) -> dict:

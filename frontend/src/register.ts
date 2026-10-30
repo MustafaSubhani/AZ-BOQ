@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useData } from './api'
 
-export type Sheet = { id?: string; page?: number; number?: any; building?: string | null; discipline?: string | null; title?: string | null; scale?: string | number | null; paper?: string | null; method?: string; text_count?: number; kind?: string }
+export type Sheet = { id?: string; page?: number; number?: any; building?: string | null; discipline?: string | null; title?: string | null; scale?: string | number | null; paper?: string | null; method?: string; text_count?: number; kind?: string; copy_of?: string | null; only_other_order?: string | null }
 export type FileRow = {
   sha256: string
   rel: string

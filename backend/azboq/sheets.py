@@ -73,9 +73,17 @@ def classify_sheet(stamp_texts: list[str], file_building: str, file_discipline: 
 TITLE_RE = re.compile(r"(?i)planı|plan\b|kəsim|fasad|təsnif|eksplik|sxem|spesif|balans|səviyyəsində")
 
 
+def _title_text(text: str) -> bool:
+    """'plan' inside Baş plan or planlaşdırma is not the drawing title."""
+    key = fold_key(text)
+    if "bas plan" in key or "planlasdir" in key:
+        return False
+    return bool(TITLE_RE.search(text))
+
+
 def region_title(texts_in_region: list[dict], fallback: str) -> str:
     """The sheet's drawing title: the largest text that reads like a title, else the stamp's."""
-    cands = [t for t in texts_in_region if TITLE_RE.search(t["text"]) and len(t["text"]) < 160]
+    cands = [t for t in texts_in_region if _title_text(t["text"]) and len(t["text"]) < 160]
     if not cands:
         return fallback
     return max(cands, key=lambda t: (t["h"], -len(t["text"])))["text"].replace("\n", " ")[:120]
@@ -152,6 +160,7 @@ def detect_regions(dump: dict, file_building: str, file_discipline: str) -> list
         regions.append({"id": "R0", "bbox": (min(xs), min(ys), max(xs), max(ys)), "paper": None, "scale": None,
                         "method": "no frame found: whole drawing is one region", **info,
                         "text_count": len(texts)})
+    assign_families(regions)
     return regions
 
 
@@ -206,6 +215,62 @@ def _cluster_regions(texts, regions, file_building, file_discipline) -> list[dic
         out.append({"id": f"R{n0 + len(out) + 1}", "bbox": (x0, y0, x1, y1), "paper": None, "scale": None,
                     "inner": False, "handle": None, "layer": None, "area": w * h, **info,
                     "method": "text cluster with a title block (no frame rectangle found)", "text_count": len(members)})
+    return out
+
+
+def assign_families(regions: list[dict]) -> None:
+    """Sheets repeated for another order are one sheet. The 9335 (or 9526) copy is the one that is read."""
+    fams: dict[tuple, list[dict]] = {}
+    for r in regions:
+        n = r.get("number") or {}
+        if not n.get("mark"):
+            continue
+        key = (n.get("mark"), n.get("discipline_mark"), fold_key(r.get("title") or "")[:60])
+        fams.setdefault(key, []).append(r)
+    for members in fams.values():
+        canon = [r for r in members if (r.get("number") or {}).get("order") in ("9335", "9526")]
+        keep = canon[0] if canon else members[0]
+        keep_id = keep.get("id", keep.get("page"))
+        keep_order = (keep.get("number") or {}).get("order")
+        if not canon:
+            keep["only_other_order"] = True
+        for r in members:
+            r["family"] = keep_id
+            # Two sheets that both carry 9335 are not copies of each other. A 9336 print of a 9335 sheet is.
+            order = (r.get("number") or {}).get("order")
+            if r is not keep and (not canon or order != keep_order):
+                r["copy_of"] = keep_id
+
+
+def copy_differences(texts: list[dict], regions: list[dict]) -> list[dict]:
+    """Numbers printed on a copy but not on the canonical sheet, and the reverse."""
+    from .text.normalise import numbers_in
+    by_id = {r.get("id", r.get("page")): r for r in regions}
+
+    def nums(bbox):
+        found = set()
+        for t in texts:
+            if not (bbox[0] <= t["at"][0] <= bbox[2] and bbox[1] <= t["at"][1] <= bbox[3]):
+                continue
+            for _tok, value in numbers_in(t.get("text") or ""):
+                found.add(round(abs(value), 3))
+        return found
+
+    out = []
+    for r in regions:
+        if not r.get("copy_of"):
+            continue
+        canon = by_id.get(r["copy_of"])
+        if not canon or "bbox" not in r or "bbox" not in canon:
+            continue
+        on_copy, on_canon = nums(r["bbox"]), nums(canon["bbox"])
+        if on_copy == on_canon:
+            continue
+        out.append({"copy": r.get("id"), "canonical": canon.get("id"),
+                    "sheet": (r.get("number") or {}).get("raw"),
+                    "canonical_sheet": (canon.get("number") or {}).get("raw"),
+                    "only_on_copy": sorted(on_copy - on_canon)[:6],
+                    "only_on_canonical": sorted(on_canon - on_copy)[:6]})
     return out
 
 

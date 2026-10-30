@@ -16,7 +16,7 @@ TRADE_DISCIPLINES = {
     "seating": ["structure"], "misc": ["architecture", "structure"], "other": ["architecture", "structure", "site"],
 }
 BUILDING_ALIASES = {"fire_tank_3": "fire_tanks", "fire_tank_3a": "fire_tanks", "drinking_tank_5": "drinking_tanks",
-                    "drinking_tank_5a": "drinking_tanks"}
+                    "drinking_tank_5a": "drinking_tanks", "sand_pit": "sand_pit"}
 
 
 def _sheet_sources():
@@ -49,7 +49,7 @@ def build_source_map() -> dict:
         b = BUILDING_ALIASES.get(line["building"], line["building"])
         c = cells[(b, line["trade"])]
         c["lines"] += 1
-        c["value"] += line["amount"] or 0.0
+        c["value"] += line["amount"] or 0.0  # allow-default: money total, not a quantity
     rows = []
     for (building, trade), c in sorted(cells.items(), key=lambda kv: -kv[1]["value"]):
         found = []

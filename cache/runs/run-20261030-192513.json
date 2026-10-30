@@ -1,0 +1,69 @@
+{
+ "versions": {
+  "python": "3.14.7",
+  "engine": "0.1.0",
+  "ezdxf": "1.4.4",
+  "openpyxl": "3.1.5",
+  "pymupdf": "1.28.2",
+  "oda": "D:\\AZ-BOQ\\tools\\oda\\ODAFileConverter.exe",
+  "libredwg_web": "0.7.9",
+  "node": "v24.19.0"
+ },
+ "events": [
+  {
+   "t": 1793370312.278,
+   "stage": "match",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793370313.358,
+   "stage": "match",
+   "kind": "info",
+   "message": "blocked 1, derived 13, different 17, matched 52, not_found 1196, printed 140, review 756"
+  },
+  {
+   "t": 1793370313.412,
+   "stage": "match",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 1.13
+  },
+  {
+   "t": 1793370313.493,
+   "stage": "floors",
+   "kind": "start",
+   "message": "stage started"
+  },
+  {
+   "t": 1793370313.555,
+   "stage": "floors",
+   "kind": "warning",
+   "message": "build-up 14.2.10, 14.2.11, 14.2.12 names more than one floor: basement, roof"
+  },
+  {
+   "t": 1793370313.569,
+   "stage": "floors",
+   "kind": "info",
+   "message": "basement 90, floor_1 46, floor_2 60, roof 118, unstated 1861"
+  },
+  {
+   "t": 1793370313.569,
+   "stage": "floors",
+   "kind": "end",
+   "message": "stage finished",
+   "seconds": 0.08
+  }
+ ],
+ "review": [
+  {
+   "stage": "floors",
+   "severity": "warning",
+   "message": "build-up 14.2.10, 14.2.11, 14.2.12 names more than one floor: basement, roof"
+  }
+ ],
+ "stages": [
+  "floors",
+  "match"
+ ]
+}

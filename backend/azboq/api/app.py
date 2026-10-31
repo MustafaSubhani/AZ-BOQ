@@ -13,8 +13,7 @@ from .. import config, store
 from ..text import translate
 
 app = FastAPI(title="AZ-BOQ demo")
-app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
-                   allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 
 
 def _need(name: str):

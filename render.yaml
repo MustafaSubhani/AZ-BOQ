@@ -1,0 +1,24 @@
+# Render Blueprint for the API. Leave rootDir unset: the API reads cache/ at the repo root.
+services:
+  - type: web
+    name: az-boq-api
+    runtime: python
+    plan: free
+    branch: main
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn --app-dir backend azboq.api.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/summary
+    buildFilter:
+      paths:
+        - backend/**
+        - cache/**
+        - render.yaml
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.7
+      - key: PYTHONIOENCODING
+        value: utf-8
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

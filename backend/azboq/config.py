@@ -2,6 +2,11 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+# Local secrets live in .env at the repo root; variables already set in the environment win.
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+
 ROOT = Path(os.environ.get("AZBOQ_ROOT", Path(__file__).resolve().parents[2]))
 DATA_DIR = Path(os.environ.get("AZBOQ_DATA", ROOT / "data"))
 PACKAGE_DIR = DATA_DIR / "Hadrut DEPO"
@@ -26,6 +31,11 @@ TOOLS_DIR = ROOT / "tools"
 ODA_EXE = Path(os.environ.get("AZBOQ_ODA", TOOLS_DIR / "oda" / "ODAFileConverter.exe"))
 LIBREDWG_TOOL = TOOLS_DIR / "libredwg" / "count.mjs"
 FONT_DIR = TOOLS_DIR / "fonts"
+
+# FRONTEND_URL is the deployed frontend; separate several with commas.
+CORS_ORIGINS = ["http://127.0.0.1:5173", "http://localhost:5173"] + [
+    u.strip().rstrip("/") for u in os.environ.get("FRONTEND_URL", "").split(",") if u.strip()
+]
 
 OPENAI_TRANSLATION_MODEL = os.environ.get("OPENAI_TRANSLATION_MODEL", "gpt-5.6-sol")
 OPENAI_VISION_MODEL = os.environ.get("OPENAI_VISION_MODEL", OPENAI_TRANSLATION_MODEL)

@@ -22,6 +22,15 @@ def _reach(t, factor) -> float | None:
     return t["h"] * factor if t.get("h") else None
 
 
+def _other_order(region: dict | None) -> bool:
+    """A sheet whose number is another order is not a source for this project."""
+    if not region:
+        return False
+    sheet = ((region.get("number") or {}).get("raw")) or ""
+    orders = re.findall(r"9\d{3}", sheet)
+    return bool(orders) and all(order not in {"9335", "9526"} for order in orders)
+
+
 def _conversion_files() -> dict:
     conv = store.get("conversion") or {"files": []}
     return {f["sha256"]: f for f in conv["files"]}
@@ -234,21 +243,42 @@ def dimension_mode(rule) -> Value:
 
 
 def slab_level_step(rule) -> Value:
+    """The step between sheet titles that name a slab level.
+
+    A specification sheet can mention another level in its body. That text is not a slab.
+    """
     pat = re.compile(rule["title_pattern"])
     levels: dict[float, list] = {}
+    seen = set()
     for sha in _files_for(rule):
         for t, region in L.texts_in(sha, rule["building"]):
-            m = pat.search(fold_key(t["text"]))
-            if m:
-                v = float(m.group(1).replace(",", "."))
-                levels.setdefault(v, []).append(L.dxf_source(sha, t, region))
+            if not region:
+                continue
+            title_m = pat.search(fold_key(region.get("title") or ""))
+            text_m = pat.search(fold_key(t["text"]))
+            if not title_m or not text_m:
+                continue
+            v = float(title_m.group(1).replace(",", "."))
+            if float(text_m.group(1).replace(",", ".")) != v:
+                continue
+            key = (sha, region["id"], v)
+            if key in seen:
+                continue
+            seen.add(key)
+            levels.setdefault(v, []).append(L.dxf_source(sha, t, region))
     if len(levels) < 2:
         return blocked(rule["unit"], [rule["id"]], _searched(rule), "fewer than two slab levels named in sheet titles",
                        Method.STATED)
     lv = sorted(levels)
     steps = Counter(round(b - a, 3) for a, b in zip(lv, lv[1:]))
-    step, n = steps.most_common(1)[0]
+    ranked = steps.most_common()
+    step, n = ranked[0]
     srcs = [levels[v][0] for v in lv]
+    if any(c == n for _, c in ranked[1:]):
+        tied = ", ".join(f"{s:.2f} m ×{c}" for s, c in ranked if c == n)
+        return blocked(rule["unit"], [rule["id"]], _searched(rule),
+                       f"slab levels {', '.join(f'{v:+.2f}' for v in lv)} do not repeat one step ({tied})",
+                       Method.STATED)
     rejected = [{"step": s, "count": c} for s, c in steps.items() if s != step]
     return _value(rule, step, srcs, Method.STATED,
                   note=f"slab levels {', '.join(f'{v:+.2f}' for v in lv)}; step {step:.2f} m occurs {n}×",
@@ -260,6 +290,8 @@ def floor_level_depth(rule) -> Value:
     srcs: dict[float, list] = {}
     for sha in _files_for(rule):
         for t, region in L.texts_in(sha, rule["building"], rule.get("region_title")):
+            if _other_order(region):
+                continue
             s = t["text"].strip()
             if LEVEL.match(s):
                 v = float(s.replace("±", "").replace(" ", "").replace(",", "."))
@@ -353,7 +385,9 @@ def table_row(rule) -> Value:
             if v is None:
                 continue
             used = [o for o, x in cells if x is not None and abs(x - v) < 1e-9][:1]
-            cands.append((v, [L.dxf_source(sha, t, region, "row label")] + [L.dxf_source(sha, o, region) for o in used]))
+            number = [L.dxf_source(sha, o, region) for o in used]
+            label = [L.dxf_source(sha, t, region, "row label")]
+            cands.append((v, number + label if number else label))
     for sha in _pdfs_for(rule):
         for page in L.pdf(sha)["pages"]:
             if page.get("building") != rule["building"]:
@@ -372,7 +406,10 @@ def table_row(rule) -> Value:
                 v = _pick(nums, rule["pick"])
                 if v is None:
                     continue
-                cands.append((v, [L.pdf_source(sha, page["page"], line)]))
+                used = [l for l in row if _cell_number(l["text"]) is not None and abs(_cell_number(l["text"]) - v) < 1e-9][:1]
+                number = [L.pdf_source(sha, page["page"], l) for l in used]
+                label = [L.pdf_source(sha, page["page"], line)]
+                cands.append((v, number + label if number else label))
     if not cands:
         return blocked(rule["unit"], [rule["id"]], _searched(rule), f"no row labelled /{pat}/", Method.SCHEDULE)
     values = Counter(round(v, 4) for v, _ in cands)
@@ -396,7 +433,9 @@ def text_value(rule) -> Value:
             text = fold_key(t["text"]) if rule.get("fold") else t["text"]
             m = pat.search(text)
             if m:
-                cands.append((float(m.group(1).replace(",", ".")), L.dxf_source(sha, t, region, "note")))
+                needle = m.group(1)
+                cands.append((float(needle.replace(",", ".")),
+                              L.dxf_source(sha, t, region, "note", at=L.focus_at(t, needle))))
     for sha in _pdfs_for(rule):
         for page in L.pdf(sha)["pages"]:
             if page.get("building") not in (rule.get("building"), None):

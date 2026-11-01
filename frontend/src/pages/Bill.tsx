@@ -25,10 +25,32 @@ type Line = {
   comment: string | null
   check: { status: string; reason: string; our_qty: number | null; gap?: number | null; gap_pct?: number | null; item?: string; sources?: Source[]; candidates?: Source[]; derived_from?: string; reviewer?: any; method?: string; group_total?: number; review_reasons?: { code: string; link?: string; citation?: string; rule?: string; note?: string; accepted_by?: string; file?: string }[] } | null
 }
+type ExplainSrc = {
+  file?: string
+  file_id?: string
+  page?: number | null
+  region?: string | null
+  handle?: string | null
+  bbox?: number[] | null
+  at?: number[] | null
+  row?: string | null
+  col?: string | null
+  printed?: string | null
+  is_rule?: boolean
+  citation?: string | null
+}
 type Explain = {
   item?: { label_en?: string; formula?: string | null; substituted?: string | null; citation?: string } | null
-  inputs: { label: string; value: number | null; unit: string; sources: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean; citation?: string | null }[] }[]
-  printed: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean }[]
+  inputs: { label: string; value: number | null; unit: string; sources: ExplainSrc[] }[]
+  printed: ExplainSrc[]
+}
+
+function explainTarget(src: ExplainSrc | undefined): Target | null {
+  if (!src?.file_id || src.is_rule) return null
+  const sha = src.file_id.slice(0, 12)
+  if (src.page != null || src.bbox) return { kind: 'pdf', sha, page: src.page ?? 0, bbox: src.bbox, label: src.printed || '' }
+  if (src.at || src.region || src.handle) return { kind: 'dwg', sha, region: src.region ?? null, at: src.at, handle: src.handle, label: src.printed || '' }
+  return null
 }
 type Section = { code: string; stored_code: any; row: number; title: string; trade: string; building: string; code_repaired: boolean }
 type BillData = { sections: Section[]; lines: Line[]; totals: Record<string, number>; chain: Record<string, any>; line_sum: number; unknown_units: any[]; external_links: any }
@@ -273,16 +295,25 @@ export function Bill({ route }: { route: Route }) {
                 {explained.data?.inputs?.length ? (
                   <div className="section-label"><span className="eyebrow">Dimensions and counts used</span></div>
                 ) : null}
-                {explained.data?.inputs?.map((input) => {
+                {explained.data?.inputs?.map((input, i) => {
                   const src = input.sources[0]
+                  const place = explainTarget(src)
                   const where = src
                     ? [src.file?.split('/').pop(), src.page != null ? `page ${src.page + 1}` : null, src.row, src.col].filter(Boolean).join(' · ')
                     : ''
                   return (
-                    <div key={input.label + String(input.value)} className="pair">
+                    <button
+                      key={`${input.label}-${i}`}
+                      type="button"
+                      className="pair"
+                      disabled={!place}
+                      title={place ? 'Show this number on the sheet' : undefined}
+                      onClick={() => place && setTarget(place)}
+                      style={{ width: '100%', background: 'none', font: 'inherit', color: 'inherit', cursor: place ? 'pointer' : 'default', textAlign: 'left' }}
+                    >
                       <span>{input.label}</span>
                       <b className="mono">{input.value == null ? '—' : fmt(input.value, 3)} {input.unit}{where ? ` · ${where}` : ''}</b>
-                    </div>
+                    </button>
                   )
                 })}
                 {sel.check.derived_from ? <div className="pair"><span>Follows from</span><a href={href('bill', { line: sel.check.derived_from })}>line <span className="mono">{sel.check.derived_from}</span></a></div> : null}

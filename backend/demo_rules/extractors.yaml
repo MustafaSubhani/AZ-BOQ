@@ -78,7 +78,7 @@
   files:
   - yangin deposu dk son
   citation: 'Depot DK region titles: slab levels -0.10, 3.20, 6.50 ''səviyyəsində örtük elementləri'''
-  title_pattern: (-?\d+[.,]\d+) seviyyesinde (ortuk|sutun)
+  title_pattern: (-?\d+[.,]\d+) seviyyesinde ortuk\s+element
 - id: area_first_floor
   label_az: 1-ci mərtəbənin sahəsi
   label_en: First floor area

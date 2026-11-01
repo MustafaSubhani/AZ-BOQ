@@ -136,6 +136,65 @@ def test_window_glass_explanation_names_each_mark():
     assert "9336" not in sheets
 
 
+def test_lengths_stay_on_the_sentence_and_the_project_file():
+    pipe = _row("2.5.15")
+    assert pipe["status"] != "printed"
+    assert pipe.get("our_qty") != pytest.approx(190.5)
+    cable = _row("2.27.20")
+    assert cable["status"] != "printed"
+    assert "9337" in (cable.get("reason") or "")
+    for line_id in ("2.13.1", "2.15.1"):
+        row = _row(line_id)
+        assert row["status"] != "printed"
+        assert "variant" in (row.get("reason") or "")
+    rail = _row("2.11.8")
+    assert rail["status"] != "printed"
+    assert rail.get("our_qty") != pytest.approx(13.2)
+    tower = _row("4.5.10")
+    assert tower["status"] == "different"
+    assert tower["our_qty"] == pytest.approx(32.6)
+    assert "2 of them" in tower["reason"]
+    pipe = _row("4.5.11")
+    assert pipe["status"] != "printed"
+    assert pipe.get("our_qty") != pytest.approx(16.3)
+    for line_id in ("2.22.113", "2.22.114"):
+        row = _row(line_id)
+        assert row["status"] != "printed"
+        assert "does not name" in (row.get("reason") or "")
+    for line_id in ("20.1.4", "20.1.5", "20.1.6", "20.1.7", "20.1.8"):
+        row = _row(line_id)
+        assert row["status"] != "printed"
+        text = " ".join((src.get("raw_text") or "") for src in (row.get("sources") or []))
+        assert "Yolların sahəsi" not in text
+    asphalt = _row("20.1.3")
+    assert any("599.7" in (src.get("raw_text") or "") for src in asphalt.get("sources") or [])
+    extra = _row("20.1.4")
+    assert extra["status"] == "derived"
+    assert any("599.7" in (src.get("raw_text") or "") for src in extra.get("sources") or [])
+    cable = _row("2.22.121")
+    assert cable["status"] == "printed"
+    assert cable["our_qty"] == pytest.approx(2140)
+    assert any("3x4" in (src.get("row_label") or "") for src in cable.get("sources") or [])
+
+
+def test_the_mark_opens_on_the_figure():
+    take = store.get("takeoff")
+    if not take:
+        pytest.skip("takeoff has not been run")
+    items = {item["id"]: item for item in take["items"]}
+    floor = items["area_first_floor"]["value"]["sources"][0]["raw_text"]
+    base = items["area_basement"]["value"]["sources"][0]["raw_text"]
+    assert "1395" in floor.replace(",", ".")
+    assert "1360" in base.replace(",", ".")
+    sheets = " ".join((src.get("locator") or {}).get("sheet") or "" for src in items["storey_basement"]["value"]["sources"])
+    assert "9337" not in sheets
+    note = items["topsoil"]["value"]["sources"][0]
+    from azboq.engine.locate import dump
+    entity = next(t for t in dump(note["file_id"])["texts"]
+                  if t.get("handle") == note["locator"]["handle"] and "522" in (t.get("text") or ""))
+    assert note["locator"]["at"][1] != pytest.approx(entity["at"][1])
+
+
 def test_hand_links_carry_a_review_reason():
     from azboq.rules import load
     report = store.get("report")

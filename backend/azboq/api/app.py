@@ -13,8 +13,7 @@ from .. import config, store
 from ..text import translate
 
 app = FastAPI(title="AZ-BOQ demo")
-app.add_middleware(CORSMiddleware, allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
-                   allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 
 
 def _need(name: str):
@@ -213,16 +212,20 @@ def drawing_entity(sha: str, handle: str):
     raise HTTPException(404, "handle not found")
 
 
+def _pdf_tile(f: dict, page: int) -> Path:
+    from ..pdf.tiles import page_tile
+    try:
+        return page_tile(f, page)
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "the source PDF is not included in this deployment") from exc
+
+
 @app.get("/api/pdf/{sha}/page/{page}.png")
 def pdf_page_png(sha: str, page: int):
     f = next((v for k, v in _files_by_sha().items() if k.startswith(sha)), None)
     if not f:
         raise HTTPException(404, "file not found")
-    out = config.TILES_DIR / f"{f['sha256'][:12]}_p{page}.png"
-    if not out.exists():
-        doc = pymupdf.open(f["path"])
-        doc[page].get_pixmap(dpi=110).save(str(out))
-    return FileResponse(str(out), media_type="image/png")
+    return FileResponse(str(_pdf_tile(f, page)), media_type="image/png")
 
 
 @app.get("/api/pdf/{sha}/page/{page}/meta")
@@ -231,13 +234,13 @@ def pdf_page_meta(sha: str, page: int):
     f = next((v for k, v in _files_by_sha().items() if k.startswith(sha)), None)
     if not f:
         raise HTTPException(404, "file not found")
+    tile = _pdf_tile(f, page)
     d = load_pdf_dump(f["sha256"])
-    from ..crops import pdf_transform
+    from ..crops import PDF_DPI, pdf_transform
     if d is None:
-        doc = pymupdf.open(f["path"])
-        p = doc[page]
-        return {"width": p.rect.width, "height": p.rect.height, "lines": [], "png_url": f"/api/pdf/{sha}/page/{page}.png",
-                "scanned": True, "transform": pdf_transform()}
+        pix = pymupdf.Pixmap(str(tile))
+        return {"width": pix.width * 72 / PDF_DPI, "height": pix.height * 72 / PDF_DPI, "lines": [],
+                "png_url": f"/api/pdf/{sha}/page/{page}.png", "scanned": True, "transform": pdf_transform()}
     pg = d["pages"][page]
     return {"width": pg["width"], "height": pg["height"], "lines": pg["lines"], "number": pg.get("number"),
             "building": pg.get("building"), "png_url": f"/api/pdf/{sha}/page/{page}.png",

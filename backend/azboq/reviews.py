@@ -27,6 +27,14 @@ class ExprError(ValueError):
     pass
 
 
+def prepare_expression(expression: str) -> str:
+    """Accept a decimal comma and a typed x. The stored text stays as the person wrote it."""
+    text = str(expression or "").strip()
+    text = re.sub(r"(\d),(\d)", r"\1.\2", text)
+    text = re.sub(r"(\d)\s*[xX]\s*(?=\d)", r"\1*", text)
+    return text
+
+
 def evaluate(expression: str, variables: dict | None = None) -> float:
     """Numbers, names, + − × ÷, parentheses, sum and round. No Python eval."""
     env = {k: float(v) for k, v in (variables or {}).items()}
@@ -61,9 +69,11 @@ def add_review(target_kind: str, target_id: str, action: str, payload: dict, rea
         raise ExprError("a review needs an author and a reason")
     if action == "override":
         try:
-            evaluate(payload.get("expression") or "", {name: 1 for name in (payload.get("variables") or {})})
+            evaluate(prepare_expression(payload.get("expression") or ""),
+                     {name: 1 for name in (payload.get("variables") or {})})
         except ExprError as exc:
-            if str(exc) != "division by zero":
+            # An item formula is checked with stand-in inputs, so 1/0 there is not final.
+            if not (str(exc) == "division by zero" and target_kind != "line"):
                 raise
     with _connect(db) as con:
         cur = con.execute(

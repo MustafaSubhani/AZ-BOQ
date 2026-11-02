@@ -438,6 +438,10 @@ td.bad-fig { color: var(--bad); font-weight: 500; }
 .box small, .src small { display: block; color: var(--muted); font-size: var(--fs-11); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
 .box.bad small { color: var(--bad-text); } .box.warn small { color: var(--warn-text); } .box.ok small { color: var(--ok-text); } .box.info small { color: var(--info-text); }
 .box.formula { font-family: var(--mono); font-size: var(--fs-12); }
+.edit input { display: block; width: 100%; margin-top: 6px; padding: 7px 9px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--paper); font-size: var(--fs-13); }
+.edit .acts { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.edit .quiet { height: 36px; padding: 0 10px; color: var(--ink-2); }
+.edit .err { color: var(--bad-text); margin-top: 6px; }
 .src { display: block; margin-top: 8px; padding: 9px 12px; border: 1px solid var(--line-2); border-radius: 10px; font-size: var(--fs-13); line-height: 1.45; text-align: left; width: 100%; background: var(--paper); color: inherit; transition: border-color 120ms, background-color 120ms; text-decoration: none !important; }
 .src:not(:disabled):hover { border-color: var(--accent-line); background: color-mix(in srgb, var(--accent-soft) 40%, var(--paper)); }
 .src.on { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 12%, transparent); }

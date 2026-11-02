@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowDown, ArrowUp, Search, X } from '../icons'
-import { clearCache, postJSON, useData } from '../api'
+import { clearCache, delJSON, postJSON, useData } from '../api'
 import { fmt, matches, money } from '../az'
 import { T } from '../i18n'
 import { go, href, type Route } from '../router'
@@ -23,39 +23,139 @@ type Line = {
   building: string
   trade: string
   comment: string | null
-  check: { status: string; reason: string; our_qty: number | null; gap?: number | null; gap_pct?: number | null; item?: string; sources?: Source[]; candidates?: Source[]; derived_from?: string; reviewer?: any; method?: string; group_total?: number; review_reasons?: { code: string; link?: string; citation?: string; rule?: string; note?: string; accepted_by?: string; file?: string }[] } | null
-}
-type ExplainSrc = {
-  file?: string
-  file_id?: string
-  page?: number | null
-  region?: string | null
-  handle?: string | null
-  bbox?: number[] | null
-  at?: number[] | null
-  row?: string | null
-  col?: string | null
-  printed?: string | null
-  is_rule?: boolean
-  citation?: string | null
+  check: {
+    status: string
+    reason: string
+    our_qty: number | null
+    gap?: number | null
+    gap_pct?: number | null
+    item?: string
+    sources?: Source[]
+    candidates?: Source[]
+    derived_from?: string
+    reviewer?: { kind?: string; delta?: number; value?: number }
+    method?: string
+    group_total?: number
+    engine_qty?: number | null
+    engine_reason?: string
+    override?: { id: number; expression: string; author: string; reason: string }
+    review_reasons?: { code: string; link?: string; citation?: string; rule?: string; note?: string; accepted_by?: string; file?: string }[]
+  } | null
 }
 type Explain = {
   item?: { label_en?: string; formula?: string | null; substituted?: string | null; citation?: string } | null
-  inputs: { label: string; value: number | null; unit: string; sources: ExplainSrc[] }[]
-  printed: ExplainSrc[]
-}
-
-function explainTarget(src: ExplainSrc | undefined): Target | null {
-  if (!src?.file_id || src.is_rule) return null
-  const sha = src.file_id.slice(0, 12)
-  if (src.page != null || src.bbox) return { kind: 'pdf', sha, page: src.page ?? 0, bbox: src.bbox, label: src.printed || '' }
-  if (src.at || src.region || src.handle) return { kind: 'dwg', sha, region: src.region ?? null, at: src.at, handle: src.handle, label: src.printed || '' }
-  return null
+  inputs: { label: string; value: number | null; unit: string; sources: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean; citation?: string | null }[] }[]
+  printed: { file?: string; page?: number | null; row?: string | null; col?: string | null; printed?: string | null; is_rule?: boolean }[]
 }
 type Section = { code: string; stored_code: any; row: number; title: string; trade: string; building: string; code_repaired: boolean }
 type BillData = { sections: Section[]; lines: Line[]; totals: Record<string, number>; chain: Record<string, any>; line_sum: number; unknown_units: any[]; external_links: any }
 
 const CHECKED = new Set(['matched', 'printed', 'derived'])
+const EDITABLE = new Set(['review', 'different', 'not_found'])
+
+function cleanNum(n: number): string {
+  return n.toFixed(6).replace(/\.?0+$/, '')
+}
+
+function QuantityForm({ line, expr, setExpr, who, setWho, qtyWhy, setQtyWhy, editErr, setEditErr, saving, setSaving }: {
+  line: Line
+  expr: string
+  setExpr: (value: string) => void
+  who: string
+  setWho: (value: string) => void
+  qtyWhy: string
+  setQtyWhy: (value: string) => void
+  editErr: string
+  setEditErr: (value: string) => void
+  saving: boolean
+  setSaving: (value: boolean) => void
+}) {
+  return (
+    <form id="qty-editor" className="box edit" onSubmit={async (e) => {
+      e.preventDefault()
+      if (saving) return
+      if (!expr.trim() || !who.trim() || !qtyWhy.trim()) {
+        setEditErr('Enter a quantity, your name, and why you are changing it.')
+        return
+      }
+      setSaving(true)
+      setEditErr('')
+      try {
+        try { localStorage.setItem('azboq.author', who.trim()) } catch { /* keep going */ }
+        await postJSON('/api/review', {
+          target_kind: 'line',
+          target_id: line.id,
+          action: 'override',
+          reason: qtyWhy.trim(),
+          author: who.trim(),
+          payload: { expression: expr.trim(), unit: line.unit },
+        })
+        clearCache()
+        window.location.reload()
+      } catch (err) {
+        setEditErr(errText(err))
+        setSaving(false)
+      }
+    }}>
+      <small>{line.check?.override ? 'Edited quantity' : 'Set the quantity'}</small>
+      <div className="faint">{quantityHint(line)}</div>
+      <input aria-label="Quantity or formula" inputMode="decimal" value={expr} onChange={(e) => setExpr(e.target.value)} placeholder="12.4 or 3 × 4.2" />
+      <input aria-label="Your name" placeholder="Your name" value={who} onChange={(e) => setWho(e.target.value)} />
+      <input aria-label="Why you are changing it" placeholder="Why this figure is right" value={qtyWhy} onChange={(e) => setQtyWhy(e.target.value)} />
+      {editErr ? <div className="err">{editErr}</div> : null}
+      <div className="acts">
+        <button className="btn" type="submit" disabled={saving}>{saving ? 'Saving…' : 'Save quantity'}</button>
+        {line.check?.override ? (
+          <button className="quiet" type="button" disabled={saving} onClick={async () => {
+            if (!who.trim()) {
+              setEditErr('Enter your name before putting the measured figure back.')
+              return
+            }
+            setSaving(true)
+            setEditErr('')
+            try {
+              try { localStorage.setItem('azboq.author', who.trim()) } catch { /* keep going */ }
+              await delJSON(`/api/review/${line.check!.override!.id}`, {
+                author: who.trim(),
+                reason: qtyWhy.trim() || 'the measured figure stands',
+              })
+              clearCache()
+              window.location.reload()
+            } catch (err) {
+              setEditErr(errText(err))
+              setSaving(false)
+            }
+          }}>Use the measured figure</button>
+        ) : null}
+      </div>
+    </form>
+  )
+}
+
+function quantityHint(line: Line): string {
+  const measured = line.check?.override ? line.check.engine_qty : line.check?.our_qty
+  const figure = measured != null ? `${fmt(measured, 3)} ${line.unit}` : ''
+  if (line.check?.override) {
+    return figure ? `The check measured ${figure}. The bill is using your figure.` : 'The check had no figure. The bill is using your figure.'
+  }
+  return figure ? `The check measured ${figure}. Enter the figure the bill should use.` : 'The check has no figure yet. Enter the figure the bill should use.'
+}
+
+function errText(err: unknown): string {
+  const raw = String((err as Error).message || err)
+  const body = raw.replace(/^\d+\s+/, '')
+  let detail = raw
+  try {
+    const parsed = JSON.parse(body) as { detail?: unknown }
+    if (typeof parsed.detail === 'string') detail = parsed.detail
+  } catch { /* the server sent plain text */ }
+  if (detail.startsWith('unknown name') || detail.startsWith('cannot read') || detail.startsWith('unexpected')) {
+    return 'Use a number or a sum, for example 12.4 or 3 × 4.2.'
+  }
+  if (detail === 'division by zero') return 'That divides by zero.'
+  if (detail === 'the expression is empty') return 'Enter a quantity.'
+  return detail
+}
 
 export function Bill({ route }: { route: Route }) {
   const { data, error } = useData<BillData>('/api/bill')
@@ -64,6 +164,10 @@ export function Bill({ route }: { route: Route }) {
   const [target, setTarget] = useState<Target | null>(null)
   const [who, setWho] = useState(() => { try { return localStorage.getItem('azboq.author') || '' } catch { return '' } })
   const [why, setWhy] = useState('')
+  const [expr, setExpr] = useState('')
+  const [qtyWhy, setQtyWhy] = useState('')
+  const [editErr, setEditErr] = useState('')
+  const [saving, setSaving] = useState(false)
   const bname = useBuildingName()
   const status = route.query.get('status') || 'all'
   const building = route.query.get('building') || ''
@@ -134,6 +238,17 @@ export function Bill({ route }: { route: Route }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selId, status, building])
 
+  const selected = data?.lines.find((l) => l.id === selId) || null
+  const overrideId = selected?.check?.override?.id
+  const overrideExpr = selected?.check?.override?.expression
+  useEffect(() => {
+    const figure = selected?.check?.our_qty
+    setExpr(overrideExpr ?? (figure != null ? cleanNum(figure) : ''))
+    setQtyWhy('')
+    setEditErr('')
+    setSaving(false)
+  }, [selected?.id, overrideId, overrideExpr, selected?.check?.our_qty])
+
   if (error) return <ErrorBox error={error} />
   if (!data) return <Loading what="the bill" />
 
@@ -153,6 +268,7 @@ export function Bill({ route }: { route: Route }) {
   const head = data.totals.contract_price_c5
   const selIdx = sel ? visible.findIndex((l) => l.id === sel.id) : -1
   const different = sel?.check?.status === 'different'
+  const editing = !!(sel?.check && (EDITABLE.has(sel.check.status) || sel.check.override))
   const step = (d: number) => {
     const next = selIdx >= 0 ? visible[selIdx + d] : undefined
     if (!next) return
@@ -213,6 +329,7 @@ export function Bill({ route }: { route: Route }) {
                       <td className="r num">{fmt(l.qty, 3)}</td>
                       <td className={`r num ${l.check?.status === 'different' ? 'bad-fig' : ''}`}>
                         {l.check?.our_qty === null || l.check?.our_qty === undefined ? <span className="faint">—</span> : fmt(l.check.our_qty, 3)}
+                        {l.check?.override ? <span className="pill" style={{ marginLeft: 6 }} title={`${l.check.override.author}: ${l.check.override.reason}`}>edited</span> : null}
                       </td>
                       <td className="r num">{money(l.amount)}</td>
                       <td>{l.check ? <StatusTag status={l.check.status} /> : null}</td>
@@ -240,7 +357,7 @@ export function Bill({ route }: { route: Route }) {
           className="inspector"
           style={{ overflow: 'hidden' }}
         >
-          <div className="insp" style={{ flex: '0 1 auto', maxHeight: '58%' }}>
+          <div className="insp" style={editing ? { flex: '1 1 auto', minHeight: 0 } : { flex: '0 1 auto', maxHeight: '58%' }}>
             <div className="eyebrow accent">{bname(sel.building)} · {tradeName(sel.trade)} · workbook row {sel.row}</div>
             <h1><T az={sel.description} /></h1>
             <div className="vs">
@@ -276,11 +393,27 @@ export function Bill({ route }: { route: Route }) {
                 ) : null}
               </div>
             </div>
+            {sel.check && (EDITABLE.has(sel.check.status) || sel.check.override) ? (
+              <QuantityForm
+                line={sel}
+                expr={expr}
+                setExpr={setExpr}
+                who={who}
+                setWho={setWho}
+                qtyWhy={qtyWhy}
+                setQtyWhy={setQtyWhy}
+                editErr={editErr}
+                setEditErr={setEditErr}
+                saving={saving}
+                setSaving={setSaving}
+              />
+            ) : null}
             {sel.check ? (
               <>
                 <div className={`box ${LINE_STATUS[sel.check.status]?.cls === 'bad' ? 'bad' : LINE_STATUS[sel.check.status]?.cls === 'ok' ? 'ok' : ''}`}>
                   <small>Reason</small>
                   {sel.check.reason}
+                  {sel.check.override && sel.check.engine_reason ? <div className="faint" style={{ marginTop: 4 }}>{sel.check.engine_reason}</div> : null}
                   {sel.check.gap ? <div style={{ marginTop: 4 }}>Gap <b className="mono">{fmt(sel.check.gap, 3)} {sel.unit}</b> ({fmt(sel.check.gap_pct, 1)}%), worth about <b className="mono">{money(sel.check.gap * (sel.rate || 0))}</b> before mark-ups.</div> : null}
                 </div>
                 {sel.check.item ? <div className="pair"><span>Measured item</span><a href={href('takeoff', { item: sel.check.item })} className="mono">{sel.check.item}</a></div> : null}
@@ -295,25 +428,16 @@ export function Bill({ route }: { route: Route }) {
                 {explained.data?.inputs?.length ? (
                   <div className="section-label"><span className="eyebrow">Dimensions and counts used</span></div>
                 ) : null}
-                {explained.data?.inputs?.map((input, i) => {
+                {explained.data?.inputs?.map((input) => {
                   const src = input.sources[0]
-                  const place = explainTarget(src)
                   const where = src
                     ? [src.file?.split('/').pop(), src.page != null ? `page ${src.page + 1}` : null, src.row, src.col].filter(Boolean).join(' · ')
                     : ''
                   return (
-                    <button
-                      key={`${input.label}-${i}`}
-                      type="button"
-                      className="pair"
-                      disabled={!place}
-                      title={place ? 'Show this number on the sheet' : undefined}
-                      onClick={() => place && setTarget(place)}
-                      style={{ width: '100%', background: 'none', font: 'inherit', color: 'inherit', cursor: place ? 'pointer' : 'default', textAlign: 'left' }}
-                    >
+                    <div key={input.label + String(input.value)} className="pair">
                       <span>{input.label}</span>
                       <b className="mono">{input.value == null ? '—' : fmt(input.value, 3)} {input.unit}{where ? ` · ${where}` : ''}</b>
-                    </button>
+                    </div>
                   )
                 })}
                 {sel.check.derived_from ? <div className="pair"><span>Follows from</span><a href={href('bill', { line: sel.check.derived_from })}>line <span className="mono">{sel.check.derived_from}</span></a></div> : null}
@@ -323,7 +447,7 @@ export function Bill({ route }: { route: Route }) {
               <div className="box warn">
                 <small>Client reviewer's comment in the workbook</small>
                 <span lang="az">{sel.comment}</span>
-                {sel.check?.reviewer?.kind === 'reduce' ? <div>Read as: reduce by {fmt(-sel.check.reviewer.delta, 3)} → {fmt(sel.check.reviewer.value, 3)} {sel.unit}</div> : null}
+                {sel.check?.reviewer?.kind === 'reduce' && sel.check.reviewer.delta != null && sel.check.reviewer.value != null ? <div>Read as: reduce by {fmt(-sel.check.reviewer.delta, 3)} → {fmt(sel.check.reviewer.value, 3)} {sel.unit}</div> : null}
               </div>
             ) : null}
             {selSources.length ? (
@@ -332,10 +456,17 @@ export function Bill({ route }: { route: Route }) {
                 {selSources.map((s, i) => <SourceCard key={i} src={s} onOpen={setTarget} active={JSON.stringify(targetOf(s)) === JSON.stringify(shown)} />)}
               </>
             ) : null}
+            {editing ? (
+              <div style={{ height: 240, marginTop: 12, borderTop: '1px solid var(--line)', display: 'flex' }}>
+                <Viewer target={shown} emptyText={sel.check?.status === 'not_found' ? 'No drawing of this building prints or measures this line, so there is no sheet to show.' : 'This line has no source to show on a sheet.'} />
+              </div>
+            ) : null}
           </div>
-          <div style={{ flex: 1, display: 'flex', minHeight: 260, borderTop: '1px solid var(--line)' }}>
-            <Viewer target={shown} emptyText={sel.check?.status === 'not_found' ? 'No drawing of this building prints or measures this line, so there is no sheet to show.' : 'This line has no source to show on a sheet.'} />
-          </div>
+          {editing ? null : (
+            <div style={{ flex: 1, display: 'flex', minHeight: 260, borderTop: '1px solid var(--line)' }}>
+              <Viewer target={shown} emptyText={sel.check?.status === 'not_found' ? 'No drawing of this building prints or measures this line, so there is no sheet to show.' : 'This line has no source to show on a sheet.'} />
+            </div>
+          )}
         </Card>
       ) : null}
     </div>

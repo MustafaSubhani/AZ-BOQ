@@ -41,6 +41,78 @@ def test_an_override_replaces_the_item_and_a_reset_removes_it(tmp_path):
     assert apply_reviews(takeoff, db=db)["items"][0]["value"]["value"] == 252.276
 
 
+def test_a_line_override_replaces_only_that_measured_quantity():
+    from azboq.match.run import _apply_overrides
+
+    lines = [{"id": "L1", "qty": 10.5}, {"id": "L2", "qty": 4}]
+    out = {
+        "L1": {"status": "different", "our_qty": 12.0, "reason": "the schedule prints 12"},
+        "L2": {"status": "review", "our_qty": None, "reason": "only weak candidates"},
+    }
+    reviews = [
+        {"id": 7, "action": "override", "target_kind": "line", "target_id": "L1",
+         "payload": {"expression": "10,5"}, "author": "Ada", "reason": "counted the hatch"},
+        {"id": 8, "action": "decide", "target_kind": "line", "target_id": "L2",
+         "payload": {"value": 4}, "author": "Ada", "reason": "not an override"},
+        {"id": 9, "action": "override", "target_kind": "line", "target_id": "L2",
+         "payload": {"expression": "3 x 2"}, "author": "Ada", "reason": "two bays"},
+    ]
+    _apply_overrides(lines, out, reviews)
+    assert out["L1"]["our_qty"] == 10.5
+    assert out["L1"]["status"] == "matched"
+    assert out["L1"]["engine_qty"] == 12.0
+    assert out["L1"]["engine_reason"] == "the schedule prints 12"
+    assert out["L1"]["override"]["expression"] == "10.5"
+    assert out["L1"]["gap"] is None
+    assert out["L2"]["our_qty"] == 6
+    assert out["L2"]["status"] == "different"
+    assert out["L2"]["gap"] == pytest.approx(-2)
+    assert "Ada set this to 6" in out["L2"]["reason"]
+
+
+def test_a_line_override_has_to_be_a_real_sum(tmp_path, monkeypatch):
+    import azboq.config as config
+
+    monkeypatch.setattr(config, "DB_PATH", tmp_path / "reviews.sqlite")
+    with pytest.raises(ExprError):
+        add_review("line", "L1", "override", {"expression": "nope"}, "because", "Ada")
+    with pytest.raises(ExprError):
+        add_review("line", "L1", "override", {"expression": "1/0"}, "because", "Ada")
+    assert add_review("line", "L1", "override", {"expression": "3 x 2,5"}, "two and a half", "Ada")
+
+
+def test_a_bad_line_override_leaves_the_engine_figure():
+    from azboq.match.run import _apply_overrides
+
+    out = {"L1": {"status": "different", "our_qty": 12.0, "reason": "the schedule prints 12"}}
+    _apply_overrides(
+        [{"id": "L1", "qty": 10}],
+        out,
+        [{"id": 1, "action": "override", "target_kind": "line", "target_id": "L1",
+          "payload": {"expression": "nope"}, "author": "Ada", "reason": "bad"}],
+    )
+    assert out["L1"]["our_qty"] == 12.0
+    assert "override" not in out["L1"]
+
+
+def test_removing_a_line_override_restores_the_engine_figure(tmp_path, monkeypatch):
+    import azboq.config as config
+
+    monkeypatch.setattr(config, "DB_PATH", tmp_path / "reviews.sqlite")
+    from azboq.match.run import _apply_overrides
+
+    review_id = add_review("line", "L1", "override", {"expression": "9"}, "short count", "Ada")
+    out = {"L1": {"status": "matched", "our_qty": 10.0, "reason": "printed"}}
+    _apply_overrides([{"id": "L1", "qty": 10}], out)
+    assert out["L1"]["our_qty"] == 9
+    assert out["L1"]["status"] == "different"
+    supersede(review_id, "Ada", "the engine figure stands")
+    restored = {"L1": {"status": "matched", "our_qty": 10.0, "reason": "printed"}}
+    _apply_overrides([{"id": "L1", "qty": 10}], restored)
+    assert restored["L1"]["our_qty"] == 10.0
+    assert "override" not in restored["L1"]
+
+
 def test_manual_value_names_its_inputs():
     value = manual_value(
         {"expression": "width * height / 1000000", "unit": "m²",

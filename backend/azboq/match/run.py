@@ -274,6 +274,7 @@ def run_match() -> dict:
                     adj["value"] = l["qty"] + adj["delta"]
         _note_stated(lines, out, take, finder)
         _apply_decisions(out, take)
+        _apply_overrides(lines, out)
         _attach_review_reasons(lines, out, take)
         report = _summarise(bill, take, out, linked_items)
         report["drawing_conflicts"] = finder.note_conflicts() + [
@@ -367,6 +368,59 @@ def _attach_review_reasons(lines, out, take) -> None:
     for line in lines:
         row = out[line["id"]]
         row["review_reasons"] = review_reasons(row, items.get(row.get("item") or ""), links, files)
+
+
+def _apply_overrides(lines, out, reviews=None) -> None:
+    """A person's quantity for one line. The engine figure stays beside it."""
+    from ..reviews import ExprError, active_reviews, evaluate, prepare_expression
+    by_id = {line["id"]: line for line in lines}
+    reviews = active_reviews() if reviews is None else reviews
+    for review in reviews:
+        if review.get("action") != "override" or review.get("target_kind") != "line":
+            continue
+        row = out.get(review["target_id"])
+        line = by_id.get(review["target_id"])
+        if row is None or line is None:
+            continue
+        payload = review["payload"] if isinstance(review["payload"], dict) else {}
+        expression = prepare_expression(payload.get("expression") or "")
+        if not expression:
+            continue
+        try:
+            value = float(evaluate(expression, payload.get("variables") or {}))
+        except (ExprError, TypeError, ValueError):
+            continue
+        if "engine_qty" not in row:
+            row["engine_qty"] = row.get("our_qty")
+            row["engine_status"] = row.get("status")
+            row["engine_reason"] = row.get("reason")
+        row["our_qty"] = value
+        row["method"] = "manual"
+        row["override"] = {
+            "id": review["id"],
+            "expression": expression,
+            "author": review["author"],
+            "reason": review["reason"],
+        }
+        bill = line.get("qty")
+        if bill is None:
+            row["status"] = "review"
+            row["gap"] = None
+            row["gap_pct"] = None
+            row["tolerance"] = "no bill quantity"
+        else:
+            tol, same = tolerance_for("manual", float(bill), value)
+            row["tolerance"] = tol
+            if same:
+                row["status"] = "matched"
+                row["gap"] = None
+                row["gap_pct"] = None
+            else:
+                gap = float(bill) - value
+                row["status"] = "different"
+                row["gap"] = gap
+                row["gap_pct"] = (gap / value * 100) if value else None
+        row["reason"] = f"{review['author']} set this to {value:g}. {review['reason']}"
 
 
 def _apply_decisions(out, take) -> None:

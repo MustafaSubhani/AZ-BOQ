@@ -118,10 +118,15 @@ def _openai_batch(client, items: list[tuple[int, str]]) -> dict:
     gl = glossary()["terms"]
     hits = {az: en for az, en in gl.items() if any(match_key(az) in match_key(t) for _, t in items)}
     user = json.dumps({"glossary": hits, "items": [{"id": i, "az": t} for i, t in items]}, ensure_ascii=False)
+    kwargs = {}
+    # gpt-5 models reject an explicit temperature of 0 and only accept their default.
+    if not str(config.OPENAI_TRANSLATION_MODEL).startswith("gpt-5"):
+        kwargs["temperature"] = 0
     resp = client.chat.completions.create(
-        model=config.OPENAI_TRANSLATION_MODEL, temperature=0,
+        model=config.OPENAI_TRANSLATION_MODEL,
         response_format={"type": "json_object"},
         messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user}],
+        **kwargs,
     )
     data = json.loads(resp.choices[0].message.content)
     usage = getattr(resp, "usage", None)

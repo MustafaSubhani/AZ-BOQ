@@ -11,7 +11,7 @@ type Meta = {
   region?: { id: string; title?: string | null; number?: { raw?: string } | null; building?: string | null }
   texts?: { handle: string; text: string; raw: string; at: number[]; layer: string }[]
   lines?: { text: string; bbox: number[] }[]
-  number?: string | null
+  number?: string | { raw?: string } | null
   scanned?: boolean
   transform?: { kind: string; scale: number; offset?: number[]; bbox?: number[]; dpi?: number }
 }
@@ -65,6 +65,12 @@ async function resolveRegion(t: Target): Promise<Target> {
 }
 
 /** Marker position in image pixels. DWG: model coordinates inside the region box. PDF: points from the top-left. */
+function sheetNo(n: Meta['number']): string {
+  if (!n) return ''
+  if (typeof n === 'string') return n
+  return n.raw || ''
+}
+
 function markOf(t: Target, meta: Meta, img: { w: number; h: number }): Mark | null {
   const tr = meta.transform
   if (t.kind === 'dwg' && t.at && tr?.kind === 'dxf' && tr.bbox && tr.offset) {
@@ -95,12 +101,14 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
   const [img, setImg] = useState<{ w: number; h: number } | null>(null)
   const [view, setView] = useState({ s: 1, x: 0, y: 0 })
   const drag = useRef<{ x: number; y: number; vx: number; vy: number } | null>(null)
+  const shownUrl = useRef<string | null>(null)
   const key = target ? JSON.stringify(target) : ''
 
   useEffect(() => {
     let alive = true
-    setImg(null)
     if (!target) {
+      shownUrl.current = null
+      setImg(null)
       setState({ meta: null, t: null, error: null, loading: false })
       onMeta?.(null, null)
       return
@@ -113,6 +121,12 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
       })
       .then(({ t, meta }) => {
         if (!alive) return
+        // Same sheet image: keep its size so the mark and the area outlines stay up.
+        // A cached image does not fire onLoad again, so clearing the size would hide them.
+        if (shownUrl.current !== meta.png_url) {
+          shownUrl.current = meta.png_url
+          setImg(null)
+        }
         setState({ meta, t, error: null, loading: false })
         onMeta?.(meta, t)
       })
@@ -131,7 +145,8 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
       const ch = el.clientHeight
       const s0 = Math.min(cw / img.w, ch / img.h) * 0.96
       if (focus) {
-        const s = Math.min(s0 * 3.2, 1.6)
+        // A point on a large sheet needs a closer view than a box around a schedule cell.
+        const s = focus.w ? Math.min(s0 * 3.2, 1.6) : Math.min(Math.max(s0 * 6, 1.2), 3.2)
         setView({ s, x: cw / 2 - (focus.x + (focus.w || 0) / 2) * s, y: ch / 2 - (focus.y + (focus.h || 0) / 2) * s })
       } else setView({ s: s0, x: (cw - img.w * s0) / 2, y: (ch - img.h * s0) / 2 })
     },
@@ -179,7 +194,7 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
 
   const foot = state.t
     ? state.t.kind === 'pdf'
-      ? `PDF page ${state.t.page + 1}${state.meta?.number ? ` · ${state.meta.number}` : ''}${state.meta?.scanned ? ' · scanned, no text layer' : ''}`
+      ? `PDF page ${state.t.page + 1}${sheetNo(state.meta?.number) ? ` · ${sheetNo(state.meta?.number)}` : ''}${state.meta?.scanned ? ' · scanned, no text layer' : ''}`
       : `${state.meta?.region?.number?.raw || state.t.region} · ${state.meta?.region?.title || 'sheet'} · rendered from the DWG via ODA`
     : ''
 

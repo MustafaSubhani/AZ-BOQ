@@ -1,4 +1,5 @@
 """Find things in the drawing dumps and turn them into Sources. Nothing here invents a value."""
+import math
 import re
 from functools import lru_cache
 
@@ -98,10 +99,83 @@ def texts_in(sha: str, building: str | None = None, region_title: str | None = N
         yield t, r
 
 
-def dxf_source(sha: str, entity: dict, region: dict | None, note: str = "") -> Source:
+def focus_at(entity: dict, needle: str) -> list[float] | None:
+    """A point on the line of an MTEXT that actually contains this number.
+
+    The insert of a multi-line note is the first line. The figure is often a later line,
+    and that is where the mark should open.
+    """
+    text = entity.get("text") or ""
+    if not needle or "\n" not in text:
+        return None
+    found = needle if needle in text else needle.replace(".", ",")
+    if found not in text:
+        found = needle.replace(",", ".")
+    if found not in text:
+        return None
+    lines = text.split("\n")
+    idx = col = 0
+    for i, line in enumerate(lines):
+        at = line.find(found)
+        if at >= 0:
+            idx, col = i, at
+            break
+    height = entity.get("h")
+    if not height or (idx == 0 and col == 0):
+        return None
+    h = float(height)
+    spacing = 1.667  # allow-default: MTEXT line spacing used only to place the mark, not a quantity
+    char_w = h * 0.55
+    attach_raw = entity.get("attach")
+    attach = int(attach_raw) if attach_raw else 1
+    width = entity.get("width")
+    w = float(width) if width else h * 12
+    per = int(w / char_w) if char_w else 0
+    if per < 8:
+        per = 8  # allow-default: characters per line when the text width is missing; places the mark only
+    wrapped_before = 0
+    for i, line in enumerate(lines):
+        if i == idx:
+            break
+        wraps = (len(line) + per - 1) // per
+        wrapped_before += wraps if wraps else 1
+    col_on_line = col - (col // per) * per
+    insert = entity["at"]
+    n_visual = wrapped_before + 1
+    total_h = h * (1 + (n_visual - 1) * spacing)
+    row = (attach - 1) // 3
+    col_attach = (attach - 1) % 3
+    y_top = insert[1] + total_h * row / 2
+    x0 = insert[0] - w * col_attach / 2
+    y = y_top - h * 0.5 - wrapped_before * h * spacing
+    x = x0 + col_on_line * char_w
+    rot_raw = entity.get("rot")
+    rot = float(rot_raw) if rot_raw else 0.0
+    if rot:
+        a = math.radians(rot)
+        c, s = math.cos(a), math.sin(a)
+        dx, dy = x - insert[0], y - insert[1]
+        x = insert[0] + dx * c - dy * s
+        y = insert[1] + dx * s + dy * c
+    return [round(x, 3), round(y, 3)]
+
+
+def focus_handle(sha: str, handle: str, needle: str, near: list | None = None) -> list[float] | None:
+    """The same point, found from the stored text with this handle."""
+    hits = [t for t in dump(sha).get("texts") or [] if t.get("handle") == handle]
+    if near and len(hits) > 1:
+        hits.sort(key=lambda t: (t["at"][0] - near[0]) ** 2 + (t["at"][1] - near[1]) ** 2)
+    for entity in hits:
+        point = focus_at(entity, needle)
+        if point:
+            return point
+    return None
+
+
+def dxf_source(sha: str, entity: dict, region: dict | None, note: str = "", at: list | None = None) -> Source:
     f = files()[sha]
     loc = {"kind": "dxf_entity", "handle": entity.get("handle"), "layer": entity.get("layer"),
-           "region": region["id"] if region else None, "at": entity.get("at"),
+           "region": region["id"] if region else None, "at": at or entity.get("at"),
            "sheet": (region or {}).get("number", {}) and (region or {}).get("number", {}).get("raw") if region else None}
     if entity.get("table"):
         loc["table"] = entity["table"]

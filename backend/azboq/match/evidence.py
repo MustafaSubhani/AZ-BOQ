@@ -27,17 +27,69 @@ STOP = {"olan", "ilə", "ile", "üçün", "ucun", "qədər", "qeder", "hazırlan
         "olduqda", "əlavə", "elave", "mm-ə", "sinifli", "üzrə", "uzre", "binaların", "binalarin", "tikinti"}
 LEVEL_LIKE = re.compile(r"^[+\-±]")
 SUBJECT = re.compile(r"(^|[^a-z])nov(?:lar\w*|un\w*)(?![a-z])")
+# Azerbaijani written in Cyrillic (Новалчалар) is the same word as novalça.
+_CYR_AZ = str.maketrans({
+    "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ж": "j", "з": "z",
+    "и": "i", "й": "y", "к": "k", "л": "l", "м": "m", "н": "n", "о": "o", "п": "p",
+    "р": "r", "с": "s", "т": "t", "у": "u", "ф": "f", "х": "x", "ч": "c", "ш": "s",
+    "ы": "i", "э": "e", "ю": "u", "я": "a", "ә": "e", "ө": "o", "ү": "u", "ғ": "g", "һ": "h",
+})
 ITEMISED = re.compile(r"h\s*=\s*(\d+(?:[.,]\d+)?)\s*p\.?m\.?\s*-\s*(\d+)")
+ORDER_IN_SHEET = re.compile(r"9\d{3}")
+THIS_PROJECT = {"9335", "9526"}
+
+
+def owning_clause(entry: dict) -> str:
+    """The dash-separated clause that contains this number, not the whole note.
+
+    A roof note names gutters and downpipes in one paragraph. The length belongs
+    to the clause that writes it: 'novun uzunluğu L=12.8', not the novalça clause after it.
+    """
+    text = entry.get("context") or ""
+    token = str(entry.get("token") or "")
+    alts = {token, token.replace(".", ",")}
+    value = entry.get("value")
+    if isinstance(value, (int, float)):
+        alts.add(f"{value:g}")
+        alts.add(f"{value:.1f}".rstrip("0").rstrip("."))
+    for part in re.split(r"\s+-\s*|\n", text):
+        if any(alt and alt in part for alt in alts):
+            return part
+    return text
 
 
 def subject_class(text: str) -> str | None:
-    """Gutter or downpipe, from the sentence that owns the number. Novalça is not nov."""
-    key = fold_key(text or "")
+    """Gutter or downpipe, from the clause that owns the number. Novalça is not nov."""
+    key = fold_key(text or "").translate(_CYR_AZ)
     if "novalca" in key or "axidici" in key:
         return "downpipe"
     if SUBJECT.search(key):
         return "gutter"
     return None
+
+
+def file_problem(entry: dict) -> str | None:
+    """A sheet of another order, or a drawing named as a second variant, is not this project's source."""
+    sheet = entry.get("sheet") or ""
+    orders = ORDER_IN_SHEET.findall(sheet)
+    if orders and all(order not in THIS_PROJECT for order in orders):
+        return f"sheet {sheet.strip()} belongs to order {orders[0]}, not this project"
+    name = fold_key(entry.get("file") or "")
+    if "2-ci variant" in name or "2 ci variant" in name:
+        return "the file is named as a second variant"
+    return None
+
+
+def piece_total(entry: dict) -> tuple[float, int] | None:
+    """'h=16.3 p.m. - 2 əd' is two pipes, so the length is 32.6 m, not 16.3."""
+    match = ITEMISED.search(fold_key(entry.get("context") or ""))
+    if not match:
+        return None
+    count = int(match.group(2))
+    if count <= 1:
+        return None
+    each = float(match.group(1).replace(",", "."))
+    return each * count, count
 
 
 def _decimals(q: float) -> int:
@@ -112,7 +164,7 @@ class Finder:
             self.by_value[round(e["value"], 3)].append(e)
             if e["strength"] == "strong":
                 self.by_region[(e["file_id"], e.get("region") or e.get("page"))].append(e)
-                kind = subject_class(e.get("context") or "")
+                kind = subject_class(owning_clause(e))
                 if kind and e.get("unit"):
                     self.by_subject[(e.get("building"), e.get("unit"), kind)].append(e)
 
@@ -147,6 +199,21 @@ class Finder:
             if re.fullmatch(r"\d{1,2}[.,]\d{3}", e["token"]) and unit not in ("m³", "t"):
                 continue
             if _beside_level(e):
+                continue
+            problem = file_problem(e)
+            if problem:
+                if len(weak) < 5:
+                    weak.append({**e, "overlap": [], "problem": problem})
+                continue
+            length_note = length_problem(e, description) if unit == "m" else None
+            if length_note is None and unit in ("m²", "m³"):
+                length_note = named_area_problem(e, description)
+            # A gutter line must still see the downpipe sentence, so the swap can name both.
+            if unit == "m" and length_note == "the sentence names a different thing" and subject_class(description):
+                length_note = None
+            if length_note:
+                if len(weak) < 5:
+                    weak.append({**e, "overlap": [], "problem": length_note})
                 continue
             if unit == "each" and not count_hit_ok(e, element_of_text(description)):
                 if len(weak) < 5:
@@ -250,10 +317,84 @@ class Finder:
         return []
 
 
+def size_tokens(text: str) -> set[str]:
+    """Diameters and cable sections, so '3x4' and '3х4' are the same size."""
+    key = fold_key(text or "").translate(_CYR_AZ).replace("×", "x").replace("х", "x")
+    found = {f"{a}x{b}" for a, b in re.findall(r"(\d+)\s*x\s*(\d+)", key)}
+    found.update(f"d{n}" for n in re.findall(r"(?:diametr\w*|d)\s*[=:]?\s*(\d+)", key))
+    found.update(f"d{n}" for n in re.findall(r"(\d+)\s*mm", key))
+    return found
+
+
+def length_problem(entry: dict, description: str) -> str | None:
+    """A length written in a gutter or downpipe clause cannot confirm a different line.
+
+    A bare number with no unit, or a number whose row does not name this line, is not a length either.
+    """
+    clause = owning_clause(entry)
+    drawn = subject_class(clause)
+    billed = subject_class(description)
+    if drawn and drawn != billed:
+        return "the sentence names a different thing"
+    blob = clause + " " + (entry.get("row_label") or "")
+    named = bool(keywords(blob) & keywords(description)) or bool(size_tokens(blob) & size_tokens(description))
+    if entry.get("unit") == "m":
+        if drawn or named:
+            return None
+        return "the number is written with a unit but the row does not name this line"
+    if len(keywords(clause) & keywords(description)) < 2:
+        return "the number has no unit and only one nearby word"
+    return None
+
+
+def _words_before_number(entry: dict) -> str:
+    """The subject is what is written before the number, not the next sentence."""
+    text = entry.get("context") or ""
+    token = str(entry.get("token") or "")
+    at = text.find(token)
+    if at < 0:
+        at = text.find(token.replace(".", ","))
+    if at < 0:
+        return ""
+    start = at - 48
+    if start < 0:
+        start = 0
+    return text[start:at]
+
+
+def named_area_problem(entry: dict, description: str) -> str | None:
+    """An area written next to a different subject cannot confirm this line.
+
+    'Yolların sahəsi — 216 m²' is the road. It is not an extra 3 cm of pavement.
+    A bare cell, a 'Cəmi' total, or words the bill line also uses, still counts.
+    """
+    if entry.get("schedule"):
+        return None
+    phrase = _words_before_number(entry)
+    blob = phrase + " " + (entry.get("row_label") or "")
+    if keywords(blob) & keywords(description):
+        return None
+    if size_tokens(blob) & size_tokens(description):
+        return None
+    words = keywords(phrase)
+    if not words or words <= {"cemi", "umumi"}:
+        return None
+    return "the sentence names a different thing"
+
+
 def source_of(e: dict) -> dict:
+    at = e.get("at")
+    if e.get("kind") == "dxf_text" and e.get("handle") and e.get("token") and e.get("file_id"):
+        from ..engine.locate import focus_handle
+        focused = focus_handle(e["file_id"], e["handle"], str(e["token"]), e.get("at"))
+        if focused:
+            at = focused
     loc = {"kind": "pdf_span", "page": e.get("page"), "bbox": e.get("bbox")} if e["kind"] == "pdf_line" else \
         {"kind": "dxf_entity", "handle": e.get("handle"), "layer": e.get("layer"), "region": e.get("region"),
-         "at": e.get("at")}
-    return {"file_id": e["file_id"], "file_name": e["file"], "locator": loc, "raw_text": e["context"],
+         "at": at}
+    out = {"file_id": e["file_id"], "file_name": e["file"], "locator": loc, "raw_text": e["context"],
             "decoded_text": e["context"], "sheet": e.get("sheet"), "row_label": e.get("row_label"),
             "keywords": e.get("overlap")}
+    if e.get("problem"):
+        out["problem"] = e["problem"]
+    return out

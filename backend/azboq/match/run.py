@@ -16,7 +16,7 @@ from ..schedules.conflicts import same_room_conflicts
 from ..text.normalise import fold_key
 from .elements import classify as element_of_line
 from .elements import classify_rule
-from .evidence import Finder, source_of, subject_class
+from .evidence import Finder, owning_clause, piece_total, source_of, subject_class
 from .stated import stated_quantity
 
 REPEAT_WORDS = re.compile(r"əlavə|hər növbəti|her novbeti|növbəti gediş|qalınlığın hər|dəyişdikdə|dəyişməsi")
@@ -45,6 +45,26 @@ def tolerance_for(method: str, bill_qty: float, ours: float) -> tuple[str, bool]
 
 def _round_bill(q: float, like: float) -> float:
     return round(q, bill_decimals(like))
+
+
+def _drawing_sources(value: dict, limit: int = 4) -> list:
+    """The drawing cells behind a measured item, so a bill line can open the same place."""
+    found = []
+
+    def walk(node: dict):
+        for src in node.get("sources") or []:
+            if src.get("file_id") in (None, "", "rule"):
+                continue
+            found.append(src)
+            if len(found) >= limit:
+                return
+        for child in (node.get("inputs") or {}).values():
+            if len(found) >= limit:
+                return
+            walk(child)
+
+    walk(value)
+    return found
 
 
 def _reviewer(comment: str | None) -> dict | None:
@@ -93,11 +113,13 @@ def run_match() -> dict:
                     tol = f"exact at {dec} decimals"
                 group = {"lines": [x["id"] for x in present], "bill_total": total, "drawing_total": v["value"],
                          "gap": None if same else total - v["value"]}
+                drawing = _drawing_sources(v)
                 for l in present:
                     # A matching group confirms each line's own quantity. A differing group does not say how to split it.
                     out[l["id"]] = {"status": "matched" if same else "different", "item": item["id"],
                                     "our_qty": l["qty"] if same else None, "group": group, "link": bm["id"],
                                     "tolerance": tol, "method": v["method"], "item_status": v["status"],
+                                    "sources": drawing,
                                     "reason": (f"lines {' + '.join(group['lines'])} = {total:g} "
                                                f"{'equals' if same else 'differs from'} the printed {v['value']:g} {v['unit']}")}
                 continue
@@ -108,6 +130,7 @@ def run_match() -> dict:
                                 "gap": None if same else gap, "gap_pct": None if same else (gap / v["value"] * 100 if v["value"] else None),
                                 "gap_money": None if same or l.get("rate") is None else gap * l["rate"],
                                 "tolerance": tol,
+                                "sources": _drawing_sources(v),
                                 "reason": (f"equals {item['label_en']}" if same else
                                            f"bill {l['qty']:g} vs drawing {v['value']:g} {v['unit']}"),
                                 "method": v["method"], "link": bm["id"], "item_status": v["status"]}
@@ -129,6 +152,7 @@ def run_match() -> dict:
                 decimals = bill_decimals(l["qty"]) if d_src is None else max(bill_decimals(l["qty"]), d_src)
                 tol = f"exact at {decimals} decimals"
                 out[l["id"]] = {"status": "matched", "item": item["id"], "our_qty": v["value"], "tolerance": tol,
+                                "sources": _drawing_sources(v),
                                 "reason": f"equals {item['label_en']} (found automatically)", "method": v["method"],
                                 "item_status": v["status"]}
                 linked_items.add(item["id"])
@@ -153,6 +177,18 @@ def run_match() -> dict:
                     out[l["id"]] = swapped
                     continue
                 e = strong[0]
+                pieces = piece_total(e)
+                if pieces and not close_at(l["qty"], pieces[0], bill_decimals(l["qty"])):
+                    total, count = pieces
+                    gap = round(l["qty"] - total, 4)
+                    out[l["id"]] = {"status": "different", "our_qty": total, "method": "stated", "gap": gap,
+                                    "gap_pct": gap / total * 100 if total else None,
+                                    "gap_money": None if l.get("rate") is None else gap * l["rate"],
+                                    "tolerance": f"exact at {bill_decimals(l['qty'])} decimals",
+                                    "reason": f"the note gives {e['value']:g} {l['unit']} for one and {count} of them, "
+                                              f"so {total:g} {l['unit']}; the bill has {l['qty']:g}",
+                                    "sources": [source_of(e)]}
+                    continue
                 why = (f"next to the words {', '.join(e['overlap'][:3])}" if e["overlap"] else f"written with its unit {l['unit']}")
                 printed = e["value"]
                 tol, _same = tolerance_for("stated", l["qty"], printed)
@@ -218,8 +254,9 @@ def run_match() -> dict:
                                           f"the bill has {l['qty']:g}",
                                 "sources": [source_of(near)]}
             elif r.get("weak"):
+                problem = next((c.get("problem") for c in r["weak"] if c.get("problem")), None)
                 out[l["id"]] = {"status": "review", "our_qty": None, "candidates": r["weak"],
-                                "reason": "only weak candidates: the number appears on a drawing of this building "
+                                "reason": problem or "only weak candidates: the number appears on a drawing of this building "
                                           "without a unit or with too few digits"}
             else:
                 out[l["id"]] = {"status": "not_found", "our_qty": None,
@@ -768,7 +805,7 @@ def _subject_swap(line: dict, strong: list, finder: Finder) -> dict | None:
     if not kind:
         return None
     names = {"gutter": "gutters (nov)", "downpipe": "downpipes (novalça)"}
-    labeled = [(e, subject_class(e.get("context") or "")) for e in strong]
+    labeled = [(e, subject_class(owning_clause(e))) for e in strong]
     labeled = [(e, c) for e, c in labeled if c]
     if any(c == kind for _, c in labeled) or not labeled:
         return None
@@ -827,6 +864,7 @@ def _derived(lines, out):
                     kind = "repeat" if repeat else "same quantity"
                     out[l["id"]] = {"status": "derived", "derived_from": parent["id"], "our_qty": parent_ours,
                                     "kind": kind, "method": "derived",
+                                    "sources": pr.get("sources") or [],
                                     "tolerance": f"exact at {bill_decimals(l['qty'])} decimals",
                                     "reason": f"{'repeats' if kind == 'repeat' else 'same quantity as'} line {parent['id']} "
                                               f"({parent_ours:g} {parent['unit']})"}

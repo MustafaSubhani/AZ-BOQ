@@ -212,6 +212,12 @@ def drawing_entity(sha: str, handle: str):
     raise HTTPException(404, "handle not found")
 
 
+def _need_source(f: dict):
+    # The raw package (data/) is not shipped with the caches, so a page without a stored tile cannot be drawn.
+    if not Path(f["path"]).exists():
+        raise HTTPException(404, "the source PDF is not included in this deployment")
+
+
 @app.get("/api/pdf/{sha}/page/{page}.png")
 def pdf_page_png(sha: str, page: int):
     f = next((v for k, v in _files_by_sha().items() if k.startswith(sha)), None)
@@ -219,6 +225,7 @@ def pdf_page_png(sha: str, page: int):
         raise HTTPException(404, "file not found")
     out = config.TILES_DIR / f"{f['sha256'][:12]}_p{page}.png"
     if not out.exists():
+        _need_source(f)
         doc = pymupdf.open(f["path"])
         doc[page].get_pixmap(dpi=110).save(str(out))
     return FileResponse(str(out), media_type="image/png")
@@ -230,9 +237,12 @@ def pdf_page_meta(sha: str, page: int):
     f = next((v for k, v in _files_by_sha().items() if k.startswith(sha)), None)
     if not f:
         raise HTTPException(404, "file not found")
+    if not (config.TILES_DIR / f"{f['sha256'][:12]}_p{page}.png").exists():
+        _need_source(f)
     d = load_pdf_dump(f["sha256"])
     from ..crops import pdf_transform
     if d is None:
+        _need_source(f)
         doc = pymupdf.open(f["path"])
         p = doc[page]
         return {"width": p.rect.width, "height": p.rect.height, "lines": [], "png_url": f"/api/pdf/{sha}/page/{page}.png",

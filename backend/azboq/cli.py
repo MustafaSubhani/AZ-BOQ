@@ -25,6 +25,7 @@ def main(argv=None) -> int:
     sub.add_parser("hardcoded-report", help="write HARDCODED.md from demo_rules")
     tiles = sub.add_parser("tiles", help="pre-render every sheet region for the viewer")
     tiles.add_argument("--fresh", action="store_true", help="delete existing tiles first")
+    sub.add_parser("pdf-tiles", help="pre-render every PDF page for the viewer; needs data/")
     ex = sub.add_parser("export", help="write the Excel and PDF exports")
     ex.add_argument("--no-excel", action="store_true", help="skip Excel automation")
     tr = sub.add_parser("translate", help="pre-warm the translation cache with OpenAI")
@@ -62,6 +63,11 @@ def main(argv=None) -> int:
         res["seconds"] = round(time.time() - t0, 1)
         (config.TILES_DIR / "tiles.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"rendered {res['rendered']}, failed {len(res['failed'])}, {res['seconds']} s")
+    elif args.cmd == "pdf-tiles":
+        from . import store
+        from .pdf.tiles import render_all
+        res = render_all(store.get("register"), lambda m: print(m, flush=True))
+        print(f"{res['pages']} pages in {res['files']} files, failed {res['failed']}")
     elif args.cmd == "export":
         from .export.run import export_all
         export_all(use_excel=not args.no_excel)

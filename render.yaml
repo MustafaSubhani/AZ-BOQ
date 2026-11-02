@@ -4,7 +4,7 @@ services:
   - type: web
     name: az-boq-api
     runtime: python
-    plan: free
+    plan: 0.5c-512mb
     branch: main
     buildCommand: pip install -r backend/requirements.txt && npm --prefix frontend ci --include=dev && npm --prefix frontend run build
     startCommand: uvicorn --app-dir backend azboq.api.app:app --host 0.0.0.0 --port $PORT

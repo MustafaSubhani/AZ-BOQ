@@ -1,5 +1,5 @@
 {
- "written_at": "2026-10-30 18:08:29",
+ "written_at": "2026-11-12 13:40:15",
  "client_bill": {
   "path": "D:\\AZ-BOQ\\cache\\exports\\BOQ-Hadrut-checked.xlsx",
   "external_replaced": 15680,
@@ -37,6 +37,17 @@
   ],
   "rows_pinned_to_default_height": 1273,
   "changed_rows": [
+   103,
+   104,
+   105,
+   199,
+   200,
+   201,
+   204,
+   205,
+   206,
+   207,
+   208,
    1134,
    1135
   ]
@@ -46,114 +57,18 @@
   "examples": [],
   "layout_diffs": []
  },
- "excel": {
-  "pdf": "D:\\AZ-BOQ\\cache\\exports\\BOQ-Hadrut-checked.pdf",
-  "links": []
- },
- "client_bill_styles_after_excel": {
-  "cell_style_diffs": 0,
-  "examples": [],
-  "layout_diffs": [
-   "column B width 60.8125 vs 60.77734375",
-   "column C width 25.5625 vs 25.5546875",
-   "column D width 15.5625 vs 15.5546875",
-   "column F width 17.625 vs 17.6640625",
-   "column G width 15.9375 vs 15.88671875",
-   "column I width 14.5625 vs 14.5546875",
-   "column J width 17.625 vs 17.6640625",
-   "column K width 14.5625 vs 14.5546875",
-   "column L width 16.0625 vs 16.109375",
-   "column M width 8.9375 vs 8.88671875",
-   "column AX width 11.375 vs 11.33203125",
-   "column BA width 8.9375 vs 8.88671875",
-   "column BB width 8.9375 vs 13.0",
-   "column BC width 8.9375 vs 8.88671875",
-   "column BD width 8.9375 vs 8.88671875"
-  ]
- },
- "client_bill_values_after_excel": {
-  "value_diffs": 10,
-  "examples": [
-   [
-    "C5",
-    3811193.3565495154,
-    3811150.8592201383
-   ],
-   [
-    "F2331",
-    55989.10606318837,
-    55988.48174758836
-   ],
-   [
-    "G2331",
-    1,
-    1.0000111507863854
-   ],
-   [
-    "K2331",
-    1,
-    1.0000111507863854
-   ],
-   [
-    "F2332",
-    63329.899969250844,
-    63329.193798938824
-   ],
-   [
-    "G2332",
-    1,
-    1.0000111507863854
-   ],
-   [
-    "K2332",
-    1,
-    1.0000111507863854
-   ],
-   [
-    "F2333",
-    3229824.878431793,
-    3229788.86374588
-   ],
-   [
-    "F2334",
-    581368.4781177227,
-    581361.9954742583
-   ],
-   [
-    "F2335",
-    3811193.3565495154,
-    3811150.8592201383
-   ]
-  ]
- },
- "print": {
-  "original_pages": 63,
-  "written_pages": 73,
-  "written_size": [
-   1191,
-   842
-  ],
-  "pixel_diff": {
-   "0": 0.20308,
-   "29": 0.23428
-  }
- },
  "report_xlsx": "D:\\AZ-BOQ\\cache\\exports\\Hadrut-discrepancy-report.xlsx",
  "report_pdf": "D:\\AZ-BOQ\\cache\\exports\\Hadrut-discrepancy-report.pdf",
  "generated_bill": {
   "path": "D:\\AZ-BOQ\\cache\\exports\\BOQ-Hadrut-generated.xlsx",
-  "lines": 135,
-  "last_row": 193
+  "lines": 209,
+  "last_row": 280
  },
  "floor_bill": {
   "path": "D:\\AZ-BOQ\\cache\\exports\\BOQ-Hadrut-by-floor.xlsx",
   "lines": 2175,
-  "drawing_notes": 31,
-  "last_row": 2377,
+  "drawing_notes": 68,
+  "last_row": 2376,
   "by_id_present": true
- },
- "generated_excel": {
-  "pdf": "D:\\AZ-BOQ\\cache\\exports\\BOQ-Hadrut-generated.pdf",
-  "links": []
  }
 }

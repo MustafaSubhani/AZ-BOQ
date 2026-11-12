@@ -13,6 +13,9 @@
 /cache/*.log
 /cache/shapes*.txt
 
+# Packages uploaded from the Projects screen. The registry row stays in cache/azboq.sqlite.
+/cache/projects/
+
 # Third-party tools: ODA File Converter may not be redistributed; install it into tools/oda/
 /tools/oda/
 /tools/downloads/

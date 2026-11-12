@@ -4,7 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 
 import pymupdf
-from fastapi import Body, FastAPI, HTTPException, Query
+from fastapi import Body, FastAPI, File, Form, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -272,7 +272,50 @@ def vision():
 
 @app.get("/api/operations")
 def operations():
-    return _need("operations") if store.get("operations") else {"registers": []}
+    from ..operations import build_operations
+    if store.get("bill") and store.get("register"):
+        fresh = build_operations()
+        store.put("operations", fresh)
+        return fresh
+    return store.get("operations") or {"registers": [], "fraud_alerts": [], "fraud_rules": []}
+
+
+@app.get("/api/projects")
+def projects_list():
+    from ..projects import list_projects
+    return {"projects": list_projects()}
+
+
+@app.post("/api/projects/upload")
+async def projects_upload(
+    name: str = Form(...),
+    order_code: str = Form(""),
+    location: str = Form(""),
+    client: str = Form(""),
+    files: list[UploadFile] = File(...),
+):
+    from ..projects import ingest_uploaded_project
+    payload_files: list[tuple[str, bytes]] = []
+    for uf in files:
+        content = await uf.read()
+        payload_files.append((uf.filename or "file", content))
+    try:
+        created = ingest_uploaded_project(name, order_code, location, client, payload_files)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    return created
+
+
+@app.delete("/api/projects/{project_id}")
+def projects_delete(project_id: str):
+    from ..projects import delete_project
+    try:
+        ok = delete_project(project_id)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    if not ok:
+        raise HTTPException(404, "project not found")
+    return {"deleted": project_id}
 
 
 @app.get("/api/reviews")
@@ -286,28 +329,35 @@ def reviews(target: str | None = None):
 
 @app.post("/api/review")
 def review_add(payload: dict = Body(...)):
-    from ..pipeline import stage_match, stage_reviews
+    from ..pipeline import stage_match, stage_operations, stage_reviews
     from ..reviews import ExprError, add_review
     try:
         review_id = add_review(payload["target_kind"], payload["target_id"], payload["action"],
                                payload.get("payload") or {}, payload.get("reason") or "", payload.get("author") or "")
     except (ExprError, KeyError) as exc:
         raise HTTPException(400, str(exc)) from exc
-    stage_reviews()
-    stage_match()
+    if payload.get("target_kind") == "fraud":
+        stage_operations()
+    else:
+        stage_reviews()
+        stage_match()
     return {"id": review_id}
 
 
 @app.delete("/api/review/{review_id}")
 def review_supersede(review_id: int, payload: dict = Body(...)):
-    from ..pipeline import stage_match, stage_reviews
-    from ..reviews import ExprError, supersede
+    from ..pipeline import stage_match, stage_operations, stage_reviews
+    from ..reviews import ExprError, get_review, supersede
+    existing = get_review(review_id)
     try:
         reset_id = supersede(review_id, payload.get("author") or "", payload.get("reason") or "")
     except ExprError as exc:
         raise HTTPException(400, str(exc)) from exc
-    stage_reviews()
-    stage_match()
+    if existing and existing.get("target_kind") == "fraud":
+        stage_operations()
+    else:
+        stage_reviews()
+        stage_match()
     return {"id": reset_id}
 
 

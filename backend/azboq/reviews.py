@@ -20,7 +20,7 @@ SCHEMA = """create table if not exists review (
 )"""
 
 _TOKEN = re.compile(r"\d+(?:\.\d+)?|[A-Za-z_][A-Za-z0-9_]*|×|÷|[+\-*/(),]")
-_ACTIONS = {"override", "set_input", "accept", "reject", "map", "decide", "reset"}
+_ACTIONS = {"override", "set_input", "accept", "reject", "map", "decide", "reset", "hold", "exception"}
 
 
 class ExprError(ValueError):

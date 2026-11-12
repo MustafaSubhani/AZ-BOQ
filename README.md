@@ -1,11 +1,14 @@
 # AZ-BOQ: Hadrut drawing-to-bill check
 
-Checks the client's bill of quantities for the Hadrut fire station (order 9335) against its own drawings, and shows every number with the sheet it came from.
+Checks the client's bill of quantities for the Hadrut fire station (order 9335) against its own drawings, and shows every number with the sheet it came from. The same workspace holds the site registers and five fraud rules, filled with a worked Hadrut example so a reviewer can hold or clear a payment.
 
 - `backend/`: Python pipeline and FastAPI (`python -m azboq ...`), rules in `backend/demo_rules/`, tests in `backend/tests/`
-- `frontend/`: React + Vite app (built copy in `frontend/dist/`)
+- `frontend/`: React + Vite audit workspace. Light layout, collapsible sidebar, EN / AZ / Both
 - `cache/`: everything the pipeline derived (sheet dumps, tiles, number index, SQLite stage store, exports)
+- `docs/USER-MANUAL.md`: screen-by-screen manual. `docs/Hadrut-user-manual.docx` and `.zip` are the same manual to hand over
 - `DEMO-SCRIPT.md`: the 10-minute walkthrough; `HARDCODED.md`: values entered by hand and known gaps
+
+Projects & Upload hashes and classifies a new DWG, PDF, Excel, or zip package. It does not rerun the takeoff. Material receiving, Forma-2 measurements, and e-Qaimə invoices on the Operations screens are a worked example tied to the Hadrut bill, not a live site feed.
 
 ## Run the demo from the cache
 

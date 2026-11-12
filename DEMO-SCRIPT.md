@@ -34,8 +34,10 @@ Before the meeting: run `.\run-demo.ps1 -Rebuild` once if anything in `data/` or
 - **Report → Exports**: the client's own workbook with the check filled in (0 cell styles changed, 2 quantities changed, the header moves by 42.50), the discrepancy report in Excel and PDF, and a bill generated from our own lines in the client's layout.
 - Open `BOQ-Hadrut-checked.xlsx`: it opens with no external-link prompts.
 
-## 8. Next (30 s)
-- **Operations**: the drawing register and the contract bill are seeded from this package. Materials, measurements and invoices are empty because the package has none; the fraud checks that need them say so.
+## 8. A fraud flag, then a new package (1 min)
+- **Fraud & Alerts**. The drawing register and the contract bill come from this package. Materials, Forma-2 measurements, and e-Qaimə invoices are a worked example tied to Hadrut lines, not a live site feed.
+- Open the profnastil flag on line **2.5.11**: delivered sheets are above the contract quantity. Hold payment asks for a name and a reason and stores the decision. Exception takes that amount off the active exposure. Clear puts it back.
+- **Projects & Upload** lists the Hadrut baseline. A dropped package is hashed and classified. The takeoff is not rerun from the upload.
 
 ## If asked
 - "Is anything typed in by hand?" Yes, a few values a person read from a scanned note, each with its page; they show as "Project rule", never as measured.

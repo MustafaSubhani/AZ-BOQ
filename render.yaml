@@ -1,0 +1,23 @@
+# Render Blueprint for one service: FastAPI serves the API and the built frontend from frontend/dist.
+# Leave rootDir unset: the API reads cache/ at the repo root.
+services:
+  - type: web
+    name: az-boq-api
+    runtime: python
+    plan: 0.5c-512mb
+    branch: main
+    buildCommand: pip install -r backend/requirements.txt && npm --prefix frontend ci --include=dev && npm --prefix frontend run build
+    startCommand: uvicorn --app-dir backend azboq.api.app:app --host 0.0.0.0 --port $PORT
+    buildFilter:
+      paths:
+        - backend/**
+        - cache/**
+        - frontend/**
+        - render.yaml
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.8
+      - key: PYTHONIOENCODING
+        value: utf-8
+      - key: OPENAI_API_KEY
+        sync: false

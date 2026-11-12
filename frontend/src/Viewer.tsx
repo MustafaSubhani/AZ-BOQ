@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { CornersOut, Crosshair, FileText, Minus, Plus, Scan } from './icons'
 import { getJSON } from './api'
-import { shortFile, type Target } from './ui'
+import { CornersOut, Crosshair, FileText, Minus, Plus, Scan } from './icons'
+import { shortFile, Skeleton, type Target } from './ui'
 
 type Meta = {
   png_url: string
@@ -31,9 +31,9 @@ export type SheetShape = {
 }
 
 const SHAPE_COLOR: Record<string, string> = {
-  room: '#2f6fed',
-  area_unlinked: '#8a8f98',
-  area_conflict: '#c2410c',
+  room: '#2563eb',
+  area_unlinked: '#71717a',
+  area_conflict: '#e11d48',
 }
 
 const metaCache = new Map<string, Promise<Meta>>()
@@ -52,7 +52,6 @@ export function loadMeta(t: Target): Promise<Meta> {
   return metaCache.get(url)!
 }
 
-/** A DWG source may carry only an entity handle: look it up for its sheet and, when missing, its position for the marker. */
 async function resolveRegion(t: Target): Promise<Target> {
   if (t.kind !== 'dwg' || !t.handle || (t.region && t.at)) return t
   try {
@@ -64,7 +63,6 @@ async function resolveRegion(t: Target): Promise<Target> {
   }
 }
 
-/** Marker position in image pixels. DWG: model coordinates inside the region box. PDF: points from the top-left. */
 function sheetNo(n: Meta['number']): string {
   if (!n) return ''
   if (typeof n === 'string') return n
@@ -95,19 +93,82 @@ function markOf(t: Target, meta: Meta, img: { w: number; h: number }): Mark | nu
   return null
 }
 
-export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selectedShape, onShape }: { target: Target | null; onMeta?: (m: Meta | null, t: Target | null) => void; extraMarks?: (meta: Meta, img: { w: number; h: number }) => Mark[]; emptyText?: string; shapes?: SheetShape[]; selectedShape?: string | null; onShape?: (id: string | null) => void }) {
+export function Viewer({
+  target,
+  onMeta,
+  extraMarks,
+  emptyText,
+  shapes,
+  selectedShape,
+  onShape,
+}: {
+  target: Target | null
+  onMeta?: (m: Meta | null, t: Target | null) => void
+  extraMarks?: (meta: Meta, img: { w: number; h: number }) => Mark[]
+  emptyText?: string
+  shapes?: SheetShape[]
+  selectedShape?: string | null
+  onShape?: (id: string | null) => void
+}) {
   const box = useRef<HTMLDivElement>(null)
-  const [state, setState] = useState<{ meta: Meta | null; t: Target | null; error: string | null; loading: boolean }>({ meta: null, t: null, error: null, loading: false })
+  const [state, setState] = useState<{ meta: Meta | null; t: Target | null; error: string | null; loading: boolean }>({
+    meta: null,
+    t: null,
+    error: null,
+    loading: false,
+  })
   const [img, setImg] = useState<{ w: number; h: number } | null>(null)
   const [view, setView] = useState({ s: 1, x: 0, y: 0 })
+  const viewRef = useRef(view)
+  viewRef.current = view
+
+  const rafRef = useRef<number | null>(null)
   const drag = useRef<{ x: number; y: number; vx: number; vy: number } | null>(null)
   const shownUrl = useRef<string | null>(null)
+  const prevUrl = useRef<string | null>(null)
   const key = target ? JSON.stringify(target) : ''
+
+  const cancelAnim = useCallback(() => {
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = null
+    }
+  }, [])
+
+  const flyTo = useCallback(
+    (dest: { s: number; x: number; y: number }, animate: boolean) => {
+      cancelAnim()
+      const prefersReduced = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+      if (!animate || prefersReduced) {
+        setView(dest)
+        return
+      }
+      const start = viewRef.current
+      const t0 = performance.now()
+      const dur = 260
+      const step = (now: number) => {
+        const p = Math.min(1, (now - t0) / dur)
+        const ease = 1 - Math.pow(1 - p, 3)
+        setView({
+          s: start.s + (dest.s - start.s) * ease,
+          x: start.x + (dest.x - start.x) * ease,
+          y: start.y + (dest.y - start.y) * ease,
+        })
+        if (p < 1) rafRef.current = requestAnimationFrame(step)
+        else rafRef.current = null
+      }
+      rafRef.current = requestAnimationFrame(step)
+    },
+    [cancelAnim],
+  )
+
+  useEffect(() => () => cancelAnim(), [cancelAnim])
 
   useEffect(() => {
     let alive = true
     if (!target) {
       shownUrl.current = null
+      prevUrl.current = null
       setImg(null)
       setState({ meta: null, t: null, error: null, loading: false })
       onMeta?.(null, null)
@@ -121,8 +182,6 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
       })
       .then(({ t, meta }) => {
         if (!alive) return
-        // Same sheet image: keep its size so the mark and the area outlines stay up.
-        // A cached image does not fire onLoad again, so clearing the size would hide them.
         if (shownUrl.current !== meta.png_url) {
           shownUrl.current = meta.png_url
           setImg(null)
@@ -138,35 +197,39 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
   }, [key])
 
   const fit = useCallback(
-    (focus?: Mark | null) => {
+    (focus?: Mark | null, animate = false) => {
       const el = box.current
       if (!el || !img) return
       const cw = el.clientWidth
       const ch = el.clientHeight
-      const s0 = Math.min(cw / img.w, ch / img.h) * 0.96
+      const s0 = Math.min(cw / img.w, ch / img.h) * 0.95
       if (focus) {
-        // A point on a large sheet needs a closer view than a box around a schedule cell.
         const s = focus.w ? Math.min(s0 * 3.2, 1.6) : Math.min(Math.max(s0 * 6, 1.2), 3.2)
-        setView({ s, x: cw / 2 - (focus.x + (focus.w || 0) / 2) * s, y: ch / 2 - (focus.y + (focus.h || 0) / 2) * s })
-      } else setView({ s: s0, x: (cw - img.w * s0) / 2, y: (ch - img.h * s0) / 2 })
+        flyTo({ s, x: cw / 2 - (focus.x + (focus.w || 0) / 2) * s, y: ch / 2 - (focus.y + (focus.h || 0) / 2) * s }, animate)
+      } else {
+        flyTo({ s: s0, x: (cw - img.w * s0) / 2, y: (ch - img.h * s0) / 2 }, animate)
+      }
     },
-    [img],
+    [img, flyTo],
   )
 
   const mark = state.meta && state.t && img ? markOf(state.t, state.meta, img) : null
   const extras = state.meta && img && extraMarks ? extraMarks(state.meta, img) : []
 
   useLayoutEffect(() => {
-    fit(mark)
+    if (!img || !state.meta) return
+    const sameSheet = prevUrl.current === state.meta.png_url
+    prevUrl.current = state.meta.png_url
+    fit(mark, sameSheet)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [img, key])
 
-  // Wheel zoom needs a non-passive listener, otherwise the page scrolls along with the sheet.
   useEffect(() => {
     const el = box.current
     if (!el) return
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
+      cancelAnim()
       const r = el.getBoundingClientRect()
       const px = e.clientX - r.left
       const py = e.clientY - r.top
@@ -179,23 +242,23 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
     }
     el.addEventListener('wheel', onWheel, { passive: false })
     return () => el.removeEventListener('wheel', onWheel)
-  }, [])
+  }, [cancelAnim])
+
   const zoom = (k: number) => {
     const el = box.current
     if (!el) return
     const px = el.clientWidth / 2
     const py = el.clientHeight / 2
-    setView((v) => {
-      const s = Math.max(0.02, Math.min(8, v.s * k))
-      const f = s / v.s
-      return { s, x: px - (px - v.x) * f, y: py - (py - v.y) * f }
-    })
+    const v = viewRef.current
+    const s = Math.max(0.02, Math.min(8, v.s * k))
+    const f = s / v.s
+    flyTo({ s, x: px - (px - v.x) * f, y: py - (py - v.y) * f }, true)
   }
 
   const foot = state.t
     ? state.t.kind === 'pdf'
-      ? `PDF page ${state.t.page + 1}${sheetNo(state.meta?.number) ? ` · ${sheetNo(state.meta?.number)}` : ''}${state.meta?.scanned ? ' · scanned, no text layer' : ''}`
-      : `${state.meta?.region?.number?.raw || state.t.region} · ${state.meta?.region?.title || 'sheet'} · rendered from the DWG via ODA`
+      ? `PDF page ${state.t.page + 1}${sheetNo(state.meta?.number) ? ` · ${sheetNo(state.meta?.number)}` : ''}${state.meta?.scanned ? ' · scan (review only)' : ''}`
+      : `${state.meta?.region?.number?.raw || state.t.region} · ${state.meta?.region?.title || 'sheet'} · DWG via ODA`
     : ''
 
   const transform = `translate(${view.x}px, ${view.y}px) scale(${view.s})`
@@ -208,6 +271,7 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
         ref={box}
         onPointerDown={(e) => {
           if (e.button !== 0) return
+          cancelAnim()
           e.currentTarget.setPointerCapture(e.pointerId)
           drag.current = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }
         }}
@@ -231,16 +295,38 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
             {img ? (
               <svg className="overlay" width={img.w} height={img.h} style={{ transform }}>
                 {extras.map((m, i) => (
-                  <rect key={i} x={m.x - r * 0.5} y={m.y - r * 0.5} width={(m.w || 0) + r} height={(m.h || 0) + r} fill="#ff6a00" fillOpacity={0.12} stroke="#ff6a00" strokeOpacity={0.5} strokeWidth={1.2 / view.s} rx={4 / view.s} />
+                  <rect
+                    key={i}
+                    x={m.x - r * 0.5}
+                    y={m.y - r * 0.5}
+                    width={(m.w || 0) + r}
+                    height={(m.h || 0) + r}
+                    fill="#2563eb"
+                    fillOpacity={0.12}
+                    stroke="#2563eb"
+                    strokeOpacity={0.55}
+                    strokeWidth={1.3 / view.s}
+                    rx={4 / view.s}
+                  />
                 ))}
                 {mark ? (
                   mark.w ? (
-                    <rect x={mark.x - 4 / view.s} y={mark.y - 4 / view.s} width={mark.w + 8 / view.s} height={(mark.h || 0) + 8 / view.s} fill="#ff6a00" fillOpacity={0.16} stroke="#e85d00" strokeWidth={2.2 / view.s} rx={4 / view.s} />
+                    <rect
+                      x={mark.x - 4 / view.s}
+                      y={mark.y - 4 / view.s}
+                      width={mark.w + 8 / view.s}
+                      height={(mark.h || 0) + 8 / view.s}
+                      fill="#2563eb"
+                      fillOpacity={0.16}
+                      stroke="#1d4ed8"
+                      strokeWidth={2.2 / view.s}
+                      rx={4 / view.s}
+                    />
                   ) : (
                     <g>
-                      <circle className="pulse" cx={mark.x} cy={mark.y} r={r * 1.7} fill="none" stroke="#ff6a00" strokeWidth={2 / view.s} />
-                      <circle cx={mark.x} cy={mark.y} r={r * 1.7} fill="#ff6a00" fillOpacity={0.14} stroke="#e85d00" strokeWidth={2.2 / view.s} />
-                      <circle cx={mark.x} cy={mark.y} r={r * 0.28} fill="#e85d00" />
+                      <circle className="pulse" cx={mark.x} cy={mark.y} r={r * 1.7} fill="none" stroke="#2563eb" strokeWidth={2 / view.s} />
+                      <circle cx={mark.x} cy={mark.y} r={r * 1.7} fill="#2563eb" fillOpacity={0.15} stroke="#1d4ed8" strokeWidth={2.2 / view.s} />
+                      <circle cx={mark.x} cy={mark.y} r={r * 0.28} fill="#1d4ed8" />
                     </g>
                   )
                 ) : null}
@@ -252,7 +338,11 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
                   <polygon
                     key={shape.id}
                     points={shape.points.map((p) => p.join(',')).join(' ')}
-                    className={['shape', shape.id === selectedShape ? 'selected' : '', shape.status === 'different' || shape.kind === 'area_conflict' ? 'bad' : ''].join(' ')}
+                    className={[
+                      'shape',
+                      shape.id === selectedShape ? 'selected' : '',
+                      shape.status === 'different' || shape.kind === 'area_conflict' ? 'bad' : '',
+                    ].join(' ')}
                     style={{ ['--c' as string]: SHAPE_COLOR[shape.kind] || SHAPE_COLOR.area_unlinked }}
                     onPointerDown={(e) => e.stopPropagation()}
                     onClick={(e) => {
@@ -268,35 +358,43 @@ export function Viewer({ target, onMeta, extraMarks, emptyText, shapes, selected
           </>
         ) : null}
       </div>
+
       {!target ? (
         <div className="empty">
-          <span className="well idle"><FileText size={20} /></span>
-          <span>{emptyText || 'Pick something with a source to see it on its sheet.'}</span>
+          <span className="well idle sm"><FileText size={18} /></span>
+          <span>{emptyText || 'Select a source citation to inspect it on the drawing sheet.'}</span>
         </div>
       ) : null}
-      {state.loading ? (
-        <div className="empty">
-          <div className="spin" />
-          <span>Opening the sheet… the first open of a large drawing can take a while.</span>
+
+      {state.loading && !state.meta ? (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 bg-[var(--paper-3)]/85 backdrop-blur-[1px]">
+          <Skeleton className="h-[68%] w-[78%] rounded-xl border border-[var(--line-2)] shadow-sm" />
+          <span className="text-[12px] text-[var(--muted)]">Rendering drawing sheet…</span>
         </div>
       ) : null}
+
       {state.error ? (
         <div className="empty">
-          <span className="well warn"><Scan size={20} /></span>
-          <span>This source cannot be shown on a sheet: {state.error}</span>
+          <span className="well warn sm"><Scan size={18} /></span>
+          <span>Cannot display sheet region: {state.error}</span>
         </div>
       ) : null}
+
       {state.meta ? (
         <>
           <div className="foot" title={foot}>
             {state.t?.kind === 'pdf' ? <FileText size={13} /> : <Scan size={13} />}
-            {foot}
+            <span>{foot}</span>
           </div>
           <div className="zoom">
-            <button onClick={() => zoom(1.4)} title="Zoom in" aria-label="Zoom in"><Plus size={15} /></button>
-            <button onClick={() => zoom(1 / 1.4)} title="Zoom out" aria-label="Zoom out"><Minus size={15} /></button>
-            <button onClick={() => fit(null)} title="Whole sheet" aria-label="Whole sheet"><CornersOut size={14} /></button>
-            {mark ? <button onClick={() => fit(mark)} title="Back to the evidence" aria-label="Back to the evidence"><Crosshair size={15} /></button> : null}
+            <button type="button" onClick={() => zoom(1.4)} title="Zoom in" aria-label="Zoom in"><Plus size={14} /></button>
+            <button type="button" onClick={() => zoom(1 / 1.4)} title="Zoom out" aria-label="Zoom out"><Minus size={14} /></button>
+            <button type="button" onClick={() => fit(null, true)} title="Fit whole sheet" aria-label="Fit whole sheet"><CornersOut size={14} /></button>
+            {mark ? (
+              <button type="button" onClick={() => fit(mark, true)} title="Fly to citation marker" aria-label="Fly to citation marker">
+                <Crosshair size={14} />
+              </button>
+            ) : null}
             <div className="pct">{Math.round(view.s * 100)}%</div>
           </div>
         </>

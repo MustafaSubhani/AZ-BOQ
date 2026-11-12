@@ -1,6 +1,14 @@
+import NumberFlow from '@number-flow/react'
+import { clsx, type ClassValue } from 'clsx'
+import { motion } from 'motion/react'
 import type { CSSProperties, ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 import { WarningCircle } from './icons'
 import { useLang } from './i18n'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 
 export type Source = {
   file_id: string
@@ -36,22 +44,21 @@ export const LINE_STATUS: Record<string, { label: string; cls: string; dot: stri
   matched: { label: 'Matches', cls: 'ok', dot: 'ok', hint: 'Equals a quantity measured from the drawings' },
   printed: { label: 'Printed on drawing', cls: 'ok', dot: 'ok', hint: 'The same number is written on a drawing of this building' },
   derived: { label: 'Derived', cls: 'info', dot: 'info', hint: 'Follows from a checked line (repeat, same quantity or density)' },
-  different: { label: 'Different', cls: 'bad', dot: 'bad', hint: 'The drawings give another quantity' },
+  different: { label: 'Contradicts', cls: 'bad', dot: 'bad', hint: 'The drawings give another quantity' },
   review: { label: 'Needs review', cls: 'warn', dot: 'warn', hint: 'Only weak candidates were found' },
   blocked: { label: 'Blocked', cls: 'warn', dot: 'warn', hint: 'An input the measurement needs is missing' },
   not_found: { label: 'Not on drawings', cls: 'muted', dot: '', hint: 'No measured item and the number is not printed on any drawing of this building' },
 }
 
-/** Order and colour of the check results when they are drawn side by side. */
 export const STATUS_ORDER = ['matched', 'printed', 'derived', 'different', 'review', 'blocked', 'not_found']
 export const STATUS_COLOR: Record<string, string> = {
-  matched: 'var(--ok)',
-  printed: 'color-mix(in srgb, var(--ok) 55%, var(--paper))',
-  derived: 'var(--info)',
-  different: 'var(--bad)',
-  review: 'var(--warn)',
-  blocked: 'var(--accent)',
-  not_found: 'var(--line-3)',
+  matched: '#059669',
+  printed: '#34d399',
+  derived: '#2563eb',
+  different: '#e11d48',
+  review: '#d97706',
+  blocked: '#f59e0b',
+  not_found: '#d4d4d8',
 }
 
 export const VALUE_STATUS: Record<string, { label: string; cls: string }> = {
@@ -71,26 +78,26 @@ export const METHOD: Record<string, string> = {
 }
 
 const BUILDINGS: Record<string, [string, string]> = {
-  depot: ['Depot', 'Depo'],
-  tower: ['Tower', 'Qüllə'],
-  fence: ['Fence and retaining wall', 'Hasar və istinad divarı'],
-  site: ['Site works', 'Ərazi işləri'],
-  toilet: ['Toilet block', 'Ayaqyolu'],
-  heating_point: ['Heating point', 'İstilik məntəqəsi'],
-  pump_station: ['Pump station', 'Nasos stansiyası'],
+  depot: ['4-Bay Fire Depot', '4 çıxışlı Yanğın Deposu'],
+  tower: ['Drill Tower', 'Təlim Qülləsi'],
+  fence: ['Fence & Retaining Wall', 'Hasar və İstinad Divarı'],
+  site: ['Site Works', 'Ərazi işləri'],
+  toilet: ['Toilet Block', 'Ayaqyolu'],
+  heating_point: ['Heating Point', 'İstilik məntəqəsi'],
+  pump_station: ['Pump Station', 'Su nasos stansiyası'],
   substation: ['Substation', 'Yarımstansiya'],
-  generator: ['Generator', 'Generator'],
-  checkpoint: ['Checkpoint', 'Nəzarət-buraxılış məntəqəsi'],
-  canopy: ['Canopy', 'Talvar'],
-  smoking_area: ['Smoking area', 'Siqaret çəkmə yeri'],
-  drinking_tanks: ['Drinking water tanks', 'İçməli su çənləri'],
-  fire_tanks: ['Fire water tanks', 'Yanğın su çənləri'],
-  drinking_tank_5: ['Drinking water tank 5 m³', 'İçməli su çəni 5 m³'],
-  sand_pit: ['Sand pit', 'Qum meydançası'],
-  roads: ['Roads', 'Yollar'],
-  grading: ['Grading', 'Vertikal planlaşdırma'],
-  networks: ['External networks', 'Xarici şəbəkələr'],
-  unknown: ['Not assigned', 'Təyin edilməyib'],
+  generator: ['Diesel Generator', 'Dizel Generatoru'],
+  checkpoint: ['Guard Room', 'Nəzarətçi otağı'],
+  canopy: ['Canopy / Wash', 'Avtoyuma / Talvar'],
+  smoking_area: ['Gazebo / Shelter', 'Söhbətgah'],
+  drinking_tanks: ['Drinking Water Tanks', 'İçməli su çənləri'],
+  fire_tanks: ['Fire Water Tanks', 'Yanğın su çənləri'],
+  drinking_tank_5: ['Drinking Tank 5 m³', 'İçməli su çəni 5 m³'],
+  sand_pit: ['Sand Training Pit', 'Qum meydançası'],
+  roads: ['Roads & Pavements', 'Yollar və səkilər'],
+  grading: ['Vertical Grading', 'Şaquli planlaşdırma'],
+  networks: ['External Networks', 'Xarici şəbəkələr'],
+  unknown: ['Unassigned', 'Təyin edilməyib'],
 }
 
 function titleCase(code: string) {
@@ -112,7 +119,6 @@ export function tradeName(code: string | null | undefined) {
   return code ? titleCase(code) : '—'
 }
 
-/** A label that exists in both languages already (from the rule files), so it is never machine-translated. */
 export function Label({ en, az }: { en: string; az: string }) {
   const { lang } = useLang()
   if (lang === 'en') return <span title={az}>{en}</span>
@@ -175,7 +181,7 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
       title={src.file_name}
     >
       <small>{where(src)}</small>
-      <span lang="az">{src.decoded_text || '—'}</span>
+      <span lang="az" className="font-medium text-[var(--ink)]">{src.decoded_text || '—'}</span>
       {src.raw_text && src.raw_text !== src.decoded_text ? (
         <span className="faint" style={{ display: 'block', fontSize: 11.5 }}>
           stored as: <span className="mono">{src.raw_text.slice(0, 80)}</span>
@@ -192,11 +198,189 @@ export function SourceCard({ src, onOpen, active }: { src: Source; onOpen?: (t: 
   )
 }
 
-export function Loading({ what }: { what?: string }) {
+/** Animated tabular numeral powered by @number-flow/react */
+export function AnimatedNumber({
+  value,
+  decimals = 0,
+  prefix = '',
+  suffix = '',
+  className = '',
+}: {
+  value: number
+  decimals?: number
+  prefix?: string
+  suffix?: string
+  className?: string
+}) {
   return (
-    <div className="loading" role="status">
-      <div className="spin" />
-      <span>Loading {what || ''}…</span>
+    <span className={cn('num inline-flex items-baseline', className)}>
+      {prefix ? <span className="mr-0.5">{prefix}</span> : null}
+      <NumberFlow
+        value={Number.isFinite(value) ? value : 0}
+        format={{ minimumFractionDigits: decimals, maximumFractionDigits: decimals }}
+        transformTiming={{ duration: 380, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
+      />
+      {suffix ? <span className="ml-1 text-[0.72em] font-normal text-[var(--muted)]">{suffix}</span> : null}
+    </span>
+  )
+}
+
+/** Shared-layout sliding segmented control (Motion spring physics) */
+export function SegmentedTabs<T extends string>({
+  id,
+  options,
+  value,
+  onChange,
+  size = 'md',
+}: {
+  id: string
+  options: { value: T; label: ReactNode; count?: number | string; tone?: 'bad' | 'warn' | 'ok' | 'default' }[]
+  value: T
+  onChange: (val: T) => void
+  size?: 'sm' | 'md'
+}) {
+  return (
+    <div className={cn('chips relative', size === 'sm' && 'p-[2px]')}>
+      {options.map((opt) => {
+        const active = opt.value === value
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => onChange(opt.value)}
+            className={cn(
+              'chip relative z-10 transition-colors',
+              size === 'sm' ? 'h-6 px-2.5 text-[11.5px]' : 'h-7 px-3 text-[12px]',
+              active ? 'text-[var(--ink)]' : 'text-[var(--muted)] hover:text-[var(--ink-2)]',
+            )}
+          >
+            {active ? (
+              <motion.span
+                layoutId={`seg-${id}`}
+                transition={{ type: 'spring', stiffness: 460, damping: 36 }}
+                className="pointer-events-none absolute inset-0 -z-10 rounded-[6px] bg-[var(--paper)] shadow-[0_1px_2px_rgba(9,9,11,0.06),0_0_0_1px_var(--line-2)]"
+              />
+            ) : null}
+            <span>{opt.label}</span>
+            {opt.count !== undefined ? (
+              <b
+                className={cn(
+                  'ml-1 font-mono text-[11px]',
+                  active
+                    ? opt.tone === 'bad'
+                      ? 'text-[var(--bad-text)]'
+                      : opt.tone === 'warn'
+                        ? 'text-[var(--warn-text)]'
+                        : 'text-[var(--ink)]'
+                    : 'text-[var(--faint)]',
+                )}
+              >
+                {opt.count}
+              </b>
+            ) : null}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+/** Shimmer skeleton building block */
+export function Skeleton({ className, style }: { className?: string; style?: CSSProperties }) {
+  return <div className={cn('shimmer rounded-md', className)} style={style} aria-hidden />
+}
+
+/** Geometry-matched shimmer skeleton states (zero bare spinners) */
+export function Loading({ what }: { what?: string }) {
+  const kind = (what || '').toLowerCase()
+
+  if (kind.includes('summary') || kind.includes('overview')) {
+    return (
+      <div className="flex flex-col gap-4" role="status" aria-label={`Loading ${what || 'screen'}`}>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="card p-4 gap-3">
+              <Skeleton className="h-3.5 w-28" />
+              <Skeleton className="h-7 w-36" />
+              <Skeleton className="h-3 w-44" />
+            </div>
+          ))}
+        </div>
+        <div className="card p-5 gap-4">
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-4 w-48" />
+            <Skeleton className="h-4 w-28" />
+          </div>
+          <Skeleton className="h-3 w-full rounded-full" />
+          <div className="flex gap-2">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-7 w-24 rounded-lg" />
+            ))}
+          </div>
+        </div>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+          <div className="card p-5 gap-3 lg:col-span-7">
+            <Skeleton className="h-4 w-40 mb-2" />
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <Skeleton key={i} className="h-7 w-full" />
+            ))}
+          </div>
+          <div className="card p-5 gap-3 lg:col-span-5">
+            <Skeleton className="h-4 w-36 mb-2" />
+            {[0, 1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-11 w-full" />
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (kind.includes('takeoff')) {
+    return (
+      <div className="work" role="status" aria-label="Loading takeoff workspace">
+        <div className="card p-3 gap-2.5">
+          <Skeleton className="h-8 w-full rounded-lg" />
+          <Skeleton className="h-8 w-full rounded-lg" />
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+            <Skeleton key={i} className="h-12 w-full rounded-lg" />
+          ))}
+        </div>
+        <div className="card p-4 gap-3">
+          <Skeleton className="h-5 w-48" />
+          <Skeleton className="flex-1 min-h-[380px] w-full rounded-xl" />
+        </div>
+        <div className="card p-4 gap-3">
+          <Skeleton className="h-4 w-28" />
+          <Skeleton className="h-8 w-40" />
+          <Skeleton className="h-24 w-full rounded-lg" />
+          <Skeleton className="h-16 w-full rounded-lg" />
+        </div>
+      </div>
+    )
+  }
+
+  // Default dense register / bill table skeleton
+  return (
+    <div className="flex flex-col gap-3" role="status" aria-label={`Loading ${what || 'data'}`}>
+      <div className="card overflow-hidden">
+        <div className="flex items-center gap-2 border-b border-[var(--line)] p-3">
+          <Skeleton className="h-8 w-64 rounded-lg" />
+          <Skeleton className="h-8 w-36 rounded-lg" />
+          <Skeleton className="ml-auto h-8 w-52 rounded-lg" />
+        </div>
+        <div className="divide-y divide-[var(--line)]">
+          {Array.from({ length: 11 }).map((_, idx) => (
+            <div key={idx} className="flex items-center gap-4 px-4 py-3">
+              <Skeleton className="h-3.5 w-14" />
+              <Skeleton className="h-3.5 flex-1 max-w-[440px]" />
+              <Skeleton className="h-3.5 w-12" />
+              <Skeleton className="h-3.5 w-20 ml-auto" />
+              <Skeleton className="h-5 w-20 rounded-full" />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
@@ -204,7 +388,7 @@ export function Loading({ what }: { what?: string }) {
 export function ErrorBox({ error }: { error: string }) {
   return (
     <div className="err" role="alert">
-      <WarningCircle size={18} />
+      <WarningCircle size={18} className="mt-0.5 shrink-0" />
       <div>
         <b>Could not load this screen.</b>
         <div style={{ fontSize: 12.5, marginTop: 2 }}>{error.slice(0, 400)}</div>
@@ -215,11 +399,11 @@ export function ErrorBox({ error }: { error: string }) {
 
 export function Card({ title, sub, right, children, className, style }: { title?: ReactNode; sub?: ReactNode; right?: ReactNode; children: ReactNode; className?: string; style?: CSSProperties }) {
   return (
-    <div className={`card ${className || ''}`} style={style}>
+    <div className={cn('card', className)} style={style}>
       {title || right ? (
         <div className="card-h">
           <div style={{ minWidth: 0 }}>
-            {title}
+            <div className="card-title">{title}</div>
             {sub ? <span className="sub">{sub}</span> : null}
           </div>
           {right ? <div className="right">{right}</div> : null}
@@ -230,8 +414,7 @@ export function Card({ title, sub, right, children, className, style }: { title?
   )
 }
 
-/** Progress ring: share of a whole, drawn from 12 o'clock. */
-export function Ring({ value, size = 44, stroke = 5, label, color }: { value: number; size?: number; stroke?: number; label?: ReactNode; color?: string }) {
+export function Ring({ value, size = 44, stroke = 4.5, label, color }: { value: number; size?: number; stroke?: number; label?: ReactNode; color?: string }) {
   const r = (size - stroke) / 2
   const c = 2 * Math.PI * r
   const v = Math.max(0, Math.min(1, value || 0))
@@ -246,12 +429,13 @@ export function Ring({ value, size = 44, stroke = 5, label, color }: { value: nu
   )
 }
 
-export function Empty({ icon, title, children }: { icon?: ReactNode; title?: ReactNode; children?: ReactNode }) {
+export function Empty({ icon, title, children, action }: { icon?: ReactNode; title?: ReactNode; children?: ReactNode; action?: ReactNode }) {
   return (
     <div className="empty-state">
-      {icon ? <span className="well idle">{icon}</span> : null}
+      {icon ? <span className="well idle sm">{icon}</span> : null}
       {title ? <b>{title}</b> : null}
       {children ? <p>{children}</p> : null}
+      {action ? <div className="mt-2">{action}</div> : null}
     </div>
   )
 }
